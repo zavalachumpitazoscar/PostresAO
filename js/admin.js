@@ -221,47 +221,6 @@ async function guardarProducto(){
         return;
     }
 
-    if(productoEditandoId){
-
-        await updateDoc(
-            doc(
-                db,
-                "productos",
-                productoEditandoId
-            ),
-            {
-                nombre,
-                precio,
-                stock,
-                imagen: imagenURL
-            }
-        );
-
-        alert("Producto actualizado");
-
-        productoEditandoId = null;
-
-        document.getElementById(
-            "btnGuardarProducto"
-        ).textContent =
-            "GUARDAR PRODUCTO";
-
-    }else{
-
-        await addDoc(
-            collection(db,"productos"),
-            {
-                nombre,
-                precio,
-                stock,
-                activo:true,
-                imagen: imagenURL
-            }
-        );
-
-        alert("Producto agregado");
-    }
-
     document.getElementById("nombreProducto").value="";
     document.getElementById("precioProducto").value="";
     document.getElementById("stockProducto").value="";
