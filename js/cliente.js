@@ -309,3 +309,28 @@ document
     "keyup",
     buscarProductos
 );
+
+
+function mostrarMensaje(texto){
+
+    const mensaje =
+        document.createElement("div");
+
+    mensaje.textContent = texto;
+
+    mensaje.style.position = "fixed";
+    mensaje.style.top = "20px";
+    mensaje.style.right = "20px";
+    mensaje.style.background = "#16a34a";
+    mensaje.style.color = "white";
+    mensaje.style.padding = "15px";
+    mensaje.style.borderRadius = "10px";
+    mensaje.style.zIndex = "9999";
+
+    document.body.appendChild(mensaje);
+
+    setTimeout(()=>{
+        mensaje.remove();
+    },2000);
+
+}
