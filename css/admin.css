@@ -47,3 +47,29 @@ body{
     margin-bottom:15px;
     box-shadow:0 2px 5px rgba(0,0,0,.1);
 }
+
+.formulario-producto{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.formulario-producto input{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.formulario-producto button{
+    background:#4caf50;
+    color:white;
+}
+
+.producto-card{
+    background:white;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
