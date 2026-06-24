@@ -78,6 +78,8 @@ async function cargarProductos(){
             </div>
         `;
 
+        productosGlobal = [];
+
         const boton =
             document.createElement(
                 "button"
@@ -145,6 +147,11 @@ function actualizarCarrito(){
     let total = 0;
 
     carrito.forEach((item)=>{
+
+        productosGlobal.push({
+    id: registro.id,
+    ...producto
+});
 
         total += item.precio;
 
