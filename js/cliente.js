@@ -143,10 +143,10 @@ boton.addEventListener(
 
         actualizarCarrito();
 
-        alert(
-            producto.nombre +
-            " agregado al carrito"
-        );
+mostrarMensaje(
+    producto.nombre +
+    " agregado al carrito"
+);
 
     }
 );
