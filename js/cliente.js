@@ -115,6 +115,9 @@ boton.addEventListener(
 
     });
 
+    stockTemporal[registro.id] =
+    producto.stock;
+
 }
 
 function actualizarCarrito(){
