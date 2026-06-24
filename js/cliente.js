@@ -157,11 +157,6 @@ function actualizarCarrito(){
 
     carrito.forEach((item)=>{
 
-        productosGlobal.push({
-    id: registro.id,
-    ...producto
-});
-
         total += item.precio;
 
         const div =
