@@ -391,3 +391,10 @@ card.appendChild(contenedorBotones);
 }
 
 cargarProductos();
+
+
+cerrarModal.addEventListener("click", ()=>{
+
+    modalEditar.style.display = "none";
+
+});
