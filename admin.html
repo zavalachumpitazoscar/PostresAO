@@ -49,11 +49,36 @@
 
             <section id="vistaProductos" style="display:none;">
 
-                <h2>Productos</h2>
+    <h2>Productos</h2>
 
-                <div id="contenedorProductos"></div>
+    <div class="formulario-producto">
 
-            </section>
+        <input
+            type="text"
+            id="nombreProducto"
+            placeholder="Nombre del producto">
+
+        <input
+            type="number"
+            id="precioProducto"
+            placeholder="Precio">
+
+        <input
+            type="number"
+            id="stockProducto"
+            placeholder="Stock">
+
+        <button id="btnGuardarProducto">
+            Guardar Producto
+        </button>
+
+    </div>
+
+    <hr>
+
+    <div id="contenedorProductos"></div>
+
+</section>
 
             <section id="vistaPedidos" style="display:none;">
 
