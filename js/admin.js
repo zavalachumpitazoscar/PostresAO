@@ -217,9 +217,24 @@ async function guardarProducto(){
         document.getElementById("imagenProducto").value;
 
     if(nombre === "" || precio <= 0){
+
         alert("Complete los datos");
+
         return;
     }
+
+    await addDoc(
+        collection(db,"productos"),
+        {
+            nombre,
+            precio,
+            stock,
+            activo:true,
+            imagen: imagenURL || ""
+        }
+    );
+
+    alert("Producto agregado correctamente");
 
     document.getElementById("nombreProducto").value="";
     document.getElementById("precioProducto").value="";
