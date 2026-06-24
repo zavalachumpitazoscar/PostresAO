@@ -79,9 +79,11 @@ consulta.forEach((registro)=>{
         );
 
         card.innerHTML = `
-            <img src="${
-                producto.imagen
-            }">
+<img src="${
+    producto.imagen
+    ? producto.imagen
+    : 'https://via.placeholder.com/300x200?text=Sin+Imagen'
+}">
 
             <div class="producto-info">
 
@@ -138,6 +140,7 @@ boton.addEventListener(
         });
 
         actualizarCarrito();
+        cargarProductos();
 
 mostrarMensaje(
     producto.nombre +
