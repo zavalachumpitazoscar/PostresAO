@@ -289,6 +289,59 @@ async function cargarProductos(){
             cargarProductos();
         });
 
+        const btnEditar =
+    document.createElement("button");
+
+btnEditar.classList.add("btn-editar");
+
+btnEditar.textContent = "EDITAR";
+
+btnEditar.addEventListener("click", async ()=>{
+
+    const nuevoNombre =
+        prompt(
+            "Nombre",
+            producto.nombre
+        );
+
+    if(nuevoNombre === null) return;
+
+    const nuevoPrecio =
+        prompt(
+            "Precio",
+            producto.precio
+        );
+
+    if(nuevoPrecio === null) return;
+
+    const nuevoStock =
+        prompt(
+            "Stock",
+            producto.stock
+        );
+
+    if(nuevoStock === null) return;
+
+    const nuevaImagen =
+        prompt(
+            "URL Imagen",
+            producto.imagen || ""
+        );
+
+    await updateDoc(
+        doc(db,"productos",registro.id),
+        {
+            nombre:nuevoNombre,
+            precio:Number(nuevoPrecio),
+            stock:Number(nuevoStock),
+            imagen:nuevaImagen
+        }
+    );
+
+    cargarProductos();
+
+});
+
         // BOTÓN ELIMINAR
         const btnEliminar = document.createElement("button");
         btnEliminar.classList.add("btn-eliminar");
