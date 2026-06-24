@@ -281,3 +281,12 @@ function buscarProductos(){
     });
 
 }
+
+document
+.getElementById(
+    "buscarProducto"
+)
+.addEventListener(
+    "keyup",
+    buscarProductos
+);
