@@ -225,3 +225,45 @@ async function guardarProducto(){
     cargarProductos();
 
 }
+
+
+async function cargarProductos(){
+
+    contenedorProductos.innerHTML = "";
+
+    const consulta =
+        await getDocs(
+            collection(db,"productos")
+        );
+
+    consulta.forEach((registro)=>{
+
+        const producto =
+            registro.data();
+
+        const card =
+            document.createElement("div");
+
+        card.classList.add("producto-card");
+
+        card.innerHTML = `
+            <p><strong>${producto.nombre}</strong></p>
+            <p>Precio: S/ ${producto.precio}</p>
+            <p>Stock: ${producto.stock}</p>
+            <p>
+                Estado:
+                ${
+                    producto.activo
+                    ? "ACTIVO"
+                    : "INACTIVO"
+                }
+            </p>
+        `;
+
+        contenedorProductos.appendChild(card);
+
+    });
+
+}
+
+cargarProductos();
