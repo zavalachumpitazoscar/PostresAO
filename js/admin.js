@@ -357,8 +357,18 @@ btnEditar.addEventListener("click", async ()=>{
             }
         });
 
-        card.appendChild(btnEstado);
-        card.appendChild(btnEliminar);
+        const contenedorBotones =
+    document.createElement("div");
+
+contenedorBotones.classList.add(
+    "botones-producto"
+);
+
+contenedorBotones.appendChild(btnEstado);
+contenedorBotones.appendChild(btnEditar);
+contenedorBotones.appendChild(btnEliminar);
+
+card.appendChild(contenedorBotones);
 
         contenedorProductos.appendChild(card);
     });
