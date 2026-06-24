@@ -17,7 +17,7 @@ from "./firebase-config.js";
 
 let productosGlobal = [];
 
-let carrito = [];
+let carrito = {};
 let stockTemporal = {};
 
 const vistaCatalogo =
