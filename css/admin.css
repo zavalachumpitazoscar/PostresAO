@@ -214,3 +214,21 @@ body{
     background:#dc2626;
     color:white;
 }
+
+.producto-card strong{
+    font-size:18px;
+}
+
+.producto-card img{
+    height:220px;
+    object-fit:cover;
+}
+
+.producto-info{
+    padding:18px;
+}
+
+.producto-info p{
+    margin-bottom:10px;
+    color:#444;
+}
