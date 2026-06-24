@@ -29,6 +29,9 @@ from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 const contenedor =
     document.getElementById("contenedorUsuarios");
 
+const contenedorProductos =
+    document.getElementById("contenedorProductos");
+
 async function cargarUsuarios() {
 
     contenedor.innerHTML = "";
