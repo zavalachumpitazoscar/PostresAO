@@ -91,6 +91,8 @@ consulta.forEach((registro)=>{
             "producto-card"
         );
 
+    card.dataset.id = registro.id;
+
         card.innerHTML = `
 <img src="${
     producto.imagen
@@ -204,8 +206,7 @@ function actualizarCarrito() {
     document.getElementById("totalPedido").textContent =
         "Total: S/ " + total;
 
-    document.getElementById("carritoCount").textContent =
-        let count = Object.values(carrito)
+const count = Object.values(carrito)
     .reduce((acc, item) => acc + item.cantidad, 0);
 
 carritoCount.textContent = count;
@@ -386,10 +387,7 @@ function actualizarStockVisual(id){
 
             const stockText = card.querySelector(".stock-text");
 
-            if(stockText){
-                stockText.textContent =
-                    "Stock: " + stockTemporal[id];
-            }
+stockText.textContent = `Stock: ${stockTemporal[id] ?? 0}`;
         }
     });
 }
