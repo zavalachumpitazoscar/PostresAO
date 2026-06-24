@@ -111,7 +111,7 @@ consulta.forEach((registro)=>{
                 </p>
 
 <p class="stock-text">
-    Stock: ${producto.stock}
+    Stock: ${stockTemporal[registro.id]}
 </p>
 
             </div>
@@ -151,9 +151,9 @@ boton.addEventListener("click", () => {
 
     stockTemporal[registro.id]--;
 
-    actualizarCarrito();
-
-    mostrarMensaje(producto.nombre + " agregado al carrito");
+actualizarCarrito();
+actualizarStockVisual(registro.id);
+mostrarMensaje(producto.nombre + " agregado al carrito");
 });
 
         card.appendChild(boton);
@@ -205,7 +205,10 @@ function actualizarCarrito() {
         "Total: S/ " + total;
 
     document.getElementById("carritoCount").textContent =
-        Object.keys(carrito).length;
+        let count = Object.values(carrito)
+    .reduce((acc, item) => acc + item.cantidad, 0);
+
+carritoCount.textContent = count;
 }
 
 document
@@ -371,3 +374,22 @@ document.getElementById("btnSolicitarPedido").addEventListener("click", async ()
     actualizarCarrito();
     cargarProductos();
 });
+
+
+function actualizarStockVisual(id){
+
+    const cards = document.querySelectorAll(".producto-card");
+
+    cards.forEach(card => {
+
+        if(card.dataset.id === id){
+
+            const stockText = card.querySelector(".stock-text");
+
+            if(stockText){
+                stockText.textContent =
+                    "Stock: " + stockTemporal[id];
+            }
+        }
+    });
+}
