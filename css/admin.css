@@ -73,3 +73,36 @@ body{
     border-radius:10px;
     box-shadow:0 2px 5px rgba(0,0,0,.1);
 }
+
+
+.producto-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.producto-card button{
+    margin-right:5px;
+    margin-top:8px;
+    padding:8px 10px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.btn-editar{
+    background:#2196f3;
+    color:white;
+}
+
+.btn-eliminar{
+    background:#f44336;
+    color:white;
+}
+
+.btn-estado{
+    background:#ff9800;
+    color:white;
+}
