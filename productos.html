@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+
+    <link rel="stylesheet" href="productos.css">
+</head>
+
+<body>
+
+    <h1>Administración de Productos</h1>
+
+    <div class="formulario">
+
+        <input
+            type="text"
+            id="nombre"
+            placeholder="Nombre del producto">
+
+        <input
+            type="number"
+            id="precio"
+            placeholder="Precio">
+
+        <input
+            type="number"
+            id="stock"
+            placeholder="Stock">
+
+        <button id="btnGuardar">
+            Guardar Producto
+        </button>
+
+    </div>
+
+    <hr>
+
+    <div id="listaProductos">
+
+    </div>
+
+    <script type="module" src="productos.js"></script>
+
+</body>
+
+</html>
