@@ -398,3 +398,38 @@ cerrarModal.addEventListener("click", ()=>{
     modalEditar.style.display = "none";
 
 });
+
+document
+.getElementById("btnActualizarProducto")
+.addEventListener("click", async ()=>{
+
+    await updateDoc(
+        doc(
+            db,
+            "productos",
+            productoEditando
+        ),
+        {
+            nombre:
+                document.getElementById("editNombre").value,
+
+            precio:
+                Number(
+                    document.getElementById("editPrecio").value
+                ),
+
+            stock:
+                Number(
+                    document.getElementById("editStock").value
+                ),
+
+            imagen:
+                document.getElementById("editImagen").value
+        }
+    );
+
+    modalEditar.style.display = "none";
+
+    cargarProductos();
+
+});
