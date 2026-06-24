@@ -29,12 +29,25 @@ async function cargarProductos(){
 
     contenedorProductos.innerHTML = "";
 
-    const consulta =
-        await getDocs(
-            collection(db,"productos")
-        );
+const consulta =
+    await getDocs(
+        collection(db,"productos")
+    );
 
-    consulta.forEach((registro)=>{
+productosGlobal = [];
+
+consulta.forEach((registro)=>{
+
+    const producto =
+        registro.data();
+
+    stockTemporal[registro.id] =
+        producto.stock;
+
+    productosGlobal.push({
+        id: registro.id,
+        ...producto
+    });
 
         const producto =
             registro.data();
