@@ -43,6 +43,8 @@ const contenedorProductos =
 async function cargarProductos(){
 
     contenedorProductos.innerHTML = "";
+    productosGlobal = [];
+    stockTemporal = {};
 
 const consulta =
     await getDocs(
