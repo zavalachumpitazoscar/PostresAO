@@ -331,7 +331,7 @@ async function cargarProductos(){
             cargarProductos();
         });
 
-        const btnEditar =
+const btnEditar =
     document.createElement("button");
 
 btnEditar.classList.add("btn-editar");
@@ -340,24 +340,21 @@ btnEditar.textContent = "EDITAR";
 
 btnEditar.addEventListener("click", ()=>{
 
-    document.getElementById("nombreProducto").value =
+    productoEditando = registro.id;
+
+    document.getElementById("editNombre").value =
         producto.nombre;
 
-    document.getElementById("precioProducto").value =
+    document.getElementById("editPrecio").value =
         producto.precio;
 
-    document.getElementById("stockProducto").value =
+    document.getElementById("editStock").value =
         producto.stock;
 
-    document.getElementById("imagenProducto").value =
+    document.getElementById("editImagen").value =
         producto.imagen || "";
 
-    productoEditandoId =
-        registro.id;
-
-    document.getElementById(
-        "btnGuardarProducto"
-    ).textContent = "ACTUALIZAR PRODUCTO";
+    modalEditar.style.display = "flex";
 
 });
 
