@@ -216,7 +216,7 @@ function actualizarCarrito(){
         "totalPedido"
     ).textContent =
         "Total: S/ " + total;
-
+document.getElementById("carritoCount").textContent = carrito.length;
 }
 
 document
