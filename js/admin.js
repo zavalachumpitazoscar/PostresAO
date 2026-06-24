@@ -11,6 +11,16 @@ import {
 }
 from "./firebase-config.js";
 
+import {
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+import {
+    auth
+}
+from "./firebase-config.js";
+
 const contenedor =
     document.getElementById("contenedorUsuarios");
 
@@ -134,5 +144,27 @@ document
     vistaUsuarios.style.display = "none";
     vistaProductos.style.display = "none";
     vistaPedidos.style.display = "block";
+
+});
+
+
+document
+.getElementById("btnCerrarSesion")
+.addEventListener("click", async () => {
+
+    try {
+
+        await signOut(auth);
+
+        window.location.href = "index.html";
+
+    }
+    catch(error){
+
+        alert("Error al cerrar sesión");
+
+        console.error(error);
+
+    }
 
 });
