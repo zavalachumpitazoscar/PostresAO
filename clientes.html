@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Catálogo de Postres</title>
+
+    <link rel="stylesheet"
+          href="css/cliente.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <aside class="sidebar">
+
+            <h2>🍰 Dulce Shop</h2>
+
+            <button id="btnCatalogo">
+                🍰 Catálogo
+            </button>
+
+            <button id="btnCarrito">
+                🛒 Mi Carrito
+            </button>
+
+            <button id="btnMisPedidos">
+                📦 Mis Pedidos
+            </button>
+
+            <button id="btnCerrarSesion">
+                🚪 Cerrar Sesión
+            </button>
+
+        </aside>
+
+        <main class="contenido">
+
+            <section id="vistaCatalogo">
+
+                <h2>Productos Disponibles</h2>
+
+                <div id="contenedorProductos"></div>
+
+            </section>
+
+            <section id="vistaCarrito"
+                     style="display:none;">
+
+                <h2>Mi Carrito</h2>
+
+                <div id="contenedorCarrito"></div>
+
+                <h3 id="totalPedido">
+                    Total: S/ 0
+                </h3>
+
+                <button id="btnConfirmarPedido">
+                    Solicitar Pedido
+                </button>
+
+            </section>
+
+            <section id="vistaPedidos"
+                     style="display:none;">
+
+                <h2>Mis Pedidos</h2>
+
+                <div id="contenedorMisPedidos"></div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script type="module"
+            src="js/cliente.js"></script>
+
+</body>
+
+</html>
