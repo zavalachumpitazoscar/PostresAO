@@ -21,6 +21,11 @@ import {
 }
 from "./firebase-config.js";
 
+import {
+    addDoc
+}
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
 const contenedor =
     document.getElementById("contenedorUsuarios");
 
