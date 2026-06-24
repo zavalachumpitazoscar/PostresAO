@@ -1,3 +1,5 @@
+let productoEditandoId = null;
+
 import {
     collection,
     getDocs,
