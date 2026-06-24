@@ -410,3 +410,13 @@ document
     cargarProductos();
 
 });
+
+document
+.getElementById("editImagen")
+.addEventListener("input",(e)=>{
+
+    document.getElementById(
+        "previewImagen"
+    ).src = e.target.value;
+
+});
