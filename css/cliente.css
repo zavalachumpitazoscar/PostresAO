@@ -87,3 +87,12 @@ body{
     margin-bottom:10px;
     border-radius:10px;
 }
+
+.buscador{
+    width:100%;
+    padding:12px;
+    margin-bottom:20px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
