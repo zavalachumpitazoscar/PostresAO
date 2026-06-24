@@ -328,6 +328,9 @@ btnEditar.addEventListener("click", ()=>{
     document.getElementById("editImagen").value =
         producto.imagen || "";
 
+    document.getElementById("previewImagen").src =
+        producto.imagen || "";
+
     modalEditar.style.display = "flex";
 
 });
