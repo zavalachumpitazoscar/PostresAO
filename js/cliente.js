@@ -344,17 +344,32 @@ function mostrarMensaje(texto){
 
 }
 
-document.getElementById("btnSolicitarPedido").addEventListener("click", () => {
+document.getElementById("btnSolicitarPedido").addEventListener("click", async () => {
 
-    if (carrito.length === 0) {
+    if (Object.keys(carrito).length === 0) {
         alert("Carrito vacío");
         return;
     }
 
+    const pedido = {
+        productos: Object.values(carrito),
+        total: Object.values(carrito).reduce(
+            (acc, item) => acc + item.precio * item.cantidad,
+            0
+        ),
+        fecha: new Date(),
+        estado: "PENDIENTE"
+    };
+
+    await addDoc(collection(db, "pedidos"), pedido);
+
     alert("Pedido enviado correctamente 🎉");
 
-    carrito = [];
+    carrito = {};
+    stockTemporal = {};
+
     actualizarCarrito();
+    cargarProductos();
 });
 
 import { addDoc, collection } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
