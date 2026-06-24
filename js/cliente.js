@@ -59,110 +59,93 @@ async function cargarProductos(){
     productosGlobal = [];
     stockTemporal = {};
 
-const consulta =
-    await getDocs(
-        collection(db,"productos")
-    );
-
-consulta.forEach((registro)=>{
-
-    const producto =
-        registro.data();
-
-    stockTemporal[registro.id] =
-        producto.stock;
-
-    productosGlobal.push({
-        id: registro.id,
-        ...producto
-    });
-
-    if(
-        !producto.activo ||
-        producto.stock <= 0
-    ){
-        return;
-    }
-
-        const card =
-            document.createElement("div");
-
-        card.classList.add(
-            "producto-card"
+    const consulta =
+        await getDocs(
+            collection(db, "productos")
         );
 
-    card.dataset.id = registro.id;
+    consulta.forEach((registro) => {
+
+        const producto = registro.data();
+
+        // ❌ FILTRO PRIMERO (IMPORTANTE)
+        if (!producto.activo || producto.stock <= 0) {
+            return;
+        }
+
+        // ✅ stock solo de productos válidos
+        stockTemporal[registro.id] = producto.stock;
+
+        productosGlobal.push({
+            id: registro.id,
+            ...producto
+        });
+
+        const card = document.createElement("div");
+        card.classList.add("producto-card");
+        card.dataset.id = registro.id;
 
         card.innerHTML = `
-<img src="${
-    producto.imagen
-    ? producto.imagen
-    : 'https://via.placeholder.com/300x200?text=Sin+Imagen'
-}">
+            <img src="${
+                producto.imagen
+                ? producto.imagen
+                : 'https://via.placeholder.com/300x200?text=Sin+Imagen'
+            }">
 
             <div class="producto-info">
 
                 <p>
-                    <strong>
-                        ${producto.nombre}
-                    </strong>
+                    <strong>${producto.nombre}</strong>
                 </p>
 
                 <p>
                     S/ ${producto.precio}
                 </p>
 
-<p class="stock-text">
-    Stock: ${stockTemporal[registro.id]}
-</p>
+                <p class="stock-text">
+                    Stock: ${stockTemporal[registro.id] ?? producto.stock}
+                </p>
 
             </div>
         `;
 
+        const boton = document.createElement("button");
+        boton.classList.add("btn-agregar");
+        boton.textContent = "Agregar al carrito";
 
-        const boton =
-            document.createElement(
-                "button"
-            );
+        boton.addEventListener("click", () => {
 
-        boton.classList.add(
-            "btn-agregar"
-        );
+            // 🔒 validación segura
+            if (!stockTemporal[registro.id] || stockTemporal[registro.id] <= 0) {
+                alert("No hay más stock disponible");
+                return;
+            }
 
-        boton.textContent =
-            "Agregar al carrito";
+            // crear item si no existe
+            if (!carrito[registro.id]) {
+                carrito[registro.id] = {
+                    id: registro.id,
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    cantidad: 0
+                };
+            }
 
-boton.addEventListener("click", () => {
+            // incrementar carrito
+            carrito[registro.id].cantidad++;
 
-    if (stockTemporal[registro.id] <= 0) {
-        alert("No hay más stock disponible");
-        return;
-    }
+            // descontar stock local
+            stockTemporal[registro.id]--;
 
-    // si no existe en carrito
-    if (!carrito[registro.id]) {
-        carrito[registro.id] = {
-            id: registro.id,
-            nombre: producto.nombre,
-            precio: producto.precio,
-            cantidad: 0
-        };
-    }
+            // UI updates
+            actualizarCarrito();
+            actualizarStockVisual(registro.id);
 
-    carrito[registro.id].cantidad++;
-
-    stockTemporal[registro.id]--;
-
-actualizarCarrito();
-actualizarStockVisual(registro.id);
-mostrarMensaje(producto.nombre + " agregado al carrito");
-});
+            mostrarMensaje(producto.nombre + " agregado al carrito");
+        });
 
         card.appendChild(boton);
-
-        contenedorProductos
-        .appendChild(card);
-
+        contenedorProductos.appendChild(card);
     });
 }
 
