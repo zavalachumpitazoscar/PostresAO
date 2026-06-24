@@ -101,7 +101,6 @@ consulta.forEach((registro)=>{
             </div>
         `;
 
-        productosGlobal = [];
 
         const boton =
             document.createElement(
