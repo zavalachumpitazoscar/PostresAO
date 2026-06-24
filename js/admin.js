@@ -46,40 +46,49 @@ async function cargarUsuarios() {
             </p>
         `;
 
-        if(usuario.estado === "INACTIVO"){
+        const boton = document.createElement("button");
 
-            const boton =
-                document.createElement("button");
+if (usuario.estado === "INACTIVO") {
 
-            boton.textContent = "ACTIVAR";
+    boton.textContent = "ACTIVAR";
 
-            boton.addEventListener(
-                "click",
-                async () => {
+    boton.addEventListener("click", async () => {
 
-                    await updateDoc(
-                        doc(
-                            db,
-                            "usuarios",
-                            documento.id
-                        ),
-                        {
-                            estado:"ACTIVO"
-                        }
-                    );
+        await updateDoc(
+            doc(db, "usuarios", documento.id),
+            {
+                estado: "ACTIVO"
+            }
+        );
 
-                    alert(
-                        "Usuario activado"
-                    );
+        alert("Usuario activado");
 
-                    cargarUsuarios();
+        cargarUsuarios();
 
-                }
-            );
+    });
 
-            card.appendChild(boton);
+} else {
 
-        }
+    boton.textContent = "DESACTIVAR";
+
+    boton.addEventListener("click", async () => {
+
+        await updateDoc(
+            doc(db, "usuarios", documento.id),
+            {
+                estado: "INACTIVO"
+            }
+        );
+
+        alert("Usuario desactivado");
+
+        cargarUsuarios();
+
+    });
+
+}
+
+card.appendChild(boton);
 
         contenedor.appendChild(card);
 
