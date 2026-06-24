@@ -101,19 +101,16 @@ body{
 #carritoFloatBtn {
     position: fixed;
     bottom: 20px;
-    left: 20px;
+    right: 20px;
     background: #16a34a;
     color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 15px;
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 22px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 /* PANEL */
