@@ -201,21 +201,29 @@ async function guardarProducto(){
         document.getElementById("nombreProducto").value;
 
     const precio =
-        Number(
-            document.getElementById("precioProducto").value
-        );
+        Number(document.getElementById("precioProducto").value);
 
     const stock =
-        Number(
-            document.getElementById("stockProducto").value
-        );
+        Number(document.getElementById("stockProducto").value);
 
-    if(
-        nombre === "" ||
-        precio <= 0
-    ){
+    const imagenFile =
+        document.getElementById("imagenProducto").files[0];
+
+    if(nombre === "" || precio <= 0){
         alert("Complete los datos");
         return;
+    }
+
+    let imagenURL = "";
+
+    if(imagenFile){
+
+        const imagenRef =
+            ref(storage, "productos/" + Date.now() + imagenFile.name);
+
+        await uploadBytes(imagenRef, imagenFile);
+
+        imagenURL = await getDownloadURL(imagenRef);
     }
 
     await addDoc(
@@ -224,16 +232,17 @@ async function guardarProducto(){
             nombre,
             precio,
             stock,
-            activo:true
+            activo:true,
+            imagen: imagenURL
         }
     );
 
     document.getElementById("nombreProducto").value="";
     document.getElementById("precioProducto").value="";
     document.getElementById("stockProducto").value="";
+    document.getElementById("imagenProducto").value="";
 
     cargarProductos();
-
 }
 
 
