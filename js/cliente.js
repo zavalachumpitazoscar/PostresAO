@@ -49,8 +49,6 @@ const consulta =
         collection(db,"productos")
     );
 
-productosGlobal = [];
-
 consulta.forEach((registro)=>{
 
     const producto =
