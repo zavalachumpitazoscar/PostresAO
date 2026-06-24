@@ -20,6 +20,21 @@ let productosGlobal = [];
 let carrito = [];
 let stockTemporal = {};
 
+const vistaCatalogo =
+    document.getElementById(
+        "vistaCatalogo"
+    );
+
+const vistaCarrito =
+    document.getElementById(
+        "vistaCarrito"
+    );
+
+const vistaPedidos =
+    document.getElementById(
+        "vistaPedidos"
+    );
+
 const contenedorProductos =
     document.getElementById(
         "contenedorProductos"
