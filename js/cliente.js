@@ -38,10 +38,7 @@ cerrarCarrito.addEventListener("click", () => {
     carritoPanel.classList.remove("activo");
 });
 
-const vistaCarrito =
-    document.getElementById(
-        "vistaCarrito"
-    );
+
 
 const vistaPedidos =
     document.getElementById(
@@ -220,8 +217,6 @@ document
     vistaCatalogo.style.display =
         "block";
 
-    vistaCarrito.style.display =
-        "none";
 
     vistaPedidos.style.display =
         "none";
@@ -237,8 +232,6 @@ document
     vistaCatalogo.style.display =
         "none";
 
-    vistaCarrito.style.display =
-        "block";
 
     vistaPedidos.style.display =
         "none";
@@ -254,8 +247,6 @@ document
     vistaCatalogo.style.display =
         "none";
 
-    vistaCarrito.style.display =
-        "none";
 
     vistaPedidos.style.display =
         "block";
