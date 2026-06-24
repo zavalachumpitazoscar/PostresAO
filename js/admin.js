@@ -176,3 +176,52 @@ document
     }
 
 });
+
+const btnGuardarProducto =
+    document.getElementById("btnGuardarProducto");
+
+btnGuardarProducto.addEventListener(
+    "click",
+    guardarProducto
+);
+
+async function guardarProducto(){
+
+    const nombre =
+        document.getElementById("nombreProducto").value;
+
+    const precio =
+        Number(
+            document.getElementById("precioProducto").value
+        );
+
+    const stock =
+        Number(
+            document.getElementById("stockProducto").value
+        );
+
+    if(
+        nombre === "" ||
+        precio <= 0
+    ){
+        alert("Complete los datos");
+        return;
+    }
+
+    await addDoc(
+        collection(db,"productos"),
+        {
+            nombre,
+            precio,
+            stock,
+            activo:true
+        }
+    );
+
+    document.getElementById("nombreProducto").value="";
+    document.getElementById("precioProducto").value="";
+    document.getElementById("stockProducto").value="";
+
+    cargarProductos();
+
+}
