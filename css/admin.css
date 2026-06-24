@@ -9,61 +9,41 @@ body{
     background:#f5f5f5;
 }
 
-header{
-    background:#e91e63;
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:250px;
+    background:#1f2937;
     color:white;
     padding:20px;
 }
 
-main{
-    padding:20px;
+.sidebar h2{
+    margin-bottom:30px;
 }
 
-h2{
-    margin-bottom:20px;
+.sidebar button{
+    width:100%;
+    padding:12px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    text-align:left;
+}
+
+.contenido{
+    flex:1;
+    padding:30px;
 }
 
 .usuario-card{
     background:white;
     padding:15px;
-    margin-bottom:15px;
     border-radius:10px;
+    margin-bottom:15px;
     box-shadow:0 2px 5px rgba(0,0,0,.1);
-}
-
-.usuario-card p{
-    margin-bottom:8px;
-}
-
-.estado{
-    font-weight:bold;
-}
-
-.activo{
-    color:green;
-}
-
-.inactivo{
-    color:red;
-}
-
-button{
-    padding:10px 15px;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-    background:#2196f3;
-    color:white;
-}
-
-button:hover{
-    opacity:.9;
-}
-
-.activar{
-    background: green;
-}
-
-.desactivar{
-    background: red;
 }
