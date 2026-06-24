@@ -32,6 +32,7 @@ const carritoCount = document.getElementById("carritoCount");
 
 carritoFloatBtn.addEventListener("click", () => {
     carritoPanel.classList.add("activo");
+    actualizarCarrito(); // 🔥 IMPORTANTE
 });
 
 cerrarCarrito.addEventListener("click", () => {
@@ -243,10 +244,6 @@ document
 
 });
 
-document
-.getElementById(
-    "btnCarrito"
-)
 .addEventListener("click",()=>{
 
     vistaCatalogo.style.display =
