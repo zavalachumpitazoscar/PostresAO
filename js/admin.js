@@ -196,10 +196,14 @@ async function guardarProducto(){
         document.getElementById("nombreProducto").value;
 
     const precio =
-        Number(document.getElementById("precioProducto").value);
+        Number(
+            document.getElementById("precioProducto").value
+        );
 
     const stock =
-        Number(document.getElementById("stockProducto").value);
+        Number(
+            document.getElementById("stockProducto").value
+        );
 
     const imagenURL =
         document.getElementById("imagenProducto").value;
@@ -209,21 +213,51 @@ async function guardarProducto(){
         return;
     }
 
-    await addDoc(
-        collection(db,"productos"),
-        {
-            nombre,
-            precio,
-            stock,
-            activo:true,
-            imagen: imagenURL || ""
-        }
-    );
+    if(productoEditandoId){
 
-    document.getElementById("nombreProducto").value = "";
-    document.getElementById("precioProducto").value = "";
-    document.getElementById("stockProducto").value = "";
-    document.getElementById("imagenProducto").value = "";
+        await updateDoc(
+            doc(
+                db,
+                "productos",
+                productoEditandoId
+            ),
+            {
+                nombre,
+                precio,
+                stock,
+                imagen: imagenURL
+            }
+        );
+
+        alert("Producto actualizado");
+
+        productoEditandoId = null;
+
+        document.getElementById(
+            "btnGuardarProducto"
+        ).textContent =
+            "GUARDAR PRODUCTO";
+
+    }else{
+
+        await addDoc(
+            collection(db,"productos"),
+            {
+                nombre,
+                precio,
+                stock,
+                activo:true,
+                imagen: imagenURL
+            }
+        );
+
+        alert("Producto agregado");
+    }
+
+    document.getElementById("nombreProducto").value="";
+    document.getElementById("precioProducto").value="";
+    document.getElementById("stockProducto").value="";
+    document.getElementById("imagenProducto").value="";
 
     cargarProductos();
 }
