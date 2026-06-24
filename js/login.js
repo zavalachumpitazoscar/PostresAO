@@ -66,7 +66,11 @@ btnLogin.addEventListener("click", async () => {
             return;
         }
 
-        alert("Bienvenido");
+        if (usuario.rol === "ADMIN") {
+        window.location.href = "admin.html";
+        } else {
+        window.location.href = "cliente.html";
+        }
 
         // luego aquí irá cliente.html o admin.html
 
