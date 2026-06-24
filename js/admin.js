@@ -34,6 +34,8 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
 
+const storage = getStorage();
+
 const contenedor =
     document.getElementById("contenedorUsuarios");
 
