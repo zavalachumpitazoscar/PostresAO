@@ -53,6 +53,9 @@ productosGlobal = [];
 
 consulta.forEach((registro)=>{
 
+    const producto =
+        registro.data();
+
     stockTemporal[registro.id] =
         producto.stock;
 
@@ -61,15 +64,12 @@ consulta.forEach((registro)=>{
         ...producto
     });
 
-        const producto =
-            registro.data();
-
-        if(
-            !producto.activo ||
-            producto.stock <= 0
-        ){
-            return;
-        }
+    if(
+        !producto.activo ||
+        producto.stock <= 0
+    ){
+        return;
+    }
 
         const card =
             document.createElement("div");
