@@ -25,6 +25,19 @@ const vistaCatalogo =
         "vistaCatalogo"
     );
 
+const carritoPanel = document.getElementById("carritoPanel");
+const carritoFloatBtn = document.getElementById("carritoFloatBtn");
+const cerrarCarrito = document.getElementById("cerrarCarrito");
+const carritoCount = document.getElementById("carritoCount");
+
+carritoFloatBtn.addEventListener("click", () => {
+    carritoPanel.classList.add("activo");
+});
+
+cerrarCarrito.addEventListener("click", () => {
+    carritoPanel.classList.remove("activo");
+});
+
 const vistaCarrito =
     document.getElementById(
         "vistaCarrito"
@@ -166,6 +179,8 @@ boton.addEventListener("click", () => {
 
 function actualizarCarrito(){
 
+    carritoCount.textContent = carrito.length;
+    
     const contenedor =
         document.getElementById(
             "contenedorCarrito"
