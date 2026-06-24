@@ -248,3 +248,36 @@ document
 });
 
 cargarProductos();
+
+function buscarProductos(){
+
+    const texto =
+        document.getElementById(
+            "buscarProducto"
+        )
+        .value
+        .toLowerCase();
+
+    const cards =
+        document.querySelectorAll(
+            ".producto-card"
+        );
+
+    cards.forEach(card=>{
+
+        const contenido =
+            card.textContent
+            .toLowerCase();
+
+        if(
+            contenido.includes(texto)
+        ){
+            card.style.display = "block";
+        }
+        else{
+            card.style.display = "none";
+        }
+
+    });
+
+}
