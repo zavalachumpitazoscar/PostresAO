@@ -1,5 +1,3 @@
-let productoEditandoId = null;
-
 import {
     collection,
     getDocs,
@@ -32,6 +30,14 @@ import {
     deleteDoc
 }
 from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+let productoEditando = null;
+
+const modalEditar =
+    document.getElementById("modalEditar");
+
+const cerrarModal =
+    document.getElementById("cerrarModal");
 
 const contenedor =
     document.getElementById("contenedorUsuarios");
