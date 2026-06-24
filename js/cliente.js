@@ -132,41 +132,28 @@ consulta.forEach((registro)=>{
 
 boton.addEventListener("click", () => {
 
-    const id = registro.id;
-
-    // 🔴 VALIDACIÓN REAL
-    if (!stockTemporal[id] || stockTemporal[id] <= 0) {
-        mostrarMensaje("❌ Sin stock disponible");
+    if (stockTemporal[registro.id] <= 0) {
+        alert("No hay más stock disponible");
         return;
     }
 
-    // 🔴 Reducir stock
-    stockTemporal[id]--;
+    // si no existe en carrito
+    if (!carrito[registro.id]) {
+        carrito[registro.id] = {
+            id: registro.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            cantidad: 0
+        };
+    }
 
-    // 🔴 Agregar al carrito
-    carrito.push({
-        id: id,
-        nombre: producto.nombre,
-        precio: producto.precio
-    });
+    carrito[registro.id].cantidad++;
+
+    stockTemporal[registro.id]--;
 
     actualizarCarrito();
 
     mostrarMensaje(producto.nombre + " agregado al carrito");
-
-    // 🔴 ACTUALIZAR SOLO ESTA TARJETA (IMPORTANTE)
-    const stockElement = card.querySelector(".stock-text");
-
-    if (stockElement) {
-        stockElement.textContent = "Stock: " + stockTemporal[id];
-    }
-
-    // 🔴 BLOQUEAR BOTÓN SI YA NO HAY STOCK
-    if (stockTemporal[id] <= 0) {
-        boton.disabled = true;
-        boton.textContent = "SIN STOCK";
-        boton.style.opacity = "0.5";
-    }
 });
 
         card.appendChild(boton);
