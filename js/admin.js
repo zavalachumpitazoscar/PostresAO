@@ -251,38 +251,67 @@ async function cargarProductos(){
     contenedorProductos.innerHTML = "";
 
     const consulta =
-        await getDocs(
-            collection(db,"productos")
-        );
+        await getDocs(collection(db,"productos"));
 
     consulta.forEach((registro)=>{
 
-        const producto =
-            registro.data();
+        const producto = registro.data();
 
-        const card =
-            document.createElement("div");
+        const card = document.createElement("div");
 
         card.classList.add("producto-card");
 
         card.innerHTML = `
+            ${producto.imagen ? `<img src="${producto.imagen}">` : ""}
+
             <p><strong>${producto.nombre}</strong></p>
             <p>Precio: S/ ${producto.precio}</p>
             <p>Stock: ${producto.stock}</p>
             <p>
                 Estado:
-                ${
-                    producto.activo
-                    ? "ACTIVO"
-                    : "INACTIVO"
-                }
+                ${producto.activo ? "ACTIVO" : "INACTIVO"}
             </p>
         `;
 
+        // BOTÓN ACTIVAR / DESACTIVAR
+        const btnEstado = document.createElement("button");
+        btnEstado.classList.add("btn-estado");
+
+        btnEstado.textContent =
+            producto.activo ? "DESACTIVAR" : "ACTIVAR";
+
+        btnEstado.addEventListener("click", async ()=>{
+
+            await updateDoc(
+                doc(db,"productos",registro.id),
+                {
+                    activo: !producto.activo
+                }
+            );
+
+            cargarProductos();
+        });
+
+        // BOTÓN ELIMINAR
+        const btnEliminar = document.createElement("button");
+        btnEliminar.classList.add("btn-eliminar");
+        btnEliminar.textContent = "ELIMINAR";
+
+        btnEliminar.addEventListener("click", async ()=>{
+
+            if(confirm("¿Eliminar producto?")){
+
+                await deleteDoc(doc(db,"productos",registro.id));
+
+                cargarProductos();
+            }
+        });
+
+        card.appendChild(btnEstado);
+        card.appendChild(btnEliminar);
+
         contenedorProductos.appendChild(card);
-
     });
-
 }
 
 cargarProductos();
