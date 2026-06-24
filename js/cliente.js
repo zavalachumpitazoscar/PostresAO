@@ -15,6 +15,8 @@ import {
 }
 from "./firebase-config.js";
 
+let productosGlobal = [];
+
 let carrito = [];
 let stockTemporal = {};
 
