@@ -296,49 +296,26 @@ btnEditar.classList.add("btn-editar");
 
 btnEditar.textContent = "EDITAR";
 
-btnEditar.addEventListener("click", async ()=>{
+btnEditar.addEventListener("click", ()=>{
 
-    const nuevoNombre =
-        prompt(
-            "Nombre",
-            producto.nombre
-        );
+    document.getElementById("nombreProducto").value =
+        producto.nombre;
 
-    if(nuevoNombre === null) return;
+    document.getElementById("precioProducto").value =
+        producto.precio;
 
-    const nuevoPrecio =
-        prompt(
-            "Precio",
-            producto.precio
-        );
+    document.getElementById("stockProducto").value =
+        producto.stock;
 
-    if(nuevoPrecio === null) return;
+    document.getElementById("imagenProducto").value =
+        producto.imagen || "";
 
-    const nuevoStock =
-        prompt(
-            "Stock",
-            producto.stock
-        );
+    productoEditandoId =
+        registro.id;
 
-    if(nuevoStock === null) return;
-
-    const nuevaImagen =
-        prompt(
-            "URL Imagen",
-            producto.imagen || ""
-        );
-
-    await updateDoc(
-        doc(db,"productos",registro.id),
-        {
-            nombre:nuevoNombre,
-            precio:Number(nuevoPrecio),
-            stock:Number(nuevoStock),
-            imagen:nuevaImagen
-        }
-    );
-
-    cargarProductos();
+    document.getElementById(
+        "btnGuardarProducto"
+    ).textContent = "ACTUALIZAR PRODUCTO";
 
 });
 
