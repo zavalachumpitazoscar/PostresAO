@@ -11,19 +11,61 @@
 
 <body>
 
-    <header>
-        <h1>Panel Administrador</h1>
-    </header>
+    <div class="dashboard">
 
-    <main>
+        <!-- Menú lateral -->
+        <aside class="sidebar">
 
-        <h2>Usuarios Registrados</h2>
+            <h2>🍰 Dulce Admin</h2>
 
-        <div id="contenedorUsuarios">
+            <button id="btnUsuarios">
+                👥 Usuarios
+            </button>
 
-        </div>
+            <button id="btnProductos">
+                🍰 Productos
+            </button>
 
-    </main>
+            <button id="btnPedidos">
+                📦 Pedidos
+            </button>
+
+            <button id="btnCerrarSesion">
+                🚪 Cerrar Sesión
+            </button>
+
+        </aside>
+
+        <!-- Contenido -->
+        <main class="contenido">
+
+            <section id="vistaUsuarios">
+
+                <h2>Usuarios Registrados</h2>
+
+                <div id="contenedorUsuarios"></div>
+
+            </section>
+
+            <section id="vistaProductos" style="display:none;">
+
+                <h2>Productos</h2>
+
+                <div id="contenedorProductos"></div>
+
+            </section>
+
+            <section id="vistaPedidos" style="display:none;">
+
+                <h2>Pedidos</h2>
+
+                <div id="contenedorPedidos"></div>
+
+            </section>
+
+        </main>
+
+    </div>
 
     <script type="module" src="js/admin.js"></script>
 
