@@ -53,9 +53,6 @@ productosGlobal = [];
 
 consulta.forEach((registro)=>{
 
-    const producto =
-        registro.data();
-
     stockTemporal[registro.id] =
         producto.stock;
 
