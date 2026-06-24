@@ -97,10 +97,9 @@ consulta.forEach((registro)=>{
                     S/ ${producto.precio}
                 </p>
 
-                <p>
-                    Stock:
-                    ${producto.stock}
-                </p>
+<p class="stock-text">
+    Stock: ${producto.stock}
+</p>
 
             </div>
         `;
