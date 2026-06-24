@@ -354,3 +354,16 @@ function mostrarMensaje(texto){
     },2000);
 
 }
+
+document.getElementById("btnSolicitarPedido").addEventListener("click", () => {
+
+    if (carrito.length === 0) {
+        alert("Carrito vacío");
+        return;
+    }
+
+    alert("Pedido enviado correctamente 🎉");
+
+    carrito = [];
+    actualizarCarrito();
+});
