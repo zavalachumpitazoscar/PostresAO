@@ -87,22 +87,25 @@ async function cargarProductos(){
         boton.textContent =
             "Agregar al carrito";
 
-        boton.addEventListener(
-            "click",
-            ()=>{
+boton.addEventListener(
+    "click",
+    ()=>{
 
-                carrito.push({
-                    nombre:
-                        producto.nombre,
+        carrito.push({
+            id: registro.id,
+            nombre: producto.nombre,
+            precio: producto.precio
+        });
 
-                    precio:
-                        producto.precio
-                });
+        actualizarCarrito();
 
-                actualizarCarrito();
-
-            }
+        alert(
+            producto.nombre +
+            " agregado al carrito"
         );
+
+    }
+);
 
         card.appendChild(boton);
 
