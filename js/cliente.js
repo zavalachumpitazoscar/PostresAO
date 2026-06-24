@@ -16,6 +16,7 @@ import {
 from "./firebase-config.js";
 
 let carrito = [];
+let stockTemporal = {};
 
 const contenedorProductos =
     document.getElementById(
