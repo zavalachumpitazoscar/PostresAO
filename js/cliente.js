@@ -190,27 +190,26 @@ function actualizarCarrito(){
 
     let total = 0;
 
-    carrito.forEach((item)=>{
+carrito.forEach((item) => {
 
-        total += item.precio;
+    const div = document.createElement("div");
+    div.classList.add("item-carrito");
 
-        const div =
-            document.createElement(
-                "div"
-            );
+    div.innerHTML = `
+        <span>${item.nombre} - S/ ${item.precio}</span>
+        <button class="btn-remove">✖</button>
+    `;
 
-        div.classList.add(
-            "item-carrito"
-        );
-
-        div.innerHTML = `
-            ${item.nombre}
-            - S/ ${item.precio}
-        `;
-
-        contenedor.appendChild(div);
-
+    div.querySelector(".btn-remove").addEventListener("click", () => {
+        carrito = carrito.filter(p => p !== item);
+        actualizarCarrito();
     });
+
+    contenedor.appendChild(div);
+
+    total += item.precio;
+
+});
 
     document.getElementById(
         "totalPedido"
