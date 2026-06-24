@@ -92,6 +92,17 @@ boton.addEventListener(
     "click",
     ()=>{
 
+        if(
+            stockTemporal[registro.id] <= 0
+        ){
+            alert(
+                "No hay más stock disponible"
+            );
+            return;
+        }
+
+        stockTemporal[registro.id]--;
+
         carrito.push({
             id: registro.id,
             nombre: producto.nombre,
