@@ -26,6 +26,14 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
+import {
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL
+}
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+
 const contenedor =
     document.getElementById("contenedorUsuarios");
 
