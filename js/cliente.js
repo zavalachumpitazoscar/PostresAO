@@ -153,35 +153,55 @@ function actualizarCarrito() {
 
     let total = 0;
 
-    Object.values(carrito).forEach((item) => {
+Object.values(carrito).forEach((item) => {
 
-        total += item.precio * item.cantidad;
+    const div = document.createElement("div");
+    div.classList.add("item-carrito");
 
-        const div = document.createElement("div");
-        div.classList.add("item-carrito");
+    div.innerHTML = `
+        <div class="msg-bubble">
+            <strong>${item.nombre}</strong><br>
+            S/ ${item.precio} x ${item.cantidad}
+        </div>
 
-        div.innerHTML = `
-            <div>
-                ${item.nombre} <br>
-                S/ ${item.precio} x ${item.cantidad}
-            </div>
-
+        <div class="actions">
+            <button class="btn-mini">-</button>
+            <button class="btn-mini">+</button>
             <button class="btn-remove">✖</button>
-        `;
+        </div>
+    `;
 
-        // eliminar del carrito
-        div.querySelector(".btn-remove").addEventListener("click", () => {
-
-            // devolver stock
-            stockTemporal[item.id] += item.cantidad;
-
+    // ➖ restar
+    div.querySelector(".btn-mini").onclick = () => {
+        if (item.cantidad > 1) {
+            item.cantidad--;
+            stockTemporal[item.id]++;
+        } else {
             delete carrito[item.id];
+        }
+        actualizarCarrito();
+    };
 
-            actualizarCarrito();
-        });
+    // ➕ sumar
+    div.querySelectorAll(".btn-mini")[1].onclick = () => {
 
-        contenedor.appendChild(div);
-    });
+        if (stockTemporal[item.id] <= 0) return;
+
+        item.cantidad++;
+        stockTemporal[item.id]--;
+
+        actualizarCarrito();
+    };
+
+    // ❌ eliminar
+    div.querySelector(".btn-remove").onclick = () => {
+        stockTemporal[item.id] += item.cantidad;
+        delete carrito[item.id];
+        actualizarCarrito();
+    };
+
+    contenedor.appendChild(div);
+});
 
     document.getElementById("totalPedido").textContent =
         "Total: S/ " + total;
