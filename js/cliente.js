@@ -244,7 +244,7 @@ document
 
 });
 
-.addEventListener("click",()=>{
+addEventListener("click",()=>{
 
     vistaCatalogo.style.display =
         "none";
