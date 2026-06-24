@@ -59,3 +59,11 @@ button{
 button:hover{
     opacity:.9;
 }
+
+.activar{
+    background: green;
+}
+
+.desactivar{
+    background: red;
+}
