@@ -97,3 +97,42 @@ card.appendChild(boton);
 }
 
 cargarUsuarios();
+
+const vistaUsuarios =
+    document.getElementById("vistaUsuarios");
+
+const vistaProductos =
+    document.getElementById("vistaProductos");
+
+const vistaPedidos =
+    document.getElementById("vistaPedidos");
+
+document
+.getElementById("btnUsuarios")
+.addEventListener("click", () => {
+
+    vistaUsuarios.style.display = "block";
+    vistaProductos.style.display = "none";
+    vistaPedidos.style.display = "none";
+
+});
+
+document
+.getElementById("btnProductos")
+.addEventListener("click", () => {
+
+    vistaUsuarios.style.display = "none";
+    vistaProductos.style.display = "block";
+    vistaPedidos.style.display = "none";
+
+});
+
+document
+.getElementById("btnPedidos")
+.addEventListener("click", () => {
+
+    vistaUsuarios.style.display = "none";
+    vistaProductos.style.display = "none";
+    vistaPedidos.style.display = "block";
+
+});
