@@ -245,16 +245,30 @@ async function cargarProductos(){
         card.classList.add("producto-card");
 
         card.innerHTML = `
-            ${producto.imagen ? `<img src="${producto.imagen}">` : ""}
+    ${
+        producto.imagen
+        ? `<img src="${producto.imagen}" alt="${producto.nombre}">`
+        : `<img src="https://via.placeholder.com/300x200?text=Sin+Imagen">`
+    }
 
-            <p><strong>${producto.nombre}</strong></p>
-            <p>Precio: S/ ${producto.precio}</p>
-            <p>Stock: ${producto.stock}</p>
-            <p>
-                Estado:
-                ${producto.activo ? "ACTIVO" : "INACTIVO"}
-            </p>
-        `;
+    <div class="producto-info">
+
+        <p><strong>${producto.nombre}</strong></p>
+
+        <p>💰 S/ ${producto.precio}</p>
+
+        <p>📦 Stock: ${producto.stock}</p>
+
+        <p>
+            ${
+                producto.activo
+                ? "🟢 Activo"
+                : "🔴 Inactivo"
+            }
+        </p>
+
+    </div>
+`;
 
         // BOTÓN ACTIVAR / DESACTIVAR
         const btnEstado = document.createElement("button");
