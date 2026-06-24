@@ -232,3 +232,53 @@ body{
     margin-bottom:10px;
     color:#444;
 }
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-contenido{
+    background:white;
+    width:450px;
+    max-width:90%;
+    border-radius:20px;
+    padding:25px;
+    position:relative;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.modal-contenido h2{
+    margin-bottom:20px;
+}
+
+.modal-contenido input{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.modal-contenido button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+
+#cerrarModal{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+}
