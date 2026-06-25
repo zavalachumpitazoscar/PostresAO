@@ -437,6 +437,7 @@ if (metodo === "QR") {
 }
 
 const pedido = {
+
     productos: Object.values(carrito),
 
     total: Object.values(carrito).reduce(
@@ -448,7 +449,10 @@ const pedido = {
 
     estado: "PENDIENTE",
 
-    metodoPago: metodo
+    metodoPago: metodo,
+
+    comprobantePago: comprobantePago
+
 };
 
 await addDoc(collection(db, "pedidos"), pedido);
