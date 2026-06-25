@@ -471,3 +471,24 @@ function actualizarEstadoBoton(id) {
         stockText.textContent = `Stock: ${stock}`;
     }
 }
+
+
+const metodoPago =
+    document.getElementById("metodoPago");
+
+const bloqueComprobante =
+    document.getElementById("bloqueComprobante");
+
+metodoPago.addEventListener("change", () => {
+
+    if (metodoPago.value === "QR") {
+
+        bloqueComprobante.style.display = "block";
+
+    } else {
+
+        bloqueComprobante.style.display = "none";
+
+    }
+
+});
