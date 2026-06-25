@@ -151,7 +151,9 @@ stockTemporal[registro.id]--;
 
 function actualizarCarrito() {
 
-    const contenedor = carritoPanel.querySelector("#contenedorCarrito");
+    const contenedor = document.getElementById("contenedorCarrito");
+    const totalEl = document.getElementById("totalPedido");
+
     if (!contenedor) return;
 
     contenedor.innerHTML = "";
@@ -159,20 +161,21 @@ function actualizarCarrito() {
     const items = Object.values(carrito);
 
     let total = 0;
+    let cantidadTotal = 0;
 
     if (items.length === 0) {
         contenedor.innerHTML = `
             <div style="
                 text-align:center;
-                opacity:0.6;
                 padding:20px;
+                opacity:0.6;
             ">
-                Tu carrito está vacío
+                🛒 Tu carrito está vacío
             </div>
         `;
 
         carritoCount.textContent = "0";
-        document.getElementById("totalPedido").textContent = "Total: S/ 0";
+        if (totalEl) totalEl.textContent = "Total: S/ 0";
         return;
     }
 
@@ -180,27 +183,21 @@ function actualizarCarrito() {
 
         const subtotal = item.precio * item.cantidad;
         total += subtotal;
+        cantidadTotal += item.cantidad;
 
         const card = document.createElement("div");
-        card.classList.add("cart-mini-card");
+        card.className = "cart-mini-card";
 
         card.innerHTML = `
-            <img 
-                src="${item.imagen || 'https://via.placeholder.com/60'}" 
-                class="cart-img"
-            >
+            <img src="${item.imagen || 'https://via.placeholder.com/60'}" class="cart-img">
 
             <div class="cart-info">
-                <div class="cart-title">
-                    ${item.nombre}
-                </div>
-
+                <div class="cart-title">${item.nombre}</div>
                 <div class="cart-meta">
                     S/ ${item.precio} × ${item.cantidad}
                 </div>
-
                 <div class="cart-subtotal">
-                    Subtotal: S/ ${subtotal}
+                    S/ ${subtotal.toFixed(2)}
                 </div>
             </div>
 
@@ -211,14 +208,13 @@ function actualizarCarrito() {
             </div>
         `;
 
-        // ➖ disminuir cantidad
+        // ➖
         card.querySelector(".minus").onclick = () => {
+            item.cantidad--;
 
-            if (item.cantidad > 1) {
-                item.cantidad--;
-                stockTemporal[item.id]++;
-            } else {
-                stockTemporal[item.id]++;
+            stockTemporal[item.id] = (stockTemporal[item.id] || 0) + 1;
+
+            if (item.cantidad <= 0) {
                 delete carrito[item.id];
             }
 
@@ -226,9 +222,8 @@ function actualizarCarrito() {
             actualizarEstadoBoton(item.id);
         };
 
-        // ➕ aumentar cantidad
+        // ➕
         card.querySelector(".plus").onclick = () => {
-
             if ((stockTemporal[item.id] || 0) <= 0) return;
 
             item.cantidad++;
@@ -238,10 +233,9 @@ function actualizarCarrito() {
             actualizarEstadoBoton(item.id);
         };
 
-        // ❌ eliminar producto completo
+        // ❌
         card.querySelector(".btn-remove").onclick = () => {
-
-            stockTemporal[item.id] += item.cantidad;
+            stockTemporal[item.id] = (stockTemporal[item.id] || 0) + item.cantidad;
             delete carrito[item.id];
 
             actualizarCarrito();
@@ -251,15 +245,11 @@ function actualizarCarrito() {
         contenedor.appendChild(card);
     });
 
-    // TOTAL
-    document.getElementById("totalPedido").textContent =
-        "Total: S/ " + total;
+    if (totalEl) {
+        totalEl.textContent = "Total: S/ " + total.toFixed(2);
+    }
 
-    // CONTADOR BURBUJA
-    carritoCount.textContent =
-        items.reduce((acc, i) => acc + i.cantidad, 0);
-
-    console.log("🛒 carrito:", carrito);
+    carritoCount.textContent = cantidadTotal;
 }
 
 document
