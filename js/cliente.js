@@ -409,8 +409,11 @@ for (const item of Object.values(carrito)) {
 
         const producto = snap.data();
 
-        const nuevoStock =
-            producto.stock - item.cantidad;
+const nuevoStock =
+    Math.max(
+        0,
+        producto.stock - item.cantidad
+    );
 
         await updateDoc(
             refProducto,
