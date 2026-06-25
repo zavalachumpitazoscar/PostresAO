@@ -309,3 +309,17 @@ body{
     color: #16a34a;
     font-size: 13px;
 }
+
+.img-comprobante{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid #ddd;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.img-comprobante:hover{
+    transform:scale(1.05);
+}
