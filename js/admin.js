@@ -166,6 +166,8 @@ document
     vistaProductos.style.display = "none";
     vistaPedidos.style.display = "block";
 
+    cargarPedidos(); // ← agregar esto
+
 });
 
 
@@ -441,50 +443,88 @@ async function cargarPedidos() {
 
         card.classList.add("pedido-admin");
 
-        card.innerHTML = `
-            <h3>${pedido.correo}</h3>
+consulta.forEach((registro) => {
 
-            <p>
-                Estado:
-                <strong>${pedido.estado}</strong>
-            </p>
+    const pedido = registro.data();
 
-            <p>
-                Total:
-                S/ ${pedido.total}
-            </p>
+    const card = document.createElement("div");
 
-            <p>
-                Método:
-                ${pedido.metodoPago}
-            </p>
+    card.classList.add("pedido-admin");
 
-            ${
-                pedido.comprobantePago
-                ? `
+    let productosHTML = "";
+
+    pedido.productos.forEach(producto => {
+
+        productosHTML += `
+            <div style="
+                display:flex;
+                align-items:center;
+                gap:10px;
+                margin:8px 0;
+            ">
+                <img
+                    src="${producto.imagen || 'https://via.placeholder.com/50'}"
+                    width="50"
+                    height="50"
+                    style="object-fit:cover;border-radius:8px;"
+                >
+
+                <div>
+                    <strong>${producto.nombre}</strong><br>
+                    ${producto.cantidad} x S/ ${producto.precio}
+                </div>
+            </div>
+        `;
+    });
+
+    card.innerHTML = `
+        <h3>${pedido.correo}</h3>
+
+        <p>
+            Estado:
+            <strong>${pedido.estado}</strong>
+        </p>
+
+        <div class="productos-admin">
+            ${productosHTML}
+        </div>
+
+        <p>
+            Total:
+            S/ ${pedido.total}
+        </p>
+
+        <p>
+            Método:
+            ${pedido.metodoPago}
+        </p>
+
+        ${
+            pedido.comprobantePago
+            ? `
                 <img
                     src="${pedido.comprobantePago}"
                     style="max-width:200px;"
                 >
-                `
-                : ""
-            }
+            `
+            : ""
+        }
 
-            <button
-                class="aprobar"
-                data-id="${registro.id}">
-                Aprobar
-            </button>
+        <button
+            class="aprobar"
+            data-id="${registro.id}">
+            Aprobar
+        </button>
 
-            <button
-                class="rechazar"
-                data-id="${registro.id}">
-                Rechazar
-            </button>
-        `;
+        <button
+            class="rechazar"
+            data-id="${registro.id}">
+            Rechazar
+        </button>
+    `;
 
-        contenedor.appendChild(card);
-    });
+    contenedor.appendChild(card);
+});
 
     asignarEventosPedidos();
 }
@@ -537,3 +577,5 @@ function asignarEventosPedidos(){
 
     });
 }
+
+cargarPedidos();
