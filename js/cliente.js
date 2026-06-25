@@ -131,11 +131,10 @@ carrito[registro.id] = {
 };
             }
 
-            // incrementar carrito
-            carrito[registro.id].cantidad++;
+if (stockTemporal[registro.id] <= 0) return;
 
-            // descontar stock local
-            stockTemporal[registro.id]--;
+carrito[registro.id].cantidad++;
+stockTemporal[registro.id]--;
 
             // UI updates
             actualizarCarrito();
