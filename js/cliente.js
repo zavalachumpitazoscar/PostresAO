@@ -151,20 +151,27 @@ stockTemporal[registro.id]--;
 
 function actualizarCarrito() {
 
-    const contenedor = document.getElementById("contenedorCarrito");
-    contenedor.innerHTML = "";
+    const contenedor = carritoPanel.querySelector("#contenedorCarrito");
+    if (!contenedor) return;
 
-    let total = 0;
+    contenedor.innerHTML = "";
 
     const items = Object.values(carrito);
 
+    let total = 0;
+
     if (items.length === 0) {
         contenedor.innerHTML = `
-            <p style="text-align:center; opacity:0.6;">
+            <div style="
+                text-align:center;
+                opacity:0.6;
+                padding:20px;
+            ">
                 Tu carrito está vacío
-            </p>
+            </div>
         `;
-        carritoCount.textContent = 0;
+
+        carritoCount.textContent = "0";
         document.getElementById("totalPedido").textContent = "Total: S/ 0";
         return;
     }
@@ -178,10 +185,15 @@ function actualizarCarrito() {
         card.classList.add("cart-mini-card");
 
         card.innerHTML = `
-            <img src="${item.imagen || 'https://via.placeholder.com/60'}" class="cart-img">
+            <img 
+                src="${item.imagen || 'https://via.placeholder.com/60'}" 
+                class="cart-img"
+            >
 
             <div class="cart-info">
-                <div class="cart-title">${item.nombre}</div>
+                <div class="cart-title">
+                    ${item.nombre}
+                </div>
 
                 <div class="cart-meta">
                     S/ ${item.precio} × ${item.cantidad}
@@ -199,7 +211,7 @@ function actualizarCarrito() {
             </div>
         `;
 
-        // ➖ quitar uno
+        // ➖ disminuir cantidad
         card.querySelector(".minus").onclick = () => {
 
             if (item.cantidad > 1) {
@@ -214,10 +226,10 @@ function actualizarCarrito() {
             actualizarEstadoBoton(item.id);
         };
 
-        // ➕ sumar
+        // ➕ aumentar cantidad
         card.querySelector(".plus").onclick = () => {
 
-            if (stockTemporal[item.id] <= 0) return;
+            if ((stockTemporal[item.id] || 0) <= 0) return;
 
             item.cantidad++;
             stockTemporal[item.id]--;
@@ -226,7 +238,7 @@ function actualizarCarrito() {
             actualizarEstadoBoton(item.id);
         };
 
-        // ❌ eliminar todo
+        // ❌ eliminar producto completo
         card.querySelector(".btn-remove").onclick = () => {
 
             stockTemporal[item.id] += item.cantidad;
@@ -239,11 +251,15 @@ function actualizarCarrito() {
         contenedor.appendChild(card);
     });
 
+    // TOTAL
     document.getElementById("totalPedido").textContent =
         "Total: S/ " + total;
 
+    // CONTADOR BURBUJA
     carritoCount.textContent =
-        items.reduce((a, i) => a + i.cantidad, 0);
+        items.reduce((acc, i) => acc + i.cantidad, 0);
+
+    console.log("🛒 carrito:", carrito);
 }
 
 document
