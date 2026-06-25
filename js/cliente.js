@@ -1,5 +1,18 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
+onAuthStateChanged(auth, (user) => {
+
+    if (!user) {
+        console.log("No autenticado");
+        window.location.href = "index.html";
+        return;
+    }
+
+    // 🔥 AQUÍ recién es seguro usar auth.currentUser
+
+    cargarProductos();
+});
+
 import {
     collection,
     getDocs,
@@ -510,18 +523,6 @@ carrito = {};
 stockTemporal = {};
     
 actualizarCarrito();
-onAuthStateChanged(auth, (user) => {
-
-    if (!user) {
-        console.log("No autenticado");
-        window.location.href = "index.html";
-        return;
-    }
-
-    // 🔥 AQUÍ recién es seguro usar auth.currentUser
-
-    cargarProductos();
-});
 });
 
 
