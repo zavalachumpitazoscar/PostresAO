@@ -147,7 +147,13 @@ boton.addEventListener("click", () => {
 
 function actualizarCarrito() {
 
+    
+    console.log("Carrito:", carrito);
+
     const contenedor = document.getElementById("contenedorCarrito");
+
+    console.log("Contenedor:", contenedor);
+
     const totalEl = document.getElementById("totalPedido");
 
     if (!contenedor) return;
