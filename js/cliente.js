@@ -616,11 +616,34 @@ async function cargarMisPedidos() {
 
         let productosHTML = "";
 
-        pedido.productos.forEach(producto => {
-            productosHTML += `
-                <li>${producto.nombre} (${producto.cantidad})</li>
-            `;
-        });
+pedido.productos.forEach(producto => {
+
+    const subtotal = producto.precio * producto.cantidad;
+
+    productosHTML += `
+        <div class="producto-item">
+
+            <img src="${producto.imagen || 'https://via.placeholder.com/60'}" class="producto-img">
+
+            <div class="producto-info">
+
+                <div class="producto-nombre">
+                    ${producto.nombre}
+                </div>
+
+                <div class="producto-detalle">
+                    ${producto.cantidad} x S/ ${producto.precio}
+                </div>
+
+            </div>
+
+            <div class="producto-subtotal">
+                S/ ${subtotal.toFixed(2)}
+            </div>
+
+        </div>
+    `;
+});
 
         const fechaPedido =
             pedido.fecha?.toDate
