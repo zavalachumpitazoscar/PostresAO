@@ -90,6 +90,33 @@
         Total: S/ 0
     </h3>
 
+    <div class="metodo-pago">
+
+    <label>
+        Método de pago
+    </label>
+
+    <select id="metodoPago">
+        <option value="">Seleccione...</option>
+        <option value="QR">QR / Yape</option>
+        <option value="CREDITO_FIN_MES">Crédito fin de mes</option>
+    </select>
+
+</div>
+
+<div id="bloqueComprobante" style="display:none;">
+
+    <label>
+        Captura del pago
+    </label>
+
+    <input
+        type="file"
+        id="comprobantePago"
+        accept="image/*">
+
+</div>
+
     <button id="btnSolicitarPedido" class="btn-confirm">
         Solicitar pedido
     </button>
