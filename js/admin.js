@@ -441,6 +441,11 @@ consulta.forEach((registro) => {
 
     const card = document.createElement("div");
 
+    card.dataset.buscar = `
+${pedido.correo}
+${pedido.productos.map(p => p.nombre).join(" ")}
+`.toLowerCase();
+
     card.classList.add("pedido-admin");
 
     let productosHTML = "";
