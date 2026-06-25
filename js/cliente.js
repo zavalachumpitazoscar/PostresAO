@@ -628,17 +628,39 @@ async function cargarMisPedidos() {
                 : new Date(pedido.fecha);
 
         card.innerHTML = `
-            <h3>Pedido</h3>
-            <p>🕒 ${fechaPedido.toLocaleDateString("es-PE")}</p>
-            <p>Estado: ${pedido.estado}</p>
-            <p>Método: ${pedido.metodoPago}</p>
-            <p>Total: S/ ${pedido.total}</p>
+    <div class="boleta">
 
-            <h4>Productos</h4>
-            <ul>${productosHTML}</ul>
+        <div class="boleta-header">
+            <h3>🧾 Boleta de Pedido</h3>
+            <span class="estado ${pedido.estado.toLowerCase()}">
+                ${pedido.estado}
+            </span>
+        </div>
 
-            ${comprobanteHTML}
-        `;
+        <div class="boleta-body">
+
+            <p><strong>📅 Fecha:</strong> ${fechaPedido.toLocaleDateString("es-PE")}</p>
+
+            <p><strong>💳 Método:</strong> ${pedido.metodoPago}</p>
+
+            <hr>
+
+            <h4>🛒 Productos</h4>
+
+            <div class="productos-lista">
+                ${productosHTML}
+            </div>
+
+        </div>
+
+        <div class="boleta-footer">
+            <h3>Total: S/ ${pedido.total}</h3>
+        </div>
+
+        ${comprobanteHTML}
+
+    </div>
+`;
 
         contenedor.appendChild(card);
     });
