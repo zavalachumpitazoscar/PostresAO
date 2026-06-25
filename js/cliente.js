@@ -579,7 +579,7 @@ async function cargarMisPedidos() {
 
     contenedor.innerHTML = "";
 
-    // 🔥 AQUÍ está la mejora importante
+    // 🔥 FILTRADO EN FIRESTORE (correcto)
     const q = query(
         collection(db, "pedidos"),
         where("usuarioId", "==", auth.currentUser.uid)
@@ -591,12 +591,6 @@ async function cargarMisPedidos() {
 
         const pedido = registro.data();
 
-        const card =
-            document.createElement("div");
-
-        card.classList.add("pedido-card");
-
-        // 🧾 Comprobante por pedido (correcto dentro del loop)
         let comprobanteHTML = "";
 
         if (
@@ -613,7 +607,11 @@ async function cargarMisPedidos() {
             `;
         }
 
-        // 🍔 Productos
+        const card =
+            document.createElement("div");
+
+        card.classList.add("pedido-card");
+
         let productosHTML = "";
 
         pedido.productos.forEach(producto => {
@@ -626,7 +624,6 @@ async function cargarMisPedidos() {
             `;
         });
 
-        // 📅 Fecha segura Firestore
         const fechaPedido =
             pedido.fecha?.toDate
                 ? pedido.fecha.toDate()
