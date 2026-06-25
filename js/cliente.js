@@ -377,8 +377,11 @@ function actualizarEstadoBoton(id) {
     if (!card) return;
 
     const btn = card.querySelector(".btn-agregar");
+    const stockText = card.querySelector(".stock-text");
 
-    if (stockTemporal[id] <= 0) {
+    const stock = stockTemporal[id] ?? 0;
+
+    if (stock <= 0) {
         btn.disabled = true;
         btn.textContent = "Sin stock";
     } else {
@@ -386,8 +389,7 @@ function actualizarEstadoBoton(id) {
         btn.textContent = "Agregar al carrito";
     }
 
-    const stockText = card.querySelector(".stock-text");
     if (stockText) {
-        stockText.textContent = "Stock: " + stockTemporal[id];
+        stockText.textContent = `Stock: ${stock}`;
     }
 }
