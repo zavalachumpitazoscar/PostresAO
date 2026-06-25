@@ -379,6 +379,26 @@ function mostrarMensaje(texto){
 
 }
 
+function convertirBase64(file) {
+
+    return new Promise((resolve, reject) => {
+
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload = () => {
+            resolve(reader.result);
+        };
+
+        reader.onerror = (error) => {
+            reject(error);
+        };
+
+    });
+
+}
+
 document.getElementById("btnSolicitarPedido").addEventListener("click", async () => {
 
     if (Object.keys(carrito).length === 0) {
