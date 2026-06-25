@@ -112,36 +112,31 @@ async function cargarProductos(){
         boton.classList.add("btn-agregar");
         boton.textContent = "Agregar al carrito";
 
-        boton.addEventListener("click", () => {
+boton.addEventListener("click", () => {
 
-            // 🔒 validación segura
-            if (!stockTemporal[registro.id] || stockTemporal[registro.id] <= 0) {
-                alert("No hay más stock disponible");
-                return;
-            }
+    const stock = stockTemporal[registro.id] || 0;
 
-            // crear item si no existe
-            if (!carrito[registro.id]) {
-carrito[registro.id] = {
-    id: registro.id,
-    nombre: producto.nombre,
-    precio: producto.precio,
-    imagen: producto.imagen || '',
-    cantidad: 0
-};
-            }
+    if (stock <= 0) {
+        alert("Sin stock");
+        return;
+    }
 
-if (stockTemporal[registro.id] <= 0) return;
+    if (!carrito[registro.id]) {
+        carrito[registro.id] = {
+            id: registro.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            imagen: producto.imagen || '',
+            cantidad: 0
+        };
+    }
 
-carrito[registro.id].cantidad++;
-stockTemporal[registro.id]--;
+    carrito[registro.id].cantidad++;
+    stockTemporal[registro.id]--;
 
-            // UI updates
-            actualizarCarrito();
-            actualizarStockVisual(registro.id);
-
-            mostrarMensaje(producto.nombre + " agregado al carrito");
-        });
+    actualizarCarrito();
+    actualizarEstadoBoton(registro.id);
+});
 
         card.appendChild(boton);
         contenedorProductos.appendChild(card);
@@ -226,8 +221,7 @@ function actualizarCarrito() {
         card.querySelector(".plus").onclick = () => {
             if ((stockTemporal[item.id] || 0) <= 0) return;
 
-            item.cantidad++;
-            stockTemporal[item.id]--;
+stockTemporal[item.id] = (stockTemporal[item.id] || 0) ± 1;
 
             actualizarCarrito();
             actualizarEstadoBoton(item.id);
