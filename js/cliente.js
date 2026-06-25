@@ -478,7 +478,7 @@ const pedido = {
 
     usuarioId: auth.currentUser.uid,
 
-    nombreCliente: nombreUsuario,
+    nombreCliente: nombreCliente,
 
     correo: auth.currentUser.email,
 
