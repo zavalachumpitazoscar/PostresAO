@@ -32,7 +32,7 @@ const carritoCount = document.getElementById("carritoCount");
 
 carritoFloatBtn.addEventListener("click", () => {
     carritoPanel.classList.add("activo");
-    actualizarCarrito(); // 🔥 IMPORTANTE
+    actualizarCarrito(); // 👈 OBLIGATORIO
 });
 
 cerrarCarrito.addEventListener("click", () => {
