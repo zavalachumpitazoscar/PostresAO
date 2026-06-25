@@ -63,10 +63,12 @@ async function cargarProductos(){
     productosGlobal = [];
     stockTemporal = {};
 
-    const consulta =
-        await getDocs(
-            collection(db, "productos")
-        );
+const q = query(
+    collection(db, "pedidos"),
+    where("usuarioId", "==", auth.currentUser.uid)
+);
+
+const consulta = await getDocs(q);
 
     consulta.forEach((registro) => {
 
