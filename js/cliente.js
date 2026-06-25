@@ -456,6 +456,23 @@ if (metodo === "QR") {
 
 }
 
+const usuarioRef = doc(
+    db,
+    "usuarios",
+    auth.currentUser.uid
+);
+
+const usuarioSnap =
+    await getDoc(usuarioRef);
+
+let nombreCliente =
+    auth.currentUser.email;
+
+if (usuarioSnap.exists()) {
+
+    nombreCliente =
+        usuarioSnap.data().nombreCompleto;
+}
     
 const pedido = {
 
