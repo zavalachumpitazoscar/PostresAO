@@ -421,3 +421,119 @@ document
 
 });
 
+async function cargarPedidos() {
+
+    const contenedor =
+        document.getElementById("contenedorPedidos");
+
+    contenedor.innerHTML = "";
+
+    const consulta =
+        await getDocs(
+            collection(db, "pedidos")
+        );
+
+    consulta.forEach((registro) => {
+
+        const pedido = registro.data();
+
+        const card = document.createElement("div");
+
+        card.classList.add("pedido-admin");
+
+        card.innerHTML = `
+            <h3>${pedido.correo}</h3>
+
+            <p>
+                Estado:
+                <strong>${pedido.estado}</strong>
+            </p>
+
+            <p>
+                Total:
+                S/ ${pedido.total}
+            </p>
+
+            <p>
+                Método:
+                ${pedido.metodoPago}
+            </p>
+
+            ${
+                pedido.comprobantePago
+                ? `
+                <img
+                    src="${pedido.comprobantePago}"
+                    style="max-width:200px;"
+                >
+                `
+                : ""
+            }
+
+            <button
+                class="aprobar"
+                data-id="${registro.id}">
+                Aprobar
+            </button>
+
+            <button
+                class="rechazar"
+                data-id="${registro.id}">
+                Rechazar
+            </button>
+        `;
+
+        contenedor.appendChild(card);
+    });
+
+    asignarEventosPedidos();
+}
+
+async function aprobarPedido(id){
+
+    await updateDoc(
+        doc(db, "pedidos", id),
+        {
+            estado: "APROBADO"
+        }
+    );
+
+    cargarPedidos();
+}
+
+async function rechazarPedido(id){
+
+    await updateDoc(
+        doc(db, "pedidos", id),
+        {
+            estado: "RECHAZADO"
+        }
+    );
+
+    cargarPedidos();
+}
+
+function asignarEventosPedidos(){
+
+    document
+    .querySelectorAll(".aprobar")
+    .forEach(btn => {
+
+        btn.onclick = () =>
+            aprobarPedido(
+                btn.dataset.id
+            );
+
+    });
+
+    document
+    .querySelectorAll(".rechazar")
+    .forEach(btn => {
+
+        btn.onclick = () =>
+            rechazarPedido(
+                btn.dataset.id
+            );
+
+    });
+}
