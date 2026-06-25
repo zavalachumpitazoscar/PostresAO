@@ -116,21 +116,21 @@ body{
 /* PANEL */
 .carrito-panel {
     position: fixed;
-    right: 20px;
-    bottom: 80px;
+    right: 0;
+    top: 0;
     width: 320px;
-    max-height: 420px;
+    height: 100%;
     background: white;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: 0.3s;
+    z-index: 9999;
 }
 
 .carrito-panel.activo {
-    display: flex;
+    transform: translateX(0);
 }
+
 
 .carrito-body {
     flex: 1;
