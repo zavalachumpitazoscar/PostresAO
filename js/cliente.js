@@ -244,14 +244,10 @@ document
 
 });
 
-addEventListener("click",()=>{
+document.getElementById("btnCarrito").addEventListener("click", () => {
 
-    vistaCatalogo.style.display =
-        "none";
-
-
-    vistaPedidos.style.display =
-        "none";
+    vistaCatalogo.style.display = "none";
+    vistaPedidos.style.display = "none";
 
 });
 
