@@ -474,51 +474,67 @@ ${pedido.productos.map(p => p.nombre).join(" ")}
         `;
     });
 
-    card.innerHTML = `
-        <h3>${pedido.correo}</h3>
+card.innerHTML = `
+<div class="pedido-card-pro">
 
-        <p>
-            Estado:
-            <strong>${pedido.estado}</strong>
-        </p>
+    <div class="pedido-header">
 
-        <div class="productos-admin">
-            ${productosHTML}
+        <div>
+            <h3>👤 ${pedido.correo}</h3>
         </div>
 
+        <span class="estado estado-${pedido.estado}">
+            ${pedido.estado}
+        </span>
+
+    </div>
+
+    <div class="productos-admin">
+        ${productosHTML}
+    </div>
+
+    <div class="pedido-info">
+
         <p>
-            Total:
+            💳 ${pedido.metodoPago}
+        </p>
+
+        <h2>
             S/ ${pedido.total}
-        </p>
+        </h2>
 
-        <p>
-            Método:
-            ${pedido.metodoPago}
-        </p>
+    </div>
 
-        ${
-            pedido.comprobantePago
-            ? `
+    ${
+        pedido.comprobantePago
+        ? `
+            <div class="comprobante-admin">
                 <img
                     src="${pedido.comprobantePago}"
-                    style="max-width:200px;"
-                >
-            `
-            : ""
-        }
+                    class="img-comprobante-admin">
+            </div>
+        `
+        : ""
+    }
+
+    <div class="acciones-pedido">
 
         <button
             class="aprobar"
             data-id="${registro.id}">
-            Aprobar
+            ✅ Aprobar
         </button>
 
         <button
             class="rechazar"
             data-id="${registro.id}">
-            Rechazar
+            ❌ Rechazar
         </button>
-    `;
+
+    </div>
+
+</div>
+`;
 
     contenedor.appendChild(card);
 });
@@ -576,3 +592,34 @@ function asignarEventosPedidos(){
 }
 
 cargarPedidos();
+
+
+document
+.getElementById("buscarPedido")
+.addEventListener("keyup", buscarPedidos);
+
+function buscarPedidos(){
+
+    const texto =
+        document
+        .getElementById("buscarPedido")
+        .value
+        .toLowerCase();
+
+    const cards =
+        document.querySelectorAll(".pedido-admin");
+
+    cards.forEach(card => {
+
+        if(
+            card.dataset.buscar.includes(texto)
+        ){
+            card.style.display = "block";
+        }
+        else{
+            card.style.display = "none";
+        }
+
+    });
+
+}
