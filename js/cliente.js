@@ -82,10 +82,26 @@ const user = auth.currentUser;
 
         const producto = registro.data();
 
-        const fechaTexto =
-        producto.fecha
-        ? new Date(producto.fecha).toLocaleDateString("es-PE")
-        : "Sin fecha";
+let fechaTexto = "Sin fecha";
+
+if (producto.fecha) {
+
+    const fecha = new Date(producto.fecha);
+
+    fechaTexto = fecha.toLocaleDateString("es-PE", {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+    });
+
+    // Quitar la coma
+    fechaTexto = fechaTexto.replace(",", "");
+
+    // Primera letra en mayúscula
+    fechaTexto =
+        fechaTexto.charAt(0).toUpperCase() +
+        fechaTexto.slice(1);
+}
 
         // ❌ FILTRO PRIMERO (IMPORTANTE)
         if (!producto.activo || producto.stock <= 0) {
