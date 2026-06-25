@@ -1,4 +1,17 @@
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+import {
+    collection,
+    getDocs,
+    getDoc,
+    doc,
+    updateDoc,
+    addDoc,
+    query,
+    where
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+import { db, auth } from "./firebase-config.js";
 
 onAuthStateChanged(auth, (user) => {
 
@@ -12,29 +25,6 @@ onAuthStateChanged(auth, (user) => {
 
     cargarProductos();
 });
-
-import {
-    collection,
-    getDocs,
-    getDoc,
-    doc,
-    updateDoc,
-    addDoc,
-    query,
-    where
-}
-from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-
-import {
-    signOut
-}
-from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-
-import {
-    db,
-    auth
-}
-from "./firebase-config.js";
 
 let productosGlobal = [];
 
@@ -78,12 +68,15 @@ async function cargarProductos(){
     productosGlobal = [];
     stockTemporal = {};
 
-const q = query(
-    collection(db, "pedidos"),
-    where("usuarioId", "==", auth.currentUser.uid)
-);
+const user = auth.currentUser;
+    if (!user) return;
 
-const consulta = await getDocs(q);
+    const q = query(
+        collection(db, "productos"),
+        where("activo", "==", true)
+    );
+
+    const consulta = await getDocs(q);
 
     consulta.forEach((registro) => {
 
@@ -523,9 +516,6 @@ carrito = {};
 stockTemporal = {};
 
 actualizarCarrito();
-
-// opcional pero correcto
-cargarProductos();
 });
 
 
