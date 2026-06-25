@@ -156,7 +156,20 @@ function actualizarCarrito() {
 
     let total = 0;
 
-    Object.values(carrito).forEach((item) => {
+    const items = Object.values(carrito);
+
+    if (items.length === 0) {
+        contenedor.innerHTML = `
+            <p style="text-align:center; opacity:0.6;">
+                Tu carrito está vacío
+            </p>
+        `;
+        carritoCount.textContent = 0;
+        document.getElementById("totalPedido").textContent = "Total: S/ 0";
+        return;
+    }
+
+    items.forEach((item) => {
 
         const subtotal = item.precio * item.cantidad;
         total += subtotal;
@@ -165,13 +178,15 @@ function actualizarCarrito() {
         card.classList.add("cart-mini-card");
 
         card.innerHTML = `
-            <img src="${item.imagen || 'assets/placeholder.png'}" class="cart-img">
+            <img src="${item.imagen || 'https://via.placeholder.com/60'}" class="cart-img">
 
             <div class="cart-info">
                 <div class="cart-title">${item.nombre}</div>
+
                 <div class="cart-meta">
-                    S/ ${item.precio} x ${item.cantidad}
+                    S/ ${item.precio} × ${item.cantidad}
                 </div>
+
                 <div class="cart-subtotal">
                     Subtotal: S/ ${subtotal}
                 </div>
@@ -186,26 +201,37 @@ function actualizarCarrito() {
 
         // ➖ quitar uno
         card.querySelector(".minus").onclick = () => {
-            item.cantidad++;
-            stockTemporal[item.id]--;
+
+            if (item.cantidad > 1) {
+                item.cantidad--;
+                stockTemporal[item.id]++;
+            } else {
+                stockTemporal[item.id]++;
+                delete carrito[item.id];
+            }
+
             actualizarCarrito();
             actualizarEstadoBoton(item.id);
         };
 
-        // ➕ agregar uno
+        // ➕ sumar
         card.querySelector(".plus").onclick = () => {
+
             if (stockTemporal[item.id] <= 0) return;
 
             item.cantidad++;
             stockTemporal[item.id]--;
+
             actualizarCarrito();
             actualizarEstadoBoton(item.id);
         };
 
         // ❌ eliminar todo
         card.querySelector(".btn-remove").onclick = () => {
+
             stockTemporal[item.id] += item.cantidad;
             delete carrito[item.id];
+
             actualizarCarrito();
             actualizarEstadoBoton(item.id);
         };
@@ -217,7 +243,7 @@ function actualizarCarrito() {
         "Total: S/ " + total;
 
     carritoCount.textContent =
-        Object.values(carrito).reduce((a, i) => a + i.cantidad, 0);
+        items.reduce((a, i) => a + i.cantidad, 0);
 }
 
 document
