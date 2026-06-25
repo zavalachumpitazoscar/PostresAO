@@ -236,14 +236,6 @@ document.getElementById("btnCatalogo").addEventListener("click", () => {
     carritoPanel.classList.remove("activo");
 });
 
-document.getElementById("carritoFloatBtn").addEventListener("click", () => {
-    vistaCatalogo.style.display = "none";
-    vistaPedidos.style.display = "none";
-
-    carritoPanel.classList.add("activo");
-    actualizarCarrito();
-});
-
 document
 .getElementById(
     "btnMisPedidos"
