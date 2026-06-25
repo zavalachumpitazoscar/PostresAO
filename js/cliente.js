@@ -427,6 +427,15 @@ if (
     return;
 }
 
+let comprobantePago = "";
+
+if (metodo === "QR") {
+
+    comprobantePago =
+        await convertirBase64(archivo);
+
+}
+
 const pedido = {
     productos: Object.values(carrito),
 
