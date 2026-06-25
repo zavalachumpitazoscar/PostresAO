@@ -395,16 +395,32 @@ if (!metodo) {
 
     return;
 }
+    const archivo =
+    document.getElementById("comprobantePago")
+    .files[0];
 
-    const pedido = {
-        productos: Object.values(carrito),
-        total: Object.values(carrito).reduce(
-            (acc, item) => acc + item.precio * item.cantidad,
-            0
-        ),
-        fecha: new Date(),
-        estado: "PENDIENTE"
-    };
+if (
+    metodo === "QR" &&
+    !archivo
+) {
+    alert("Debe adjuntar el comprobante");
+    return;
+}
+
+const pedido = {
+    productos: Object.values(carrito),
+
+    total: Object.values(carrito).reduce(
+        (acc, item) => acc + item.precio * item.cantidad,
+        0
+    ),
+
+    fecha: new Date(),
+
+    estado: "PENDIENTE",
+
+    metodoPago: metodo
+};
 
 await addDoc(collection(db, "pedidos"), pedido);
 
