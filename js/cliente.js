@@ -218,14 +218,16 @@ function actualizarCarrito() {
         };
 
         // ➕
-        card.querySelector(".plus").onclick = () => {
-            if ((stockTemporal[item.id] || 0) <= 0) return;
+card.querySelector(".plus").onclick = () => {
 
-stockTemporal[item.id] = (stockTemporal[item.id] || 0) ± 1;
+    if ((stockTemporal[item.id] || 0) <= 0) return;
 
-            actualizarCarrito();
-            actualizarEstadoBoton(item.id);
-        };
+    item.cantidad++;
+    stockTemporal[item.id]--;
+
+    actualizarCarrito();
+    actualizarEstadoBoton(item.id);
+};
 
         // ❌
         card.querySelector(".btn-remove").onclick = () => {
