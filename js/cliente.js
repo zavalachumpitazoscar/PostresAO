@@ -367,3 +367,24 @@ stockText.textContent = `Stock: ${stockTemporal[id] ?? 0}`;
         }
     });
 }
+
+function actualizarEstadoBoton(id) {
+
+    const card = document.querySelector(`[data-id="${id}"]`);
+    if (!card) return;
+
+    const btn = card.querySelector(".btn-agregar");
+
+    if (stockTemporal[id] <= 0) {
+        btn.disabled = true;
+        btn.textContent = "Sin stock";
+    } else {
+        btn.disabled = false;
+        btn.textContent = "Agregar al carrito";
+    }
+
+    const stockText = card.querySelector(".stock-text");
+    if (stockText) {
+        stockText.textContent = "Stock: " + stockTemporal[id];
+    }
+}
