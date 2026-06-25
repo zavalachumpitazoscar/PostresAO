@@ -67,6 +67,11 @@ async function cargarProductos(){
 
         const producto = registro.data();
 
+        const fechaTexto =
+        producto.fecha
+        ? new Date(producto.fecha).toLocaleDateString("es-PE")
+        : "Sin fecha";
+
         // ❌ FILTRO PRIMERO (IMPORTANTE)
         if (!producto.activo || producto.stock <= 0) {
             return;
@@ -98,7 +103,7 @@ async function cargarProductos(){
                 </p>
 
                 <p>
-                    <strong>${producto.fecha}</strong>
+                📅 ${fechaTexto}
                 </p>
 
                 <p>
@@ -131,6 +136,7 @@ boton.addEventListener("click", () => {
             id: registro.id,
             nombre: producto.nombre,
             precio: producto.precio,
+            fecha: producto.fecha || "",
             imagen: producto.imagen || '',
             cantidad: 0
         };
@@ -197,15 +203,19 @@ function actualizarCarrito() {
         card.innerHTML = `
             <img src="${item.imagen || 'https://via.placeholder.com/60'}" class="cart-img">
 
-            <div class="cart-info">
-                <div class="cart-title">${item.nombre}</div>
-                <div class="cart-meta">
-                    S/ ${item.precio} × ${item.cantidad}
-                </div>
-                <div class="cart-subtotal">
-                    S/ ${subtotal.toFixed(2)}
-                </div>
-            </div>
+    <div class="cart-info">
+
+    <div class="cart-title">
+        ${item.nombre}
+    </div>
+
+    <div class="cart-meta">
+        📅 ${item.fecha || "Sin fecha"}
+    </div>
+
+    <div class="cart-meta">
+        S/ ${item.precio} × ${item.cantidad}
+    </div>
 
             <div class="cart-actions">
                 <button class="btn-mini minus">−</button>
