@@ -1,3 +1,5 @@
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
 import {
     collection,
     getDocs,
@@ -508,7 +510,18 @@ carrito = {};
 stockTemporal = {};
     
 actualizarCarrito();
-cargarProductos();
+onAuthStateChanged(auth, (user) => {
+
+    if (!user) {
+        console.log("No autenticado");
+        window.location.href = "index.html";
+        return;
+    }
+
+    // 🔥 AQUÍ recién es seguro usar auth.currentUser
+
+    cargarProductos();
+});
 });
 
 
@@ -574,12 +587,13 @@ metodoPago.addEventListener("change", () => {
 
 async function cargarMisPedidos() {
 
+    if (!auth.currentUser) return;
+
     const contenedor =
         document.getElementById("contenedorMisPedidos");
 
     contenedor.innerHTML = "";
 
-    // 🔥 FILTRADO EN FIRESTORE (correcto)
     const q = query(
         collection(db, "pedidos"),
         where("usuarioId", "==", auth.currentUser.uid)
@@ -600,27 +614,19 @@ async function cargarMisPedidos() {
             comprobanteHTML = `
                 <div class="comprobante-box">
                     <p><strong>Comprobante QR</strong></p>
-                    <img
-                        src="${pedido.comprobantePago}"
-                        class="img-comprobante">
+                    <img src="${pedido.comprobantePago}" class="img-comprobante">
                 </div>
             `;
         }
 
-        const card =
-            document.createElement("div");
-
+        const card = document.createElement("div");
         card.classList.add("pedido-card");
 
         let productosHTML = "";
 
         pedido.productos.forEach(producto => {
             productosHTML += `
-                <li>
-                    ${producto.nombre}
-                    (${producto.cantidad})
-                    - 📅 ${producto.fecha || "Sin fecha"}
-                </li>
+                <li>${producto.nombre} (${producto.cantidad})</li>
             `;
         });
 
@@ -631,20 +637,13 @@ async function cargarMisPedidos() {
 
         card.innerHTML = `
             <h3>Pedido</h3>
-
-            <p>🕒 Solicitado: ${fechaPedido.toLocaleDateString("es-PE")}</p>
-
+            <p>🕒 ${fechaPedido.toLocaleDateString("es-PE")}</p>
             <p>Estado: ${pedido.estado}</p>
-
             <p>Método: ${pedido.metodoPago}</p>
-
             <p>Total: S/ ${pedido.total}</p>
 
             <h4>Productos</h4>
-
-            <ul>
-                ${productosHTML}
-            </ul>
+            <ul>${productosHTML}</ul>
 
             ${comprobanteHTML}
         `;
