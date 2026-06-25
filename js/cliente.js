@@ -357,11 +357,10 @@ document.getElementById("btnSolicitarPedido").addEventListener("click", async ()
 
     alert("Pedido enviado correctamente 🎉");
 
-    carrito = {};
-    stockTemporal = {};
-
-    actualizarCarrito();
-    cargarProductos();
+carrito = {};
+stockTemporal = {};
+actualizarCarrito();
+cargarProductos();
 });
 
 
