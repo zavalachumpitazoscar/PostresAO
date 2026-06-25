@@ -213,6 +213,9 @@ async function guardarProducto(){
             document.getElementById("stockProducto").value
         );
 
+    const fecha =
+    document.getElementById("fechaProducto").value;
+
     const imagenURL =
         document.getElementById("imagenProducto").value;
 
@@ -229,6 +232,7 @@ async function guardarProducto(){
             nombre,
             precio,
             stock,
+            fecha,
             activo:true,
             imagen: imagenURL || ""
         }
@@ -239,6 +243,7 @@ async function guardarProducto(){
     document.getElementById("nombreProducto").value="";
     document.getElementById("precioProducto").value="";
     document.getElementById("stockProducto").value="";
+    document.getElementById("fechaProducto").value="";
     document.getElementById("imagenProducto").value="";
 
     cargarProductos();
@@ -274,6 +279,8 @@ async function cargarProductos(){
         <p>💰 S/ ${producto.precio}</p>
 
         <p>📦 Stock: ${producto.stock}</p>
+
+        <p>📅 Disponible: ${producto.fecha || "Sin fecha"}</p>
 
         <p>
             ${
@@ -324,6 +331,9 @@ btnEditar.addEventListener("click", ()=>{
 
     document.getElementById("editStock").value =
         producto.stock;
+
+    document.getElementById("editFecha").value =
+    producto.fecha || "";
 
     document.getElementById("editImagen").value =
         producto.imagen || "";
@@ -396,6 +406,9 @@ document
                 Number(
                     document.getElementById("editStock").value
                 ),
+
+            fecha:
+                document.getElementById("editFecha").value,
 
             imagen:
                 document.getElementById("editImagen").value
