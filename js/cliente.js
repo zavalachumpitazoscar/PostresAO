@@ -521,8 +521,11 @@ alert("Pedido enviado correctamente 🎉");
 
 carrito = {};
 stockTemporal = {};
-    
+
 actualizarCarrito();
+
+// opcional pero correcto
+cargarProductos();
 });
 
 
