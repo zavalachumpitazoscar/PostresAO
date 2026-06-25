@@ -98,6 +98,10 @@ async function cargarProductos(){
                 </p>
 
                 <p>
+                    <strong>${producto.fecha}</strong>
+                </p>
+
+                <p>
                     S/ ${producto.precio}
                 </p>
 
