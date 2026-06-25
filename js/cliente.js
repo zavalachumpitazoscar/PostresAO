@@ -461,6 +461,8 @@ const pedido = {
 
     usuarioId: auth.currentUser.uid,
 
+    nombreCliente: nombreUsuario,
+
     correo: auth.currentUser.email,
 
     productos: Object.values(carrito),
