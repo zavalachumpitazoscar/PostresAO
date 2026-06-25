@@ -323,3 +323,50 @@ body{
 .img-comprobante:hover{
     transform:scale(1.05);
 }
+
+.sidebar{
+    display:flex;
+    flex-direction:column;
+}
+
+.sidebar-contacto{
+
+    margin-top:auto;
+
+    padding-top:20px;
+
+    border-top:1px solid rgba(255,255,255,.2);
+
+    text-align:center;
+}
+
+.sidebar-contacto h4{
+
+    margin-bottom:10px;
+
+    font-size:16px;
+}
+
+.sidebar-contacto p{
+
+    margin:5px 0;
+
+    font-size:14px;
+}
+
+.qr-sidebar{
+
+    width:140px;
+
+    height:140px;
+
+    margin-top:10px;
+
+    border-radius:12px;
+
+    background:white;
+
+    padding:8px;
+
+    object-fit:contain;
+}
