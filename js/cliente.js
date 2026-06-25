@@ -396,12 +396,36 @@ document.getElementById("btnSolicitarPedido").addEventListener("click", async ()
         estado: "PENDIENTE"
     };
 
-    await addDoc(collection(db, "pedidos"), pedido);
+await addDoc(collection(db, "pedidos"), pedido);
 
-    alert("Pedido enviado correctamente 🎉");
+// Descontar stock real en Firestore
+for (const item of Object.values(carrito)) {
+
+    const refProducto = doc(db, "productos", item.id);
+
+    const snap = await getDoc(refProducto);
+
+    if (snap.exists()) {
+
+        const producto = snap.data();
+
+        const nuevoStock =
+            producto.stock - item.cantidad;
+
+        await updateDoc(
+            refProducto,
+            {
+                stock: nuevoStock
+            }
+        );
+    }
+}
+
+alert("Pedido enviado correctamente 🎉");
 
 carrito = {};
 stockTemporal = {};
+    
 actualizarCarrito();
 cargarProductos();
 });
