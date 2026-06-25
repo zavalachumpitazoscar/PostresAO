@@ -122,12 +122,13 @@ async function cargarProductos(){
 
             // crear item si no existe
             if (!carrito[registro.id]) {
-                carrito[registro.id] = {
-                    id: registro.id,
-                    nombre: producto.nombre,
-                    precio: producto.precio,
-                    cantidad: 0
-                };
+carrito[registro.id] = {
+    id: registro.id,
+    nombre: producto.nombre,
+    precio: producto.precio,
+    imagen: producto.imagen || '',
+    cantidad: 0
+};
             }
 
             // incrementar carrito
