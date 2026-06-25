@@ -480,7 +480,12 @@ card.innerHTML = `
     <div class="pedido-header">
 
         <div>
-            <h3>👤 ${pedido.nombreCliente}</h3>
+        <h3>
+        👤 ${
+        pedido.nombreCliente ||
+        pedido.correo
+        }
+        </h3>
         </div>
 
         <span class="estado estado-${pedido.estado}">
