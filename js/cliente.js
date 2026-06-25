@@ -571,25 +571,35 @@ metodoPago.addEventListener("change", () => {
 async function cargarMisPedidos() {
 
     const contenedor =
-        document.getElementById(
-            "contenedorMisPedidos"
-        );
+        document.getElementById("contenedorMisPedidos");
 
     contenedor.innerHTML = "";
 
     const consulta =
-        await getDocs(
-            collection(db, "pedidos")
-        );
+        await getDocs(collection(db, "pedidos"));
 
     consulta.forEach((registro) => {
 
         const pedido = registro.data();
 
-        if (
-            pedido.usuarioId !== auth.currentUser.uid
-        ) {
+        if (pedido.usuarioId !== auth.currentUser.uid) {
             return;
+        }
+
+        let comprobanteHTML = "";
+
+        if (
+            pedido.metodoPago === "QR" &&
+            pedido.comprobantePago
+        ) {
+            comprobanteHTML = `
+                <div class="comprobante-box">
+                    <p><strong>Comprobante QR</strong></p>
+                    <img
+                        src="${pedido.comprobantePago}"
+                        class="img-comprobante">
+                </div>
+            `;
         }
 
         const card =
@@ -600,7 +610,6 @@ async function cargarMisPedidos() {
         let productosHTML = "";
 
         pedido.productos.forEach(producto => {
-
             productosHTML += `
                 <li>
                     ${producto.nombre}
@@ -612,45 +621,29 @@ async function cargarMisPedidos() {
 
         const fechaPedido =
             pedido.fecha?.toDate
-            ? pedido.fecha.toDate()
-            : new Date(pedido.fecha);
+                ? pedido.fecha.toDate()
+                : new Date(pedido.fecha);
 
         card.innerHTML = `
-            <h3>
-                Pedido
-            </h3>
+            <h3>Pedido</h3>
 
-            <p>
-                🕒 Solicitado:
-                ${fechaPedido.toLocaleDateString("es-PE")}
-            </p>
+            <p>🕒 Solicitado: ${fechaPedido.toLocaleDateString("es-PE")}</p>
 
-            <p>
-                Estado:
-                ${pedido.estado}
-            </p>
+            <p>Estado: ${pedido.estado}</p>
 
-            <p>
-                Método:
-                ${pedido.metodoPago}
-            </p>
+            <p>Método: ${pedido.metodoPago}</p>
 
-            <p>
-                Total:
-                S/ ${pedido.total}
-            </p>
+            <p>Total: S/ ${pedido.total}</p>
 
-            <h4>
-                Productos
-            </h4>
+            <h4>Productos</h4>
 
             <ul>
                 ${productosHTML}
             </ul>
+
+            ${comprobanteHTML}
         `;
 
         contenedor.appendChild(card);
-
     });
-
 }
