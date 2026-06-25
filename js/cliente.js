@@ -145,8 +145,8 @@ carrito[registro.id] = {
         });
 
         card.appendChild(boton);
-        actualizarEstadoBoton(registro.id);
         contenedorProductos.appendChild(card);
+        actualizarEstadoBoton(registro.id);
     });
 }
 
