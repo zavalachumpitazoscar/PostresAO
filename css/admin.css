@@ -282,3 +282,97 @@ body{
     font-size:28px;
     cursor:pointer;
 }
+
+#contenedorPedidos{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fill,minmax(450px,1fr));
+    gap:20px;
+}
+
+.pedido-card-pro{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.08);
+}
+
+.pedido-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.estado{
+    padding:8px 15px;
+    border-radius:999px;
+    font-weight:bold;
+}
+
+.estado-PENDIENTE{
+    background:#fff3cd;
+    color:#856404;
+}
+
+.estado-APROBADO{
+    background:#d4edda;
+    color:#155724;
+}
+
+.estado-RECHAZADO{
+    background:#f8d7da;
+    color:#721c24;
+}
+
+.productos-admin{
+    margin-top:15px;
+}
+
+.productos-admin img{
+    border-radius:10px;
+}
+
+.img-comprobante-admin{
+    width:100%;
+    max-height:250px;
+    object-fit:contain;
+    margin-top:15px;
+    border-radius:12px;
+    border:1px solid #ddd;
+}
+
+.acciones-pedido{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.aprobar{
+    flex:1;
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.rechazar{
+    flex:1;
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.input-busqueda{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    margin-bottom:20px;
+}
