@@ -323,8 +323,6 @@ document
     cargarMisPedidos();
 });
 
-cargarProductos();
-
 function buscarProductos(){
 
     const texto =
