@@ -229,19 +229,11 @@ document
     }
 );
 
-document
-.getElementById(
-    "btnCatalogo"
-)
-.addEventListener("click",()=>{
+document.getElementById("btnCatalogo").addEventListener("click", () => {
+    vistaCatalogo.style.display = "block";
+    vistaPedidos.style.display = "none";
 
-    vistaCatalogo.style.display =
-        "block";
-
-
-    vistaPedidos.style.display =
-        "none";
-
+    carritoPanel.classList.remove("activo");
 });
 
 document.getElementById("btnCarrito").addEventListener("click", () => {
