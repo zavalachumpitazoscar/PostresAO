@@ -107,6 +107,7 @@ async function cargarProductos(){
             </div>
         `;
 
+        
         const boton = document.createElement("button");
         boton.classList.add("btn-agregar");
         boton.textContent = "Agregar al carrito";
@@ -143,6 +144,7 @@ async function cargarProductos(){
         });
 
         card.appendChild(boton);
+        actualizarEstadoBoton(registro.id);
         contenedorProductos.appendChild(card);
     });
 }
