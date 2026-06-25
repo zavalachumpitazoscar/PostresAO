@@ -236,7 +236,7 @@ document.getElementById("btnCatalogo").addEventListener("click", () => {
     carritoPanel.classList.remove("activo");
 });
 
-document.getElementById("btnCarrito").addEventListener("click", () => {
+document.getElementById("carritoFloatBtn").addEventListener("click", () => {
     vistaCatalogo.style.display = "none";
     vistaPedidos.style.display = "none";
 
