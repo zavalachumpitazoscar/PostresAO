@@ -308,6 +308,7 @@ document
     vistaPedidos.style.display =
         "block";
 
+    cargarMisPedidos();
 });
 
 cargarProductos();
@@ -415,7 +416,7 @@ if (!metodo) {
 
     return;
 }
-    const archivo =
+const archivo =
     document.getElementById("comprobantePago")
     .files[0];
 
@@ -424,6 +425,15 @@ if (
     !archivo
 ) {
     alert("Debe adjuntar el comprobante");
+    return;
+}
+
+if (archivo && archivo.size > 500000) {
+
+    alert(
+        "La imagen es muy grande. Máximo 500 KB."
+    );
+
     return;
 }
 
@@ -436,7 +446,12 @@ if (metodo === "QR") {
 
 }
 
+    
 const pedido = {
+
+    usuarioId: auth.currentUser.uid,
+
+    correo: auth.currentUser.email,
 
     productos: Object.values(carrito),
 
@@ -551,3 +566,91 @@ metodoPago.addEventListener("change", () => {
     }
 
 });
+
+
+async function cargarMisPedidos() {
+
+    const contenedor =
+        document.getElementById(
+            "contenedorMisPedidos"
+        );
+
+    contenedor.innerHTML = "";
+
+    const consulta =
+        await getDocs(
+            collection(db, "pedidos")
+        );
+
+    consulta.forEach((registro) => {
+
+        const pedido = registro.data();
+
+        if (
+            pedido.usuarioId !== auth.currentUser.uid
+        ) {
+            return;
+        }
+
+        const card =
+            document.createElement("div");
+
+        card.classList.add("pedido-card");
+
+        let productosHTML = "";
+
+        pedido.productos.forEach(producto => {
+
+            productosHTML += `
+                <li>
+                    ${producto.nombre}
+                    (${producto.cantidad})
+                    - 📅 ${producto.fecha || "Sin fecha"}
+                </li>
+            `;
+        });
+
+        const fechaPedido =
+            pedido.fecha?.toDate
+            ? pedido.fecha.toDate()
+            : new Date(pedido.fecha);
+
+        card.innerHTML = `
+            <h3>
+                Pedido
+            </h3>
+
+            <p>
+                🕒 Solicitado:
+                ${fechaPedido.toLocaleDateString("es-PE")}
+            </p>
+
+            <p>
+                Estado:
+                ${pedido.estado}
+            </p>
+
+            <p>
+                Método:
+                ${pedido.metodoPago}
+            </p>
+
+            <p>
+                Total:
+                S/ ${pedido.total}
+            </p>
+
+            <h4>
+                Productos
+            </h4>
+
+            <ul>
+                ${productosHTML}
+            </ul>
+        `;
+
+        contenedor.appendChild(card);
+
+    });
+
+}
