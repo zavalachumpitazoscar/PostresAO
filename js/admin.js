@@ -435,14 +435,6 @@ async function cargarPedidos() {
             collection(db, "pedidos")
         );
 
-    consulta.forEach((registro) => {
-
-        const pedido = registro.data();
-
-        const card = document.createElement("div");
-
-        card.classList.add("pedido-admin");
-
 consulta.forEach((registro) => {
 
     const pedido = registro.data();
