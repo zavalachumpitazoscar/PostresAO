@@ -245,10 +245,11 @@ document
 });
 
 document.getElementById("btnCarrito").addEventListener("click", () => {
-
     vistaCatalogo.style.display = "none";
     vistaPedidos.style.display = "none";
 
+    carritoPanel.classList.add("activo");
+    actualizarCarrito();
 });
 
 document
