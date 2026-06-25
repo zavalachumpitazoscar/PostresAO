@@ -166,7 +166,7 @@ function actualizarCarrito() {
         card.classList.add("cart-mini-card");
 
         card.innerHTML = `
-            <img src="${item.imagen || ''}" class="cart-img">
+            <img src="${item.imagen || 'assets/placeholder.png'}" class="cart-img">
 
             <div class="cart-info">
                 <div class="cart-title">${item.nombre}</div>
