@@ -386,6 +386,16 @@ document.getElementById("btnSolicitarPedido").addEventListener("click", async ()
         return;
     }
 
+    const metodo =
+    document.getElementById("metodoPago").value;
+
+if (!metodo) {
+
+    alert("Seleccione método de pago");
+
+    return;
+}
+
     const pedido = {
         productos: Object.values(carrito),
         total: Object.values(carrito).reduce(
