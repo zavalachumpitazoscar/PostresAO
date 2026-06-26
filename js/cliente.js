@@ -757,3 +757,20 @@ pedido.productos.forEach(producto => {
         contenedor.appendChild(card);
     });
 }
+
+
+btnMenu.onclick=()=>{
+
+    sidebar.classList.add("activo");
+
+    overlay.classList.add("activo");
+
+}
+
+overlay.onclick=()=>{
+
+    sidebar.classList.remove("activo");
+
+    overlay.classList.remove("activo");
+
+}
