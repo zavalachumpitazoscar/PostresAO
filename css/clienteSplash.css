@@ -1,0 +1,28 @@
+.splash{
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg,#db2777,#f6a761);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+    transition: opacity .5s ease;
+}
+
+.splash-content{
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    animation: pop 1s ease-in-out infinite;
+}
+
+@keyframes pop{
+    0%{ transform: scale(1); }
+    50%{ transform: scale(1.15); }
+    100%{ transform: scale(1); }
+}
+
+.splash.hide{
+    opacity: 0;
+    visibility: hidden;
+}
