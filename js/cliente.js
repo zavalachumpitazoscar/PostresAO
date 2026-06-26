@@ -13,17 +13,13 @@ import {
 
 import { db, auth } from "./firebase-config.js";
 
-const splash =
-    document.getElementById("splashScreen");
+const splash = document.getElementById("splashScreen");
 
 onAuthStateChanged(auth, (user) => {
 
     if (!user) {
-
         window.location.href = "index.html";
-
         return;
-
     }
 
     cargarProductos();
@@ -32,7 +28,7 @@ onAuthStateChanged(auth, (user) => {
 
         splash.classList.add("oculto");
 
-    }, 5200);
+    }, 2000);
 
 });
 
