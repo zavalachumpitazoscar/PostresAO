@@ -562,9 +562,11 @@ body{
 
     display:flex;
 
-    flex-direction:column;
+    flex-direction:row;
 
-    gap:6px;
+    gap:8px;
+
+    margin-top:10px;
 
 }
 
@@ -711,4 +713,36 @@ body{
 
 .img-comprobante:hover{
     transform:scale(1.05);
+}
+
+.btn-remove{
+
+    width:32px;
+
+    height:32px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#ef4444;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.btn-remove:hover{
+
+    background:#dc2626;
+
 }
