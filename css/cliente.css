@@ -779,3 +779,57 @@ body{
     align-items:center;
 
 }
+
+.btn-subir{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:8px;
+
+    border-radius:12px;
+
+    background:#f3f4f6;
+
+    border:2px dashed #d1d5db;
+
+    color:#374151;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.btn-subir:hover{
+
+    background:#ec4899;
+
+    color:white;
+
+    border-color:#ec4899;
+
+}
+
+.nombre-archivo{
+
+    margin-top:10px;
+
+    text-align:center;
+
+    font-size:13px;
+
+    color:#6b7280;
+
+    word-break:break-word;
+
+}
