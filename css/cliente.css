@@ -15,9 +15,8 @@ body{
 }
 
 .sidebar{
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
 
     width: 250px;   /* el ancho que uses */
 
@@ -43,6 +42,7 @@ body{
 }
 
 .contenido{
+    display: flex;
     margin-left: 250px;
     padding: 30px;
 }
