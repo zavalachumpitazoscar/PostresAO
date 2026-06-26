@@ -628,3 +628,72 @@ function buscarPedidos(){
     });
 
 }
+
+
+async function cargarDashboard(){
+
+    // Usuarios
+    const usuarios =
+        await getDocs(
+            collection(db,"usuarios")
+        );
+
+    document.getElementById("totalUsuarios").textContent =
+        usuarios.size;
+
+    // Productos
+    const productos =
+        await getDocs(
+            collection(db,"productos")
+        );
+
+    document.getElementById("totalProductos").textContent =
+        productos.size;
+
+    // Pedidos
+    const pedidos =
+        await getDocs(
+            collection(db,"pedidos")
+        );
+
+    document.getElementById("totalPedidos").textContent =
+        pedidos.size;
+
+    // Ventas del día
+    let totalHoy = 0;
+
+    const hoy = new Date();
+
+    pedidos.forEach(doc => {
+
+        const pedido = doc.data();
+
+        const fecha =
+            pedido.fecha?.toDate
+            ? pedido.fecha.toDate()
+            : new Date(pedido.fecha);
+
+        if(
+
+            fecha.getDate() === hoy.getDate() &&
+
+            fecha.getMonth() === hoy.getMonth() &&
+
+            fecha.getFullYear() === hoy.getFullYear()
+
+        ){
+
+            if(pedido.estado === "APROBADO"){
+
+                totalHoy += pedido.total;
+
+            }
+
+        }
+
+    });
+
+    document.getElementById("ventasHoy").textContent =
+        "S/ " + totalHoy.toFixed(2);
+
+}
