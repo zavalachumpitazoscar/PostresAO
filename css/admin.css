@@ -481,3 +481,55 @@ body{
     transform:scale(.97);
 
 }
+
+.sidebar button{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:12px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.sidebar button:hover{
+
+    background:white;
+
+    color:#db2777;
+
+}
+
+.sidebar button.activo{
+
+    background:white;
+
+    color:#db2777;
+
+    font-weight:bold;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.card-dashboard.activo{
+
+    border:3px solid #ec4899;
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(236,72,153,.25);
+
+}
