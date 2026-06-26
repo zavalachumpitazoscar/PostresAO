@@ -454,3 +454,30 @@ body{
     color:#111827;
 
 }
+
+.card-dashboard{
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+
+}
+
+.card-dashboard:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.card-dashboard:active{
+
+    transform:scale(.97);
+
+}
