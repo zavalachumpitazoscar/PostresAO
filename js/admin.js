@@ -557,6 +557,7 @@ async function aprobarPedido(id){
     );
 
     cargarPedidos();
+    cargarDashboard();
 }
 
 async function rechazarPedido(id){
@@ -569,6 +570,7 @@ async function rechazarPedido(id){
     );
 
     cargarPedidos();
+    cargarDashboard();
 }
 
 function asignarEventosPedidos(){
@@ -697,3 +699,4 @@ async function cargarDashboard(){
         "S/ " + totalHoy.toFixed(2);
 
 }
+cargarDashboard();
