@@ -20,6 +20,8 @@ body{
 
     width: 250px;   /* el ancho que uses */
 
+    background: #0F103B; /* o el color que usabas */
+
     height: 100vh;
 
     overflow-y: auto;
