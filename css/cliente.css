@@ -746,3 +746,21 @@ body{
     background:#dc2626;
 
 }
+
+.cantidad{
+
+    min-width:26px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
