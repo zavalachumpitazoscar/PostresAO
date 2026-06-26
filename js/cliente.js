@@ -764,11 +764,6 @@ const btnMenu = document.getElementById("btnMenu");
 const overlay = document.getElementById("overlay");
 
 btnMenu.onclick = () => {
-    sidebar.classList.add("activo");
-    overlay.classList.add("activo");
-};
-
-btnMenu.onclick = () => {
     sidebar.classList.toggle("activo");
     overlay.classList.toggle("activo");
 };
