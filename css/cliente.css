@@ -931,7 +931,7 @@ body{
 
 }
 
-<!-- CARRITO FLOTANTE MOVIL -->
+/* CARRITO FLOTANTE MOVIL */
 @media (max-width:768px){
 
     .carrito-panel{
@@ -956,7 +956,7 @@ body{
 
 }
 
-<!-- BOTÓN DEL CARRITO -->
+/* BOTÓN DEL CARRITO */
 @media (max-width:768px){
 
     #carritoFloatBtn{
@@ -974,7 +974,7 @@ body{
 }
 
 
-<!-- TARJETAS DEL CARRITO -->
+/* TARJETAS DEL CARRITO */
 
 @media (max-width:768px){
 
@@ -1004,7 +1004,7 @@ body{
 
 }
 
-<!-- MIS PEDIDOS -->
+/* MIS PEDIDOS */
 
 @media (max-width:768px){
 
@@ -1044,7 +1044,7 @@ body{
 
 
 
-<!-- QR DEL MENÚ -->
+/* QR DEL MENÚ */
 
 @media (max-width:768px){
 
@@ -1058,14 +1058,14 @@ body{
 
 }
 
-<!-- BOTÓN MENÚ INVISIBLE PC -->
+/* BOTÓN MENÚ INVISIBLE PC */
 .btn-menu{
 
     display:none;
 
 }
 
-<!-- BOTÓN MENÚ VISIBLE EN CELULAR -->
+/* BOTÓN MENÚ VISIBLE EN CELULAR */
 
 @media (max-width:768px){
 
@@ -1105,16 +1105,6 @@ body{
 
 }
 
-.sidebar{
-
-    left:-280px;
-
-    position:fixed;
-
-    transition:.3s;
-
-}
-
 .sidebar.activo{
 
     left:0;
@@ -1123,24 +1113,38 @@ body{
 
 .overlay{
 
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.4);
-
-    opacity:0;
-
-    visibility:hidden;
-
-    transition:.3s;
+    display:none;
 
 }
 
-.overlay.activo{
+@media(max-width:768px){
 
-    opacity:1;
+    .overlay{
 
-    visibility:visible;
+        display:block;
+
+        position:fixed;
+
+        inset:0;
+
+        background:rgba(0,0,0,.45);
+
+        opacity:0;
+
+        visibility:hidden;
+
+        transition:.3s;
+
+        z-index:10000;
+
+    }
+
+    .overlay.activo{
+
+        opacity:1;
+
+        visibility:visible;
+
+    }
 
 }
