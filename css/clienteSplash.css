@@ -1,28 +1,322 @@
+/*=========================
+    SPLASH
+==========================*/
+
 .splash{
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg,#db2777,#f6a761);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 20000;
-    transition: opacity .5s ease;
+
+    position:fixed;
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        #ffd6e8,
+        #fff4e5
+    );
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999999;
+
+    overflow:hidden;
+
+    transition:.8s;
 }
 
-.splash-content{
-    text-align: center;
-    color: white;
-    font-size: 28px;
-    animation: pop 1s ease-in-out infinite;
+.splash.oculto{
+
+    opacity:0;
+    visibility:hidden;
+
 }
 
-@keyframes pop{
-    0%{ transform: scale(1); }
-    50%{ transform: scale(1.15); }
-    100%{ transform: scale(1); }
+.escena{
+
+    width:350px;
+    height:350px;
+
+    position:relative;
+
 }
 
-.splash.hide{
-    opacity: 0;
-    visibility: hidden;
+/* Bowl */
+
+.bowl{
+
+    position:absolute;
+
+    width:180px;
+
+    left:85px;
+
+    bottom:20px;
+
+}
+
+/* Ingredientes */
+
+.ingrediente{
+
+    position:absolute;
+
+    width:55px;
+
+    opacity:0;
+
+}
+
+.harina{
+
+    left:30px;
+
+    top:-120px;
+
+    animation:caerHarina 2s forwards;
+
+}
+
+.huevo{
+
+    left:90px;
+
+    top:-120px;
+
+    animation:caerHuevo 2s .2s forwards;
+
+}
+
+.leche{
+
+    left:150px;
+
+    top:-120px;
+
+    animation:caerLeche 2s .4s forwards;
+
+}
+
+.mantequilla{
+
+    left:210px;
+
+    top:-120px;
+
+    animation:caerMantequilla 2s .6s forwards;
+
+}
+
+.chocolate{
+
+    left:270px;
+
+    top:-120px;
+
+    animation:caerChocolate 2s .8s forwards;
+
+}
+
+/* Batidor */
+
+.batidor{
+
+    position:absolute;
+
+    width:140px;
+
+    left:110px;
+
+    top:40px;
+
+    opacity:0;
+
+    animation:batir 1.5s 1.8s forwards;
+
+}
+
+/* Cupcake */
+
+.cupcake{
+
+    position:absolute;
+
+    width:170px;
+
+    left:90px;
+
+    bottom:25px;
+
+    opacity:0;
+
+    animation:cupcake 1s 3.2s forwards;
+
+}
+
+/* Cereza */
+
+.cereza{
+
+    position:absolute;
+
+    width:50px;
+
+    left:150px;
+
+    top:-80px;
+
+    opacity:0;
+
+    animation:cereza 1s 4.1s forwards;
+
+}
+
+.splash h2{
+
+    margin-top:20px;
+
+    color:#db2777;
+
+    font-size:38px;
+
+}
+
+.splash p{
+
+    margin-top:10px;
+
+    color:#555;
+
+    font-size:18px;
+
+}
+
+/*=========================
+    ANIMACIONES
+==========================*/
+
+@keyframes caerHarina{
+
+0%{top:-120px;opacity:1;}
+
+100%{top:170px;opacity:0;}
+
+}
+
+@keyframes caerHuevo{
+
+0%{top:-120px;opacity:1;}
+
+100%{top:170px;opacity:0;}
+
+}
+
+@keyframes caerLeche{
+
+0%{top:-120px;opacity:1;}
+
+100%{top:170px;opacity:0;}
+
+}
+
+@keyframes caerMantequilla{
+
+0%{top:-120px;opacity:1;}
+
+100%{top:170px;opacity:0;}
+
+}
+
+@keyframes caerChocolate{
+
+0%{top:-120px;opacity:1;}
+
+100%{top:170px;opacity:0;}
+
+}
+
+@keyframes batir{
+
+0%{
+
+opacity:1;
+
+transform:rotate(-20deg);
+
+}
+
+50%{
+
+transform:rotate(20deg);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:rotate(-20deg);
+
+}
+
+}
+
+@keyframes cupcake{
+
+0%{
+
+opacity:0;
+
+transform:scale(.2);
+
+}
+
+80%{
+
+opacity:1;
+
+transform:scale(1.1);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
+@keyframes cereza{
+
+0%{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+70%{
+
+transform:translateY(235px);
+
+}
+
+85%{
+
+transform:translateY(210px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:translateY(225px);
+
+}
+
 }
