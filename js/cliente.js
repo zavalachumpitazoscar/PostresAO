@@ -249,10 +249,16 @@ function actualizarCarrito() {
     </div>
 
             <div class="cart-actions">
-                <button class="btn-mini minus">−</button>
-                <button class="btn-mini plus">+</button>
-                <button class="btn-remove">✖</button>
-            </div>
+
+    <button class="btn-mini minus">−</button>
+
+    <span class="cantidad">${item.cantidad}</span>
+
+    <button class="btn-mini plus">+</button>
+
+    <button class="btn-remove">🗑</button>
+
+</div>
         `;
 
         // ➖
