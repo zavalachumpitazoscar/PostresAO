@@ -768,6 +768,11 @@ btnMenu.onclick = () => {
     overlay.classList.add("activo");
 };
 
+btnMenu.onclick = () => {
+    sidebar.classList.toggle("activo");
+    overlay.classList.toggle("activo");
+};
+
 overlay.onclick = () => {
     sidebar.classList.remove("activo");
     overlay.classList.remove("activo");
