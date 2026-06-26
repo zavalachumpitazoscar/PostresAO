@@ -13,17 +13,27 @@ import {
 
 import { db, auth } from "./firebase-config.js";
 
+const splash = document.getElementById("splashScreen");
+
 onAuthStateChanged(auth, (user) => {
 
     if (!user) {
-        console.log("No autenticado");
         window.location.href = "index.html";
         return;
     }
 
-    // 🔥 AQUÍ recién es seguro usar auth.currentUser
+    // Mostrar splash
+    splash.classList.remove("hide");
 
-    cargarProductos();
+    setTimeout(() => {
+
+        cargarProductos();
+
+        // Ocultar splash
+        splash.classList.add("hide");
+
+    }, 2000);
+
 });
 
 let productosGlobal = [];
