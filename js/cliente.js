@@ -759,6 +759,12 @@ pedido.productos.forEach(producto => {
 }
 
 
+const sidebar = document.querySelector(".sidebar");
+
+const btnMenu = document.getElementById("btnMenu");
+
+const overlay = document.getElementById("overlay");
+
 btnMenu.onclick=()=>{
 
     sidebar.classList.add("activo");
