@@ -760,23 +760,15 @@ pedido.productos.forEach(producto => {
 
 
 const sidebar = document.querySelector(".sidebar");
-
 const btnMenu = document.getElementById("btnMenu");
-
 const overlay = document.getElementById("overlay");
 
-btnMenu.onclick=()=>{
-
+btnMenu.onclick = () => {
     sidebar.classList.add("activo");
-
     overlay.classList.add("activo");
+};
 
-}
-
-overlay.onclick=()=>{
-
+overlay.onclick = () => {
     sidebar.classList.remove("activo");
-
     overlay.classList.remove("activo");
-
-}
+};
