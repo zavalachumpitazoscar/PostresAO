@@ -1,5 +1,5 @@
 /*==================================
-    SPLASH LOADER
+        SPLASH PREMIUM
 ===================================*/
 
 .splash{
@@ -9,8 +9,8 @@
 
     background:linear-gradient(
         135deg,
-        #ffe4ef,
-        #fff7ec
+        #fff7fb,
+        #fff3e8
     );
 
     display:flex;
@@ -37,8 +37,8 @@
 
     position:relative;
 
-    width:170px;
-    height:170px;
+    width:180px;
+    height:180px;
 
     display:flex;
     justify-content:center;
@@ -46,7 +46,30 @@
 
 }
 
-/* ARO GIRATORIO */
+/* SOMBRA */
+
+.loader-postre::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:15px;
+
+    width:75px;
+    height:18px;
+
+    background:rgba(0,0,0,.12);
+
+    border-radius:50%;
+
+    filter:blur(6px);
+
+    animation:sombra 1.6s ease-in-out infinite;
+
+}
+
+/* ARO */
 
 .loader-ring{
 
@@ -57,13 +80,16 @@
 
     border-radius:50%;
 
-    border:7px solid #ffd5e5;
+    border:7px solid transparent;
 
-    border-top:7px solid #ec4899;
+    border-top-color:#ec4899;
+    border-right-color:#f59e0b;
+    border-bottom-color:#fb7185;
 
-    border-right:7px solid #f59e0b;
+    animation:girar .9s linear infinite;
 
-    animation:girar 1s linear infinite;
+    filter:
+        drop-shadow(0 0 10px rgba(236,72,153,.25));
 
 }
 
@@ -71,9 +97,54 @@
 
 .loader-cupcake{
 
-    width:90px;
+    width:95px;
 
-    animation:flotar 1.5s ease-in-out infinite;
+    z-index:2;
+
+    animation:
+        flotar 1.6s ease-in-out infinite;
+
+}
+
+/* DESTELLOS */
+
+.loader-postre span{
+
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#fbbf24;
+
+    animation:estrella 2s infinite;
+
+}
+
+.loader-postre span:nth-child(4){
+
+    top:25px;
+    left:35px;
+
+}
+
+.loader-postre span:nth-child(5){
+
+    right:35px;
+    top:45px;
+
+    animation-delay:.6s;
+
+}
+
+.loader-postre span:nth-child(6){
+
+    bottom:35px;
+    right:20px;
+
+    animation-delay:1s;
 
 }
 
@@ -81,11 +152,13 @@
 
 .splash h2{
 
-    margin-top:30px;
+    margin-top:35px;
 
     color:#db2777;
 
-    font-size:38px;
+    font-size:40px;
+
+    font-weight:700;
 
 }
 
@@ -95,13 +168,13 @@
 
     margin-top:10px;
 
-    color:#555;
+    color:#666;
 
-    font-size:18px;
+    font-size:17px;
 
 }
 
-/* PUNTITOS */
+/* PUNTOS */
 
 .loading-dots{
 
@@ -109,20 +182,20 @@
 
     display:flex;
 
-    gap:8px;
+    gap:10px;
 
 }
 
 .loading-dots span{
 
-    width:12px;
-    height:12px;
+    width:11px;
+    height:11px;
 
     border-radius:50%;
 
-    background:#db2777;
+    background:#ec4899;
 
-    animation:dot 1s infinite;
+    animation:dot 1.2s infinite;
 
 }
 
@@ -162,13 +235,57 @@
 
     0%,100%{
 
-        transform:translateY(0);
+        transform:
+            translateY(0)
+            scale(1);
 
     }
 
     50%{
 
-        transform:translateY(-8px);
+        transform:
+            translateY(-10px)
+            scale(1.03);
+
+    }
+
+}
+
+@keyframes sombra{
+
+    0%,100%{
+
+        transform:scale(1);
+
+        opacity:.25;
+
+    }
+
+    50%{
+
+        transform:scale(.75);
+
+        opacity:.12;
+
+    }
+
+}
+
+@keyframes estrella{
+
+    0%,100%{
+
+        transform:scale(.5);
+
+        opacity:.3;
+
+    }
+
+    50%{
+
+        transform:scale(1.6);
+
+        opacity:1;
 
     }
 
@@ -180,7 +297,7 @@
 
         opacity:.2;
 
-        transform:scale(.8);
+        transform:scale(.7);
 
     }
 
@@ -188,7 +305,7 @@
 
         opacity:1;
 
-        transform:scale(1.2);
+        transform:scale(1.3);
 
     }
 
