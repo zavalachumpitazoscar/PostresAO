@@ -606,6 +606,28 @@ function actualizarEstadoBoton(id) {
 const metodoPago =
     document.getElementById("metodoPago");
 
+const inputArchivo =
+    document.getElementById("comprobantePago");
+
+const nombreArchivo =
+    document.getElementById("nombreArchivo");
+
+inputArchivo.addEventListener("change", () => {
+
+    if(inputArchivo.files.length){
+
+        nombreArchivo.textContent =
+            "✅ " + inputArchivo.files[0].name;
+
+    }else{
+
+        nombreArchivo.textContent =
+            "Ningún archivo seleccionado";
+
+    }
+
+});
+
 const bloqueComprobante =
     document.getElementById("bloqueComprobante");
 
