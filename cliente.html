@@ -123,14 +123,25 @@
 
 <div id="bloqueComprobante" style="display:none;">
 
-    <label>
-        Captura del pago
-    </label>
+    <label>Captura del pago</label>
 
     <input
         type="file"
         id="comprobantePago"
-        accept="image/*">
+        accept="image/*"
+        hidden>
+
+    <label
+        for="comprobantePago"
+        class="btn-subir">
+
+        📷 Seleccionar comprobante
+
+    </label>
+
+    <p id="nombreArchivo" class="nombre-archivo">
+        Ningún archivo seleccionado
+    </p>
 
 </div>
 
