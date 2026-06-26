@@ -726,3 +726,68 @@ async function cargarDashboard(){
 
 }
 cargarDashboard();
+
+
+function cambiarVista(vista){
+
+    vistaUsuarios.style.display = "none";
+    vistaProductos.style.display = "none";
+    vistaPedidos.style.display = "none";
+
+    document
+        .querySelectorAll(".sidebar button")
+        .forEach(btn => btn.classList.remove("activo"));
+
+    document
+        .querySelectorAll(".card-dashboard")
+        .forEach(card => card.classList.remove("activo"));
+
+    switch(vista){
+
+        case "usuarios":
+
+            vistaUsuarios.style.display = "block";
+
+            document
+                .getElementById("btnUsuarios")
+                .classList.add("activo");
+
+            document
+                .getElementById("cardUsuarios")
+                .classList.add("activo");
+
+            break;
+
+        case "productos":
+
+            vistaProductos.style.display = "block";
+
+            document
+                .getElementById("btnProductos")
+                .classList.add("activo");
+
+            document
+                .getElementById("cardProductos")
+                .classList.add("activo");
+
+            break;
+
+        case "pedidos":
+
+            vistaPedidos.style.display = "block";
+
+            document
+                .getElementById("btnPedidos")
+                .classList.add("activo");
+
+            document
+                .getElementById("cardPedidos")
+                .classList.add("activo");
+
+            cargarPedidos();
+
+            break;
+
+    }
+
+}
