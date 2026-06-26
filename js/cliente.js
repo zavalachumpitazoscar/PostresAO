@@ -232,34 +232,40 @@ function actualizarCarrito() {
         card.className = "cart-mini-card";
 
         card.innerHTML = `
-            <img src="${item.imagen || 'https://via.placeholder.com/60'}" class="cart-img">
+    <img src="${item.imagen || 'https://via.placeholder.com/60'}" class="cart-img">
 
     <div class="cart-info">
 
-    <div class="cart-title">
-        ${item.nombre}
+        <div class="cart-title">
+            ${item.nombre}
+        </div>
+
+        <div class="cart-meta">
+            📅 ${item.fecha || "Sin fecha"}
+        </div>
+
+        <div class="cart-meta">
+            S/ ${item.precio.toFixed(2)} c/u
+        </div>
+
+        <div class="cart-meta subtotal">
+            Subtotal: <strong>S/ ${(item.precio * item.cantidad).toFixed(2)}</strong>
+        </div>
+
+        <div class="cart-actions">
+
+            <button class="btn-mini minus">−</button>
+
+            <span class="cantidad">${item.cantidad}</span>
+
+            <button class="btn-mini plus">+</button>
+
+            <button class="btn-remove">🗑</button>
+
+        </div>
+
     </div>
-
-    <div class="cart-meta">
-        📅 ${item.fecha || "Sin fecha"}
-    </div>
-
-    <div class="cart-meta">
-        S/ ${item.precio} × ${item.cantidad}
-    </div>
-
-            <div class="cart-actions">
-
-    <button class="btn-mini minus">−</button>
-
-    <span class="cantidad">${item.cantidad}</span>
-
-    <button class="btn-mini plus">+</button>
-
-    <button class="btn-remove">🗑</button>
-
-</div>
-        `;
+`;
 
         // ➖
         card.querySelector(".minus").onclick = () => {
