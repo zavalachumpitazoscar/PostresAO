@@ -15,6 +15,68 @@ body{
 }
 
 /* =======================
+   PRODUCTOS CABECERA TITULO Y BUSCADOR
+======================= */
+
+.titulo-catalogo{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.titulo-catalogo span{
+
+    display:inline-block;
+
+    background:linear-gradient(135deg,#ec4899,#f59e0b);
+
+    color:white;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    margin-bottom:15px;
+
+    box-shadow:0 8px 18px rgba(236,72,153,.25);
+
+}
+
+.titulo-catalogo h2{
+
+    font-size:42px;
+
+    color:#1f2937;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.titulo-catalogo p{
+
+    color:#6b7280;
+
+    font-size:17px;
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:1.6;
+
+}
+
+/* =======================
    SIDEBAR
 ======================= */
 
