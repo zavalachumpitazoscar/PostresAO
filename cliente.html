@@ -35,7 +35,7 @@
                 🚪 Cerrar Sesión
             </button>
 
-            "sidebar-contacto">
+<div class="sidebar-contacto">
 
     <h4>📞 Datos de contacto</h4>
 
@@ -48,42 +48,40 @@
         alt="QR de Pago"
         class="qr-sidebar">
 
-     <p class="texto-qr">
-    Escanea para pagar con Yape o Plin
-</p>
+    <p class="texto-qr">
+        Escanea para pagar con Yape o Plin
+    </p>
 
 </div>
 
+
+
         </aside>
 
-        <main class="contenido">
+<main class="contenido">
 
-            <section id="vistaCatalogo">
-
-                <h2>Productos Disponibles</h2>
-
+<section id="vistaCatalogo">
+<h2>Productos Disponibles</h2>
 <input
     type="text"
     id="buscarProducto"
     placeholder="Buscar producto..."
     class="buscador">
                 
-                <div id="contenedorProductos"></div>
+<div id="contenedorProductos"></div>
+</section>
 
-            </section>
+</div>   
 
-            <section id="vistaPedidos"
-                     style="display:none;">
+    
 
-                <h2>Mis Pedidos</h2>
+<section id="vistaPedidos" style="display:none;">
+<h2>Mis Pedidos</h2>
+<div id="contenedorMisPedidos"></div>
+</section>
 
-                <div id="contenedorMisPedidos"></div>
+</main>
 
-            </section>
-
-        </main>
-
-    </div>
 
     <script type="module"
             src="js/cliente.js"></script>
