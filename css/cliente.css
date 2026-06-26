@@ -43,8 +43,8 @@ body{
 }
 
 .contenido{
-    flex:1;
-    padding:25px;
+    margin-left: 250px;
+    padding: 30px;
 }
 
 #contenedorProductos{
