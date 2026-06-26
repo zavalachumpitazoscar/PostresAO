@@ -2,51 +2,152 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,sans-serif;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
 }
 
 body{
-    background:#f5f5f5;
+    background:#f8fafc;
+    color:#1f2937;
 }
 
 .dashboard{
     display:flex;
-    min-height:100vh;
 }
 
+/* =======================
+   SIDEBAR
+======================= */
+
 .sidebar{
-    position: sticky;
-    top: 0;
 
-    width: 250px;   /* el ancho que uses */
+    position:sticky;
+    top:0;
 
-    background: #0F103B; /* o el color que usabas */
+    width:260px;
+    height:100vh;
 
-    height: 100vh;
+    background:linear-gradient(
+        180deg,
+        #ec4899,
+        #db2777
+    );
 
-    overflow-y: auto;
+    color:white;
 
-    display: flex;
-    flex-direction: column;
+    padding:25px 18px;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    box-shadow:
+        8px 0 25px rgba(0,0,0,.08);
+
+    flex-shrink:0;
 }
 
 .sidebar h2{
+
+    text-align:center;
+
     margin-bottom:30px;
+
+    font-size:26px;
 }
 
 .sidebar button{
+
     width:100%;
-    padding:12px;
-    margin-bottom:10px;
+
+    padding:14px;
+
+    margin-bottom:12px;
+
     border:none;
-    border-radius:10px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    font-size:15px;
+
     cursor:pointer;
+
+    transition:.25s;
 }
 
+.sidebar button:hover{
+
+    background:white;
+
+    color:#db2777;
+
+    transform:translateX(5px);
+
+}
+
+/* CONTACTO */
+
+.sidebar-contacto{
+
+    margin-top:auto;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.25);
+
+    padding-top:20px;
+
+}
+
+.sidebar-contacto h4{
+
+    margin-bottom:10px;
+
+}
+
+.sidebar-contacto p{
+
+    margin:6px 0;
+
+}
+
+.qr-sidebar{
+
+    width:150px;
+
+    height:150px;
+
+    margin-top:12px;
+
+    border-radius:15px;
+
+    background:white;
+
+    padding:10px;
+
+    object-fit:contain;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.15);
+
+}
+
+/* =======================
+   CONTENIDO
+======================= */
+
 .contenido{
-    display: flex;
-    margin-left: 250px;
-    padding: 30px;
+
+    flex:1;
+
+    padding:35px;
+
+    overflow:auto;
+
 }
 
 #contenedorProductos{
@@ -332,51 +433,4 @@ body{
 
 .img-comprobante:hover{
     transform:scale(1.05);
-}
-
-.sidebar{
-    display:flex;
-    flex-direction:column;
-}
-
-.sidebar-contacto{
-
-    margin-top:auto;
-
-    padding-top:20px;
-
-    border-top:1px solid rgba(255,255,255,.2);
-
-    text-align:center;
-}
-
-.sidebar-contacto h4{
-
-    margin-bottom:10px;
-
-    font-size:16px;
-}
-
-.sidebar-contacto p{
-
-    margin:5px 0;
-
-    font-size:14px;
-}
-
-.qr-sidebar{
-
-    width:140px;
-
-    height:140px;
-
-    margin-top:10px;
-
-    border-radius:12px;
-
-    background:white;
-
-    padding:8px;
-
-    object-fit:contain;
 }
