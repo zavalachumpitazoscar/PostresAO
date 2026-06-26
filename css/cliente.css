@@ -833,3 +833,227 @@ body{
     word-break:break-word;
 
 }
+
+
+
+
+
+
+/*==================================
+    CELULARES
+===================================*/
+
+@media (max-width:768px){
+
+    .dashboard{
+
+        flex-direction:column;
+
+    }
+
+    /* Menú */
+
+    .sidebar{
+
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+        border-radius:0;
+
+        padding:20px;
+
+    }
+
+    .sidebar h2{
+
+        text-align:center;
+
+        margin-bottom:20px;
+
+    }
+
+    .sidebar button{
+
+        margin-bottom:12px;
+
+    }
+
+    .sidebar-contacto{
+
+        margin-top:20px;
+
+    }
+
+    /* Contenido */
+
+    .contenido{
+
+        margin-left:0;
+
+        padding:15px;
+
+        width:100%;
+
+    }
+
+    /* Productos */
+
+    #contenedorProductos{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+    }
+
+    .producto-card{
+
+        width:100%;
+
+    }
+
+    .producto-card img{
+
+        height:220px;
+
+    }
+
+    /* Buscador */
+
+    .buscador{
+
+        font-size:16px;
+
+    }
+
+}
+
+<!-- CARRITO FLOTANTE MOVIL -->
+@media (max-width:768px){
+
+    .carrito-panel{
+
+        width:95%;
+
+        height:85vh;
+
+        right:50%;
+
+        transform:translateX(50%) translateY(40px);
+
+        bottom:10px;
+
+    }
+
+    .carrito-panel.activo{
+
+        transform:translateX(50%) translateY(0);
+
+    }
+
+}
+
+<!-- BOTÓN DEL CARRITO -->
+@media (max-width:768px){
+
+    #carritoFloatBtn{
+
+        bottom:15px;
+
+        right:15px;
+
+        padding:15px 18px;
+
+        font-size:16px;
+
+    }
+
+}
+
+
+<!-- TARJETAS DEL CARRITO -->
+
+@media (max-width:768px){
+
+    .cart-mini-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .cart-img{
+
+        width:100%;
+
+        height:180px;
+
+    }
+
+    .cart-actions{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+<!-- MIS PEDIDOS -->
+
+@media (max-width:768px){
+
+    .boleta{
+
+        padding:15px;
+
+    }
+
+    .boleta-header{
+
+        flex-direction:column;
+
+        gap:10px;
+
+        align-items:flex-start;
+
+    }
+
+    .producto-item{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .producto-img{
+
+        width:100%;
+
+        height:170px;
+
+    }
+
+}
+
+
+
+<!-- QR DEL MENÚ -->
+
+@media (max-width:768px){
+
+    .qr-sidebar{
+
+        width:120px;
+
+        height:120px;
+
+    }
+
+}
