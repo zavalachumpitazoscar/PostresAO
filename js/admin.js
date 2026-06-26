@@ -138,6 +138,32 @@ const vistaProductos =
 const vistaPedidos =
     document.getElementById("vistaPedidos");
 
+document.getElementById("cardUsuarios").addEventListener("click", () => {
+
+    vistaUsuarios.style.display = "block";
+    vistaProductos.style.display = "none";
+    vistaPedidos.style.display = "none";
+
+});
+
+document.getElementById("cardProductos").addEventListener("click", () => {
+
+    vistaUsuarios.style.display = "none";
+    vistaProductos.style.display = "block";
+    vistaPedidos.style.display = "none";
+
+});
+
+document.getElementById("cardPedidos").addEventListener("click", () => {
+
+    vistaUsuarios.style.display = "none";
+    vistaProductos.style.display = "none";
+    vistaPedidos.style.display = "block";
+
+    cargarPedidos();
+
+});
+
 document
 .getElementById("btnUsuarios")
 .addEventListener("click", () => {
