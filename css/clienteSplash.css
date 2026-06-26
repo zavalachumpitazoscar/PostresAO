@@ -1,3 +1,7 @@
+/*==================================
+    SPLASH LOADER
+===================================*/
+
 .splash{
 
     position:fixed;
@@ -6,18 +10,18 @@
     background:linear-gradient(
         135deg,
         #ffe4ef,
-        #fff6ea
+        #fff7ec
     );
 
     display:flex;
     flex-direction:column;
-
     justify-content:center;
     align-items:center;
 
     z-index:999999;
 
-    transition:.5s;
+    transition:.6s;
+
 }
 
 .splash.oculto{
@@ -27,43 +31,79 @@
 
 }
 
-/* Cupcake */
+/* CONTENEDOR */
 
-.loader-postre img{
+.loader-postre{
 
-    width:140px;
+    position:relative;
 
-    animation:
-        girar 1.3s linear infinite,
-        subirBajar 1s ease-in-out infinite;
+    width:170px;
+    height:170px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
 }
 
-/* Texto */
+/* ARO GIRATORIO */
+
+.loader-ring{
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+
+    border:7px solid #ffd5e5;
+
+    border-top:7px solid #ec4899;
+
+    border-right:7px solid #f59e0b;
+
+    animation:girar 1s linear infinite;
+
+}
+
+/* CUPCAKE */
+
+.loader-cupcake{
+
+    width:90px;
+
+    animation:flotar 1.5s ease-in-out infinite;
+
+}
+
+/* TITULO */
 
 .splash h2{
 
-    margin-top:25px;
-
-    font-size:38px;
+    margin-top:30px;
 
     color:#db2777;
 
+    font-size:38px;
+
 }
+
+/* TEXTO */
 
 .splash p{
 
     margin-top:10px;
 
-    color:#666;
+    color:#555;
 
     font-size:18px;
 
 }
 
-/* Puntitos */
+/* PUNTITOS */
 
-.dots{
+.loading-dots{
 
     margin-top:18px;
 
@@ -73,33 +113,34 @@
 
 }
 
-.dots span{
+.loading-dots span{
 
     width:12px;
-
     height:12px;
 
     border-radius:50%;
 
     background:#db2777;
 
-    animation:parpadeo 1s infinite;
+    animation:dot 1s infinite;
 
 }
 
-.dots span:nth-child(2){
+.loading-dots span:nth-child(2){
 
     animation-delay:.2s;
 
 }
 
-.dots span:nth-child(3){
+.loading-dots span:nth-child(3){
 
     animation-delay:.4s;
 
 }
 
-/* Animaciones */
+/*=========================
+    ANIMACIONES
+==========================*/
 
 @keyframes girar{
 
@@ -117,33 +158,37 @@
 
 }
 
-@keyframes subirBajar{
+@keyframes flotar{
 
     0%,100%{
 
-        translate:0 0;
+        transform:translateY(0);
 
     }
 
     50%{
 
-        translate:0 -10px;
+        transform:translateY(-8px);
 
     }
 
 }
 
-@keyframes parpadeo{
+@keyframes dot{
 
     0%,100%{
 
         opacity:.2;
+
+        transform:scale(.8);
 
     }
 
     50%{
 
         opacity:1;
+
+        transform:scale(1.2);
 
     }
 
