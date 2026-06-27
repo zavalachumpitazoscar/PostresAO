@@ -37,15 +37,6 @@ const contenedorProductos =
         "contenedorProductos"
     );
 
-const vistaGuardada =
-localStorage.getItem("vistaCatalogo") || "grande";
-
-contenedorProductos.classList.remove(
-    "grande",
-    "media",
-    "compacta"
-);
-
 contenedorProductos.classList.add(vistaGuardada);
 
 document
@@ -114,6 +105,35 @@ botonesVista.forEach(btn=>{
     };
 
 });
+
+
+/*INICIALIZAR VISTA CATALOGO*/
+
+function inicializarVistaCatalogo() {
+
+    const vistaGuardada =
+        localStorage.getItem("vistaCatalogo") || "grande";
+
+    contenedorProductos.classList.remove(
+        "grande",
+        "media",
+        "compacta"
+    );
+
+    contenedorProductos.classList.add(vistaGuardada);
+
+    const botonActivo = document.querySelector(
+        `.btnVista[data-vista="${vistaGuardada}"]`
+    );
+
+    if (botonActivo) {
+        botonActivo.classList.add("activo");
+    }
+
+}
+
+/*---------------------------*/
+
 
 async function cargarProductos(){
 
