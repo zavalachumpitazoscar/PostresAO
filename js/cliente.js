@@ -868,23 +868,20 @@ function resaltarCard(card){
 
 function crearBrillitos(btn){
 
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 12; i++){
 
         const spark = document.createElement("span");
-        spark.classList.add("spark");
+        spark.className = "spark";
 
-        const x = (Math.random() - 0.5) * 120;
-        const y = (Math.random() - 0.5) * 120;
+        const x = (Math.random() - 0.5) * 140;
+        const y = (Math.random() - 0.5) * 140;
 
         spark.style.setProperty("--x", `${x}px`);
         spark.style.setProperty("--y", `${y}px`);
 
         btn.appendChild(spark);
 
-        setTimeout(() => {
-            spark.remove();
-        }, 600);
-
+        setTimeout(() => spark.remove(), 600);
     }
 
 }
