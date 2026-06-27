@@ -841,3 +841,21 @@ overlay.onclick = () => {
     sidebar.classList.remove("activo");
     overlay.classList.remove("activo");
 };
+
+
+function marcarAgregado(btn){
+
+    btn.classList.add("agregado");
+
+    btn.textContent = "Agregado ✓";
+
+    setTimeout(() => {
+        btn.classList.remove("agregado");
+        btn.textContent = "Agregar al carrito";
+    }, 900);
+
+}
+btn.addEventListener("click", () => {
+    agregarAlCarrito(producto);
+    marcarAgregado(btn);
+});
