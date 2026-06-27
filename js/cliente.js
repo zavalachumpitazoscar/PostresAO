@@ -15,6 +15,13 @@ import { db, auth } from "./firebase-config.js";
 
 const splash = document.getElementById("splashScreen");
 
+
+let productosGlobal = [];
+
+let carrito = {};
+let stockTemporal = {};
+
+
 onAuthStateChanged(auth, (user) => {
 
     if (!user) {
@@ -43,11 +50,6 @@ contenedorProductos.classList.add(vistaGuardada);
 document
 .querySelector(`[data-vista="${vistaGuardada}"]`)
 .classList.add("activo");
-
-let productosGlobal = [];
-
-let carrito = {};
-let stockTemporal = {};
 
 const vistaCatalogo =
     document.getElementById(
