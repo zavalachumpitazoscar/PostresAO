@@ -32,6 +32,21 @@ onAuthStateChanged(auth, (user) => {
 
 });
 
+const vistaGuardada =
+localStorage.getItem("vistaCatalogo") || "grande";
+
+contenedorProductos.classList.remove(
+    "grande",
+    "media",
+    "compacta"
+);
+
+contenedorProductos.classList.add(vistaGuardada);
+
+document
+.querySelector(`[data-vista="${vistaGuardada}"]`)
+.classList.add("activo");
+
 let productosGlobal = [];
 
 let carrito = {};
