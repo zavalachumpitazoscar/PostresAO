@@ -68,6 +68,38 @@ const contenedorProductos =
         "contenedorProductos"
     );
 
+const botonesVista =
+document.querySelectorAll(".btnVista");
+
+botonesVista.forEach(btn=>{
+
+    btn.onclick=()=>{
+
+        botonesVista.forEach(b=>
+            b.classList.remove("activo")
+        );
+
+        btn.classList.add("activo");
+
+        contenedorProductos.classList.remove(
+            "grande",
+            "media",
+            "compacta"
+        );
+
+        contenedorProductos.classList.add(
+            btn.dataset.vista
+        );
+
+        localStorage.setItem(
+            "vistaCatalogo",
+            btn.dataset.vista
+        );
+
+    };
+
+});
+
 async function cargarProductos(){
 
     contenedorProductos.innerHTML = "";
