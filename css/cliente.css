@@ -229,6 +229,33 @@ body{
     grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
 }
 
+/* Vista grande */
+#contenedorProductos.grande .card img{
+    height:220px;
+}
+
+#contenedorProductos.grande .card h3{
+    font-size:22px;
+}
+
+/* Vista media */
+#contenedorProductos.media .card img{
+    height:170px;
+}
+
+#contenedorProductos.media .card h3{
+    font-size:18px;
+}
+
+/* Vista compacta */
+#contenedorProductos.compacta .card img{
+    height:120px;
+}
+
+#contenedorProductos.compacta .card h3{
+    font-size:15px;
+}
+
 .producto-card{
     background:white;
     border-radius:15px;
