@@ -230,29 +230,29 @@ body{
 }
 
 /* Vista grande */
-#contenedorProductos.grande .card img{
+#contenedorProductos.grande .producto-card{ img{
     height:220px;
 }
 
-#contenedorProductos.grande .card h3{
+#contenedorProductos.grande .producto-card{ h3{
     font-size:22px;
 }
 
 /* Vista media */
-#contenedorProductos.media .card img{
+#contenedorProductos.media .producto-card{ img{
     height:170px;
 }
 
-#contenedorProductos.media .card h3{
+#contenedorProductos.media .producto-card{ h3{
     font-size:18px;
 }
 
 /* Vista compacta */
-#contenedorProductos.compacta .card img{
+#contenedorProductos.compacta .producto-card{ img{
     height:120px;
 }
 
-#contenedorProductos.compacta .card h3{
+#contenedorProductos.compacta .producto-card{ h3{
     font-size:15px;
 }
 
