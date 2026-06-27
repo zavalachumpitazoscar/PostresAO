@@ -855,7 +855,27 @@ function marcarAgregado(btn){
     }, 900);
 
 }
+
+function resaltarCard(card){
+
+    card.classList.add("agregado");
+
+    setTimeout(() => {
+        card.classList.remove("agregado");
+    }, 600);
+
+}
+
+
 btn.addEventListener("click", () => {
+
     agregarAlCarrito(producto);
+
     marcarAgregado(btn);
+
+    const card = btn.closest(".producto-card");
+    resaltarCard(card);
+
 });
+
+
