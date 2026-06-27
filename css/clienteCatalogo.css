@@ -230,6 +230,8 @@ body{
 
 .btn-agregar{
 
+    position:relative;
+    overflow:hidden;
     margin:15px;
     width:calc(100% - 30px);
 
@@ -395,6 +397,35 @@ body{
 /* SCROLL SUAVE CONTENIDO */
 .contenido{
     scroll-behavior:smooth;
+}
+
+/* =========================
+   FIN
+========================= */
+
+/* =========================
+   BRILLITOS EN EL BOTÓN
+========================= */
+
+.spark{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:gold;
+    border-radius:50%;
+    pointer-events:none;
+    animation:spark 600ms ease-out forwards;
+}
+
+@keyframes spark{
+    0%{
+        transform:scale(1) translate(0,0);
+        opacity:1;
+    }
+    100%{
+        transform:scale(0) translate(var(--x), var(--y));
+        opacity:0;
+    }
 }
 
 /* =========================
