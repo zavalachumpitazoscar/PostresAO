@@ -866,6 +866,29 @@ function resaltarCard(card){
 
 }
 
+function crearBrillitos(btn){
+
+    for(let i = 0; i < 10; i++){
+
+        const spark = document.createElement("span");
+        spark.classList.add("spark");
+
+        const x = (Math.random() - 0.5) * 120;
+        const y = (Math.random() - 0.5) * 120;
+
+        spark.style.setProperty("--x", `${x}px`);
+        spark.style.setProperty("--y", `${y}px`);
+
+        btn.appendChild(spark);
+
+        setTimeout(() => {
+            spark.remove();
+        }, 600);
+
+    }
+
+}
+
 
 document.querySelectorAll(".btn-agregar").forEach(btn => {
 
@@ -874,9 +897,13 @@ document.querySelectorAll(".btn-agregar").forEach(btn => {
         agregarAlCarrito(producto);
 
         marcarAgregado(btn);
+        
 
         const card = btn.closest(".producto-card");
         resaltarCard(card);
+
+        crearBrillitos(btn); // ✨ efecto mágico
+
 
     });
 
