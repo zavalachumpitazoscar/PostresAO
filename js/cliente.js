@@ -867,15 +867,18 @@ function resaltarCard(card){
 }
 
 
-btn.addEventListener("click", () => {
+document.querySelectorAll(".btn-agregar").forEach(btn => {
 
-    agregarAlCarrito(producto);
+    btn.addEventListener("click", () => {
 
-    marcarAgregado(btn);
+        agregarAlCarrito(producto);
 
-    const card = btn.closest(".producto-card");
-    resaltarCard(card);
+        marcarAgregado(btn);
+
+        const card = btn.closest(".producto-card");
+        resaltarCard(card);
+
+    });
 
 });
-
 
