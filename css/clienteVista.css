@@ -1,0 +1,33 @@
+.barra-vista{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:10px;
+    margin:15px 0 25px;
+}
+
+.barra-vista span{
+    font-weight:600;
+    color:#666;
+}
+
+.btnVista{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#f4f4f4;
+    transition:.25s;
+    font-size:18px;
+}
+
+.btnVista:hover{
+    background:#ffe3ea;
+    transform:scale(1.08);
+}
+
+.btnVista.activo{
+    background:#ff5c8a;
+    color:white;
+}
