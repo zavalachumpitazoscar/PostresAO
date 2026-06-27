@@ -22,6 +22,7 @@ onAuthStateChanged(auth, (user) => {
         return;
     }
 
+    inicializarVistaCatalogo();
     cargarProductos();
 
     setTimeout(() => {
