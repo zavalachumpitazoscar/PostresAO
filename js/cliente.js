@@ -15,6 +15,8 @@ import { db, auth } from "./firebase-config.js";
 
 const splash = document.getElementById("splashScreen");
 
+const contenedorProductos = document.getElementById("contenedorProductos");
+
 
 let productosGlobal = [];
 
@@ -40,16 +42,7 @@ onAuthStateChanged(auth, (user) => {
 
 });
 
-const contenedorProductos =
-    document.getElementById(
-        "contenedorProductos"
-    );
 
-contenedorProductos.classList.add(vistaGuardada);
-
-document
-.querySelector(`[data-vista="${vistaGuardada}"]`)
-.classList.add("activo");
 
 const vistaCatalogo =
     document.getElementById(
