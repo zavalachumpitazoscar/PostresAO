@@ -32,6 +32,11 @@ onAuthStateChanged(auth, (user) => {
 
 });
 
+const contenedorProductos =
+    document.getElementById(
+        "contenedorProductos"
+    );
+
 const vistaGuardada =
 localStorage.getItem("vistaCatalogo") || "grande";
 
@@ -76,11 +81,6 @@ cerrarCarrito.addEventListener("click", () => {
 const vistaPedidos =
     document.getElementById(
         "vistaPedidos"
-    );
-
-const contenedorProductos =
-    document.getElementById(
-        "contenedorProductos"
     );
 
 const botonesVista =
