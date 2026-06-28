@@ -139,8 +139,8 @@ function obtenerClaseEstado(estado) {
     switch ((estado || "").toUpperCase()) {
         case "PENDIENTE":
             return "estado-pendiente";
-        case "COMPLETADO":
-            return "estado-completado";
+        case "APROBADO":
+            return "estado-aprobado";
         case "CANCELADO":
             return "estado-cancelado";
         default:
