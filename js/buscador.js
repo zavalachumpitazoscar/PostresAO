@@ -2,12 +2,11 @@
 // FILTRO
 // ===============================
 
-function aplicarFiltros() {
+function aplicarFiltrosProductos() {
 
-    const texto = inputBuscar.value.toLowerCase().trim();
-    const fechaFiltro = document.getElementById("filtroFecha").value;
-    const estadoFiltro = document.getElementById("filtroEstado").value;
-    const orden = document.getElementById("ordenPedidos").value;
+    const textoProductos = inputBuscarProductos.value.toLowerCase().trim();
+    const fechaFiltroProductos = document.getElementById("filtroFechaProductos").value;
+    const ordenProductos = document.getElementById("ordenProductos").value;
 
     let filtrados = [...pedidosGlobal];
 
@@ -18,21 +17,12 @@ if (texto) {
 
     filtrados = filtrados.filter(p => {
 
-        const id = String(p.id || "").toLowerCase();
-
-        const estado = String(p.estado || "").toLowerCase();
-
-        const metodo = String(p.metodoPago || "").toLowerCase();
-
         const productos = (p.productos || [])
             .map(prod => prod.nombre.toLowerCase())
             .join(" ");
 
         return (
-            id.includes(texto) ||
-            estado.includes(texto) ||
-            metodo.includes(texto) ||
-            productos.includes(texto)
+            productos.includes(textoProductos)
         );
 
     });
@@ -40,18 +30,9 @@ if (texto) {
 }
 
     // ======================
-    // ESTADO
-    // ======================
-    if (estadoFiltro) {
-        filtrados = filtrados.filter(p =>
-            (p.estado || "").toUpperCase() === estadoFiltro
-        );
-    }
-
-    // ======================
     // FECHA
     // ======================
-    if (fechaFiltro) {
+    if (fechaFiltroProductos) {
         filtrados = filtrados.filter(p => {
             const f = p.fecha?.toDate
                 ? p.fecha.toDate()
@@ -64,7 +45,7 @@ if (texto) {
     // ======================
     // ORDEN
     // ======================
-    if (orden === "recientes") {
+    if (ordenProductos === "recientes") {
 
     filtrados.sort((a, b) => {
 
@@ -81,7 +62,7 @@ if (texto) {
 
 }
 
-if (orden === "antiguos") {
+if (ordenProductos === "antiguos") {
 
     filtrados.sort((a, b) => {
 
@@ -98,11 +79,11 @@ if (orden === "antiguos") {
 
 }
 
-    if (orden === "mayor") {
+    if (ordenProductos === "mayor") {
         filtrados.sort((a, b) => (b.total || 0) - (a.total || 0));
     }
 
-    if (orden === "menor") {
+    if (ordenProductos === "menor") {
         filtrados.sort((a, b) => (a.total || 0) - (b.total || 0));
     }
 
@@ -113,13 +94,11 @@ if (orden === "antiguos") {
 // ===============================
 // EVENTOS DE FILTROS
 // ===============================
-inputBuscar?.addEventListener("input", aplicarFiltros);
+inputBuscarProductos?.addEventListener("input", aplicarFiltrosProductos);
 
-document.getElementById("filtroFecha")?.addEventListener("change", aplicarFiltros);
+document.getElementById("filtroFechaProductos")?.addEventListener("change", aplicarFiltrosProductos);
 
-document.getElementById("filtroEstado")?.addEventListener("change", aplicarFiltros);
-
-document.getElementById("ordenPedidos")?.addEventListener("change", aplicarFiltros);
+document.getElementById("ordenPedidos")?.addEventListener("change", aplicarFiltrosProductos);
 // ===============================
 // FIN
 // ===============================
