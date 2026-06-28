@@ -2,7 +2,7 @@
 // FILTRO
 // ===============================
 const inputBuscarProductos =
-document.getElementById("buscarProducto");
+document.getElementById("buscarProductos");
 
 function aplicarFiltrosProductos() {
 
