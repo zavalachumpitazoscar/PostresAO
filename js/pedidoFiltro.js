@@ -1,10 +1,7 @@
-const boletaInfo = document.getElementById("boletaInfo");
-const btnCompartir = document.getElementById("btnCompartirPedido");
-
 let cerrarBoleta;
 let modalBoleta = document.getElementById("modalBoleta");
-let boletaInfo;
-let btnCompartir;
+let boletaInfo = document.getElementById("boletaInfo");
+let btnCompartir = document.getElementById("btnCompartir");
 
 let pedidoActual = null;
 
