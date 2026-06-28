@@ -145,11 +145,120 @@
 
 <!------------------------------------------------->
     
+<!------------------PEDIDOS------------------------>
 
-<section id="vistaPedidos" style="display:none;">
-<h2>Mis Pedidos</h2>
-<div id="contenedorMisPedidos"></div>
+
+<section id="vistaPedidos" class="vista-pedidos" style="display:none;">
+
+    <div class="titulo-pedidos">
+
+        <span>📦 Historial</span>
+
+        <h2>Mis Pedidos</h2>
+
+        <p>
+            Consulta todos tus pedidos realizados, busca por producto,
+            filtra por fecha y revisa cada comprobante.
+        </p>
+
+    </div>
+
+    <div class="barra-pedidos">
+
+        <div class="busqueda-pedido">
+
+            <input
+                type="text"
+                id="buscarPedido"
+                placeholder="🔍 Buscar por producto, método o estado...">
+
+        </div>
+
+        <div class="filtros-pedido">
+
+            <input
+                type="date"
+                id="filtroFecha">
+
+            <select id="filtroEstado">
+
+                <option value="">
+                    Todos los estados
+                </option>
+
+                <option value="PENDIENTE">
+                    🟡 Pendiente
+                </option>
+
+                <option value="COMPLETADO">
+                    🟢 Completado
+                </option>
+
+                <option value="CANCELADO">
+                    🔴 Cancelado
+                </option>
+
+            </select>
+
+            <select id="ordenPedidos">
+
+                <option value="recientes">
+                    Más recientes
+                </option>
+
+                <option value="antiguos">
+                    Más antiguos
+                </option>
+
+                <option value="mayor">
+                    Mayor total
+                </option>
+
+                <option value="menor">
+                    Menor total
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="resumen-pedidos">
+
+        <div class="card-resumen">
+
+            <span>Total de pedidos</span>
+
+            <h3 id="totalPedidos">
+                0
+            </h3>
+
+        </div>
+
+        <div class="card-resumen">
+
+            <span>Total gastado</span>
+
+            <h3 id="montoGastado">
+
+                S/ 0.00
+
+            </h3>
+
+        </div>
+
+    </div>
+
+    <div
+        id="contenedorMisPedidos"
+        class="grid-pedidos">
+
+    </div>
+
 </section>
+
+<!------------------------------------------------->
 
 </main>
 
