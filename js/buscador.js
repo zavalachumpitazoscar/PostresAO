@@ -8,7 +8,7 @@ function aplicarFiltrosProductos() {
     const fechaFiltroProductos = document.getElementById("filtroFechaProductos").value;
     const ordenProductos = document.getElementById("ordenProductos").value;
 
-    let filtrados = [...pedidosGlobal];
+    let filtrados = [...productosGlobal];
 
     // ======================
     // BUSCADOR
@@ -87,7 +87,7 @@ if (ordenProductos === "antiguos") {
         filtrados.sort((a, b) => (a.total || 0) - (b.total || 0));
     }
 
-    renderizarPedidos(filtrados);
+    renderizarProductos(filtrados);
 }
 
 
@@ -98,7 +98,7 @@ inputBuscarProductos?.addEventListener("input", aplicarFiltrosProductos);
 
 document.getElementById("filtroFechaProductos")?.addEventListener("change", aplicarFiltrosProductos);
 
-document.getElementById("ordenPedidos")?.addEventListener("change", aplicarFiltrosProductos);
+document.getElementById("ordenProductos")?.addEventListener("change", aplicarFiltrosProductos);
 // ===============================
 // FIN
 // ===============================
