@@ -38,12 +38,33 @@ body {
     min-height: 100vh;
 }
 
-.sidebar {
-    width: 260px;
-    background: var(--color-principal);
-    color: white;
-    padding: 20px;
-    transition: all 0.3s ease;
+.sidebar{
+
+    position:sticky;
+    top:0;
+
+    width:260px;
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #db2777,
+        #f6a761
+    );
+
+    color:white;
+
+    padding:25px 18px;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    box-shadow:
+        8px 0 25px rgba(0,0,0,.08);
+
+    flex-shrink:0;
 }
 
 .sidebar h2 {
