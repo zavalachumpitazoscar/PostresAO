@@ -337,24 +337,45 @@
 </div>
 
 <div id="modalBoleta" class="modal-boleta">
+
     <div class="boleta-contenido">
 
         <div class="boleta-header">
-            <h2>BOLETA DE PEDIDO</h2>
+
+            <div class="boleta-logo">
+                🛍️
+            </div>
+
+            <h2>AIERTO</h2>
+
+            <p>Comprobante de pedido</p>
+
             <span id="cerrarBoleta" class="cerrar">✕</span>
+
         </div>
 
         <div id="boletaInfo" class="boleta-info">
-            <!-- contenido dinámico -->
+            <!-- Se llena desde JavaScript -->
         </div>
 
         <div class="boleta-footer">
-            <button id="btnCompartirPedido" class="btn-compartir">
-                Compartir
+
+            <div class="mensaje-final">
+                Gracias por tu compra ❤️
+            </div>
+
+            <button
+                id="btnCompartirPedido"
+                class="btn-compartir">
+
+                Compartir comprobante
+
             </button>
+
         </div>
 
     </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
