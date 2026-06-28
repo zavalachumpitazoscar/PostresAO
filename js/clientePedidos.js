@@ -31,6 +31,8 @@ async function cargarMisPedidos() {
     }
 }
 
+window.cargarMisPedidos = cargarMisPedidos;
+
 // ===============================
 // RENDER PRINCIPAL
 // ===============================
