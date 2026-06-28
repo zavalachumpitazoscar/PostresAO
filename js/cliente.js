@@ -25,7 +25,6 @@ let productosGlobal = [];
 
 let carrito = {};
 let stockTemporal = {};
-export let productosGlobal = [];
 
 onAuthStateChanged(auth, (user) => {
 
