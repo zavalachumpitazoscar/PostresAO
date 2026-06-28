@@ -122,10 +122,6 @@ function crearCardPedido(pedido) {
             <button class="btn btn-ver" onclick="verPedido('${pedido.id}')">
                 Ver
             </button>
-
-            <button class="btn btn-cancelar" onclick="cancelarPedido('${pedido.id}')">
-                Cancelar
-            </button>
         </div>
     `;
 
