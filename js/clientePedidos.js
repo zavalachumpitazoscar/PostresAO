@@ -44,7 +44,7 @@ async function cargarMisPedidos() {
             });
         });
 
-        renderizarPedidos(pedidosGlobal);
+        aplicarFiltros();
 
     } catch (error) {
         console.error("Error cargando pedidos:", error);
@@ -172,25 +172,6 @@ function formatearFecha(fecha) {
 // ===============================
 
 // ===============================
-// BÚSQUEDA DE PEDIDOS
-// ===============================
-inputBuscar?.addEventListener("input", (e) => {
-    const texto = e.target.value.toLowerCase().trim();
-
-    const filtrados = pedidosGlobal.filter(p => {
-        const id = String(p.id || "").toLowerCase();
-        const estado = String(p.estado || "").toLowerCase();
-
-        return (
-            id.includes(texto) ||
-            estado.includes(texto)
-        );
-    });
-
-    renderizarPedidos(filtrados);
-});
-
-// ===============================
 // VER PEDIDO (DETALLE)
 // ===============================
 function verPedido(id) {
@@ -231,7 +212,7 @@ async function cancelarPedido(id) {
             return p;
         });
 
-        renderizarPedidos(pedidosGlobal);
+        aplicarFiltros();
 
         alert("Pedido cancelado correctamente");
 
@@ -266,3 +247,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.verPedido = verPedido;
 window.cancelarPedido = cancelarPedido;
+
+
+// ===============================
+// FILTRO
+// ===============================
+
+function aplicarFiltros() {
+
+    const texto = inputBuscar.value.toLowerCase().trim();
+    const fechaFiltro = document.getElementById("filtroFecha").value;
+    const estadoFiltro = document.getElementById("filtroEstado").value;
+    const orden = document.getElementById("ordenPedidos").value;
+
+    let filtrados = [...pedidosGlobal];
+
+    // ======================
+    // BUSCADOR
+    // ======================
+    if (texto) {
+        filtrados = filtrados.filter(p =>
+            String(p.id || "").toLowerCase().includes(texto) ||
+            String(p.estado || "").toLowerCase().includes(texto)
+        );
+    }
+
+    // ======================
+    // ESTADO
+    // ======================
+    if (estadoFiltro) {
+        filtrados = filtrados.filter(p =>
+            (p.estado || "").toUpperCase() === estadoFiltro
+        );
+    }
+
+    // ======================
+    // FECHA
+    // ======================
+    if (fechaFiltro) {
+        filtrados = filtrados.filter(p => {
+            const f = p.fecha?.toDate
+                ? p.fecha.toDate()
+                : new Date(p.fecha);
+
+            return f.toISOString().split("T")[0] === fechaFiltro;
+        });
+    }
+
+    // ======================
+    // ORDEN
+    // ======================
+    if (orden === "recientes") {
+        filtrados.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+    }
+
+    if (orden === "antiguos") {
+        filtrados.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+    }
+
+    if (orden === "mayor") {
+        filtrados.sort((a, b) => (b.total || 0) - (a.total || 0));
+    }
+
+    if (orden === "menor") {
+        filtrados.sort((a, b) => (a.total || 0) - (b.total || 0));
+    }
+
+    renderizarPedidos(filtrados);
+}
+// ===============================
+// FIN
+// ===============================
