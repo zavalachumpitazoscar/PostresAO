@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-        modalBoleta?.classList.remove("activo");
+        const modal = document.getElementById("modalBoleta");
+        modal?.classList.remove("activo");
     }
 });
