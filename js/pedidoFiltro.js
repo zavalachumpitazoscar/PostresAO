@@ -8,6 +8,29 @@ let btnCompartir = null;
 let pedidoActual = null;
 
 // =========================================
+// OBTENER FECHA SEGURO
+// =========================================
+
+function obtenerFechaSegura(fecha) {
+
+    if (!fecha) return new Date();
+
+    // Firestore Timestamp
+    if (fecha.toDate) {
+        return fecha.toDate();
+    }
+
+    // string o number fallback
+    const d = new Date(fecha);
+
+    if (isNaN(d.getTime())) {
+        return new Date();
+    }
+
+    return d;
+}
+
+// =========================================
 // INICIALIZAR DOM
 // =========================================
 document.addEventListener("DOMContentLoaded", () => {
@@ -54,9 +77,7 @@ export function verPedido(pedido){
 
     pedidoActual=pedido;
 
-    const fecha=new Date(
-        pedido.fecha || Date.now()
-    );
+    const fecha = obtenerFechaSegura(pedido.fecha);
 
     const fechaTexto=fecha.toLocaleDateString(
         "es-PE",
