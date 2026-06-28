@@ -430,95 +430,315 @@ body {
 
 /* =============BOLETA FLOTANTE EN MIS PEDIDOS================= */
 
+/*==================================================
+            MODAL PREMIUM AIERTO
+==================================================*/
+
 .modal-boleta{
+
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.6);
 
     display:none;
     justify-content:center;
     align-items:center;
 
+    padding:20px;
+
+    background:rgba(15,23,42,.60);
+    backdrop-filter:blur(10px);
+
     z-index:999999;
+
 }
 
 .modal-boleta.activo{
-    display:flex !important;
+
+    display:flex;
+
 }
+
+
+/*==================================================
+                TARJETA
+==================================================*/
 
 .boleta-contenido{
 
-    width:92%;
-    max-width:420px;
+    width:100%;
+    max-width:430px;
 
     background:#ffffff;
 
-    border-radius:28px;
+    border-radius:34px;
 
     overflow:hidden;
 
+    position:relative;
+
     box-shadow:
-        0 25px 60px rgba(0,0,0,.30);
+        0 35px 80px rgba(0,0,0,.35);
 
-    animation:pop .25s ease;
+    animation:abrirBoleta .35s ease;
+
 }
 
-@keyframes pop{
-    from{transform:scale(.9); opacity:0;}
-    to{transform:scale(1); opacity:1;}
+
+/*==================================================
+            ANIMACIÓN
+==================================================*/
+
+@keyframes abrirBoleta{
+
+    from{
+
+        transform:
+            translateY(35px)
+            scale(.94);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity:1;
+
+    }
+
 }
+
+
+/*==================================================
+            HEADER
+==================================================*/
 
 .boleta-header{
 
-    background:linear-gradient(
-        135deg,
-        #5b21b6,
-        #7c3aed,
-        #9333ea
-    );
+    position:relative;
 
-    color:white;
-
-    padding:28px 22px;
+    overflow:hidden;
 
     text-align:center;
 
-    position:relative;
+    padding:
+
+        34px
+        25px
+        70px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b21b6,
+            #7c3aed,
+            #9333ea
+        );
+
 }
 
-.boleta-header h2{
 
-    font-size:24px;
+/*==================================================
+            FONDO DECORATIVO
+==================================================*/
 
-    font-weight:900;
+.header-fondo{
 
-    margin-bottom:6px;
+    position:absolute;
+    inset:0;
 
-    letter-spacing:.5px;
+    pointer-events:none;
+
 }
 
-.boleta-header p{
+.header-fondo::before{
 
-    opacity:.9;
+    content:"";
 
-    font-size:14px;
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.07);
+
+    top:-120px;
+    left:-90px;
+
 }
+
+.header-fondo::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.05);
+
+    right:-90px;
+    bottom:-130px;
+
+}
+
+
+/*==================================================
+            BOTÓN CERRAR
+==================================================*/
 
 .cerrar{
 
     position:absolute;
 
+    top:18px;
     right:18px;
 
-    top:18px;
+    width:42px;
+    height:42px;
 
-    font-size:26px;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     cursor:pointer;
+
+    font-size:22px;
+
+    background:
+        rgba(255,255,255,.14);
+
+    transition:.25s;
+
+    z-index:20;
+
 }
+
+.cerrar:hover{
+
+    transform:rotate(90deg);
+
+    background:
+        rgba(255,255,255,.25);
+
+}
+
+
+/*==================================================
+            LOGO
+==================================================*/
+
+.boleta-logo{
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+.logo-circulo{
+
+    width:95px;
+    height:95px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:46px;
+
+    background:white;
+
+    color:#6d28d9;
+
+    box-shadow:
+
+        0 20px 40px rgba(0,0,0,.18);
+
+}
+
+
+/*==================================================
+            TITULO
+==================================================*/
+
+.boleta-header h2{
+
+    margin-top:18px;
+
+    font-size:42px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+}
+
+.boleta-header p{
+
+    margin-top:6px;
+
+    font-size:17px;
+
+    opacity:.92;
+
+    font-weight:500;
+
+}
+
+
+/*==================================================
+            CUERPO
+==================================================*/
+
+.boleta-body{
+
+    position:relative;
+
+    margin-top:-34px;
+
+    background:white;
+
+    border-radius:
+
+        34px
+        34px
+        0
+        0;
+
+    padding:
+
+        26px
+        22px
+        20px;
+
+}
+
 .boleta-info{
 
-    padding:22px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
 }
 
 .boleta-item{
