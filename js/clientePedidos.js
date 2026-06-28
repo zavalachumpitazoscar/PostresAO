@@ -265,12 +265,30 @@ function aplicarFiltros() {
     // ======================
     // BUSCADOR
     // ======================
-    if (texto) {
-        filtrados = filtrados.filter(p =>
-            String(p.id || "").toLowerCase().includes(texto) ||
-            String(p.estado || "").toLowerCase().includes(texto)
+if (texto) {
+
+    filtrados = filtrados.filter(p => {
+
+        const id = String(p.id || "").toLowerCase();
+
+        const estado = String(p.estado || "").toLowerCase();
+
+        const metodo = String(p.metodoPago || "").toLowerCase();
+
+        const productos = (p.productos || [])
+            .map(prod => prod.nombre.toLowerCase())
+            .join(" ");
+
+        return (
+            id.includes(texto) ||
+            estado.includes(texto) ||
+            metodo.includes(texto) ||
+            productos.includes(texto)
         );
-    }
+
+    });
+
+}
 
     // ======================
     // ESTADO
@@ -298,12 +316,38 @@ function aplicarFiltros() {
     // ORDEN
     // ======================
     if (orden === "recientes") {
-        filtrados.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-    }
 
-    if (orden === "antiguos") {
-        filtrados.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-    }
+    filtrados.sort((a, b) => {
+
+        const fechaA = a.fecha?.toDate
+            ? a.fecha.toDate()
+            : new Date(a.fecha);
+
+        const fechaB = b.fecha?.toDate
+            ? b.fecha.toDate()
+            : new Date(b.fecha);
+
+        return fechaB - fechaA;
+    });
+
+}
+
+if (orden === "antiguos") {
+
+    filtrados.sort((a, b) => {
+
+        const fechaA = a.fecha?.toDate
+            ? a.fecha.toDate()
+            : new Date(a.fecha);
+
+        const fechaB = b.fecha?.toDate
+            ? b.fecha.toDate()
+            : new Date(b.fecha);
+
+        return fechaA - fechaB;
+    });
+
+}
 
     if (orden === "mayor") {
         filtrados.sort((a, b) => (b.total || 0) - (a.total || 0));
@@ -315,6 +359,18 @@ function aplicarFiltros() {
 
     renderizarPedidos(filtrados);
 }
+
+
+// ===============================
+// EVENTOS DE FILTROS
+// ===============================
+inputBuscar?.addEventListener("input", aplicarFiltros);
+
+document.getElementById("filtroFecha")?.addEventListener("change", aplicarFiltros);
+
+document.getElementById("filtroEstado")?.addEventListener("change", aplicarFiltros);
+
+document.getElementById("ordenPedidos")?.addEventListener("change", aplicarFiltros);
 // ===============================
 // FIN
 // ===============================
