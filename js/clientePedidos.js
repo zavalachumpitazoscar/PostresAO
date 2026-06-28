@@ -10,6 +10,7 @@ import { db, auth } from "./firebase-config.js";
 const contenedorPedidos = document.getElementById("contenedorPedidos");
 const inputBuscar = document.getElementById("buscarPedido");
 
+
 // Estado global
 let pedidosGlobal = [];
 
