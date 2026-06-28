@@ -29,6 +29,32 @@ body {
     color: var(--color-texto);
 }
 
+/*---------EMCAEZADO DE PEDIDOS---*/
+
+.titulo-pedidos {
+    margin-bottom: 20px;
+}
+
+.titulo-pedidos span {
+    font-size: 13px;
+    color: var(--color-alerta);
+    font-weight: 700;
+}
+
+.titulo-pedidos h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 5px 0;
+}
+
+.titulo-pedidos p {
+    font-size: 14px;
+    color: #6b7280;
+    max-width: 600px;
+}
+
+/*------------------------------*/
+
 /* ===============================
    LAYOUT PRINCIPAL
 ================================= */
