@@ -1,9 +1,8 @@
-const modalBoleta = document.getElementById("modalBoleta");
 const boletaInfo = document.getElementById("boletaInfo");
 const btnCompartir = document.getElementById("btnCompartirPedido");
 
 let cerrarBoleta;
-let modalBoleta;
+let modalBoleta = document.getElementById("modalBoleta");
 let boletaInfo;
 let btnCompartir;
 
