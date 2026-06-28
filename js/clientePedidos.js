@@ -131,9 +131,10 @@ function obtenerClaseEstado(estado) {
 // FORMATEAR FECHA
 // ===============================
 function formatearFecha(fecha) {
+
     if (!fecha) return "Sin fecha";
 
-    const f = new Date(fecha);
+    const f = fecha.toDate ? fecha.toDate() : new Date(fecha);
 
     return f.toLocaleString("es-PE", {
         day: "2-digit",
