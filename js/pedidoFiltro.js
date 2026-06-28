@@ -19,30 +19,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cerrarBoleta?.addEventListener("click", cerrarModal);
 
-    btnCompartir?.addEventListener("click", async () => {
+btnCompartir?.addEventListener("click", async () => {
 
-        if (!pedidoActual) return;
+    if (!pedidoActual) return;
 
-        let texto = `🧾 PEDIDO\n\n`;
+    const elemento = document.querySelector(".boleta-contenido");
 
-        pedidoActual.productos.forEach(p => {
-            texto += `• ${p.nombre} x${p.cantidad} = S/ ${(p.precio * p.cantidad).toFixed(2)}\n`;
+    if (!elemento) return;
+
+    try {
+
+        const canvas = await html2canvas(elemento, {
+            scale: 2,
+            backgroundColor: "#ffffff"
         });
 
-        texto += `\nTOTAL: S/ ${(pedidoActual.total || 0).toFixed(2)}`;
+        const blob = await new Promise(resolve => {
+            canvas.toBlob(resolve, "image/png");
+        });
 
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: "Mi pedido",
-                    text: texto
-                });
-            } catch (e) {}
+        const file = new File([blob], "boleta.png", {
+            type: "image/png"
+        });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+
+            await navigator.share({
+                title: "Mi pedido",
+                files: [file]
+            });
+
         } else {
-            await navigator.clipboard.writeText(texto);
-            alert("Pedido copiado al portapapeles");
+            alert("Tu dispositivo no soporta compartir imágenes");
         }
-    });
+
+    } catch (e) {
+        console.error(e);
+        alert("Error al generar imagen");
+    }
+});
 });
 
 // ===============================
