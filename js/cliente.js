@@ -14,6 +14,7 @@ import {
 
 import { db, auth } from "./firebase-config.js";
 import { iniciarBuscador } from "./buscador.js";
+import { verPedido } from "./pedidoFiltro.js";
 
 import { mostrarToast } from "./clienteToast.js";
 
