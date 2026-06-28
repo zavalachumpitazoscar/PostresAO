@@ -237,7 +237,7 @@ boton.addEventListener("click", () => {
             nombre: producto.nombre,
             precio: producto.precio,
             fecha: producto.fecha || "",
-            imagen: producto.imagen || '',
+            imagen: producto.imagen || "",
             cantidad: 0
         };
     }
@@ -245,8 +245,14 @@ boton.addEventListener("click", () => {
     carrito[registro.id].cantidad++;
     stockTemporal[registro.id]--;
 
+    // ✨ EFECTOS
+    marcarAgregado(boton);
+    resaltarCard(card);
+    crearBrillitos(boton);
+
     actualizarCarrito();
     actualizarEstadoBoton(registro.id);
+
 });
 
         card.appendChild(boton);
@@ -886,23 +892,4 @@ function crearBrillitos(btn){
 
 }
 
-
-document.querySelectorAll(".btn-agregar").forEach(btn => {
-
-    btn.addEventListener("click", () => {
-
-        agregarAlCarrito(producto);
-
-        marcarAgregado(btn);
-        
-
-        const card = btn.closest(".producto-card");
-        resaltarCard(card);
-
-        crearBrillitos(btn); // ✨ efecto mágico
-
-
-    });
-
-});
 
