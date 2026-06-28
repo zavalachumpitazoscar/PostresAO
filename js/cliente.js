@@ -13,7 +13,6 @@ import {
 
 
 import { db, auth } from "./firebase-config.js";
-import { aplicarFiltrosProductos } from "./buscador.js";
 
 
 const splash = document.getElementById("splashScreen");
