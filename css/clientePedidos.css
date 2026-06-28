@@ -426,3 +426,101 @@ body {
     gap: 16px;
     margin-top: 20px;
 }
+
+
+// ===============================
+// BOLETA FLOTANTE EN MIS PEDIDOS
+// ===============================
+
+.modal-boleta{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.modal-boleta.activo{
+    display:flex;
+}
+
+.boleta-contenido{
+    width:92%;
+    max-width:420px;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    animation:pop .25s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(.9); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+}
+
+.boleta-header{
+    background:linear-gradient(135deg,#111827,#374151);
+    color:white;
+    padding:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.boleta-header h2{
+    font-size:15px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.cerrar{
+    cursor:pointer;
+    font-size:18px;
+}
+
+.boleta-info{
+    padding:16px;
+    font-size:14px;
+    color:#111827;
+}
+
+.boleta-item{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+    border-bottom:1px dashed #e5e7eb;
+    padding-bottom:6px;
+}
+
+.boleta-total{
+    font-weight:900;
+    font-size:16px;
+    margin-top:10px;
+    text-align:right;
+}
+
+.boleta-footer{
+    padding:12px;
+    border-top:1px solid #e5e7eb;
+}
+
+.btn-compartir{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#16a34a;
+    color:white;
+    font-weight:800;
+    cursor:pointer;
+}
+
+// ===============================
+// FIN
+// ===============================
