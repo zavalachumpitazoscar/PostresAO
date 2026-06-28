@@ -336,37 +336,73 @@
 
 </div>
 
+
+
+
+<!-- ================= BOLETA PREMIUM ================= -->
+
 <div id="modalBoleta" class="modal-boleta">
 
     <div class="boleta-contenido">
 
+        <!-- ================= HEADER ================= -->
+
         <div class="boleta-header">
 
+            <div class="header-fondo"></div>
+
+            <span
+                id="cerrarBoleta"
+                class="cerrar">
+                ✕
+            </span>
+
             <div class="boleta-logo">
-                🛍️
+
+                <div class="logo-circulo">
+                    🛍️
+                </div>
+
             </div>
 
             <h2>AIERTO</h2>
 
             <p>Comprobante de pedido</p>
 
-            <span id="cerrarBoleta" class="cerrar">✕</span>
+        </div>
+
+        <!-- ================= CUERPO ================= -->
+
+        <div class="boleta-body">
+
+            <!-- Este contenido se llena desde JavaScript -->
+            <div id="boletaInfo" class="boleta-info"></div>
 
         </div>
 
-        <div id="boletaInfo" class="boleta-info">
-            <!-- Se llena desde JavaScript -->
-        </div>
+        <!-- ================= FOOTER ================= -->
 
         <div class="boleta-footer">
 
             <div class="mensaje-final">
-                Gracias por tu compra ❤️
+
+                <div class="escudo">
+                    🛡️
+                </div>
+
+                <span>
+                    AIERTO garantiza tu compra
+                </span>
+
             </div>
 
             <button
                 id="btnCompartirPedido"
                 class="btn-compartir">
+
+                <span class="icono-compartir">
+                    📤
+                </span>
 
                 Compartir comprobante
 
