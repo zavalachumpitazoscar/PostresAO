@@ -89,7 +89,7 @@ if (ordenProductos === "antiguos") {
         filtrados.sort((a, b) => (a.total || 0) - (b.total || 0));
     }
 
-    renderizarProductos(filtrados);
+    cargarProductos();
 }
 
 
