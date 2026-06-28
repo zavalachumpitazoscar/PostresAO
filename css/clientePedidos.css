@@ -427,21 +427,4 @@ body {
     margin-top: 20px;
 }
 
-/* MODO CAPTURA PARA EXPORTACIÓN */
-.modo-captura * {
-  filter: none !important;
-  backdrop-filter: none !important;
-  opacity: 1 !important;
-  text-shadow: none !important;
-}
 
-.modo-captura {
-  background: #ffffff !important;
-  color: #111 !important;
-}
-
-.boleta-contenido {
-  background: #ffffff !important;
-  color: #111 !important;
-  width: 100%;
-}
