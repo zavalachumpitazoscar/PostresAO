@@ -231,7 +231,7 @@ body{
 .btn-agregar{
 
     position:relative;
-    overflow:hidden;
+    overflow:visible;
     margin:15px;
     width:calc(100% - 30px);
 
@@ -397,20 +397,56 @@ body{
     left:50%;
     top:50%;
 
-    width:8px;
-    height:8px;
-
-    transform:translate(-50%, -50%);
-
-    background:radial-gradient(circle,#fff,#ffd700,transparent);
-
-    border-radius:50%;
+    width:10px;
+    height:10px;
 
     pointer-events:none;
 
-    z-index:20;
+    z-index:100;
 
-    animation:spark .6s ease-out forwards;
+    transform:translate(-50%, -50%);
+
+    animation:estrella .8s ease-out forwards;
+}
+
+.spark::before{
+
+    content:"✨";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    font-size:16px;
+
+    filter:drop-shadow(0 0 8px gold);
+}
+
+@keyframes estrella{
+
+    0%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(.2);
+    }
+
+    70%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(1.6)
+            rotate(180deg);
+    }
+
 }
 
 @keyframes spark{
