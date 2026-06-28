@@ -414,18 +414,9 @@ document.getElementById("btnCatalogo").addEventListener("click", () => {
     carritoPanel.classList.remove("activo");
 });
 
-document
-.getElementById(
-    "btnMisPedidos"
-)
-.addEventListener("click",()=>{
-
-    vistaCatalogo.style.display =
-        "none";
-
-
-    vistaPedidos.style.display =
-        "block";
+document.getElementById("btnMisPedidos").addEventListener("click",()=>{
+    vistaCatalogo.style.display ="none";
+    vistaPedidos.style.display ="block";
 
     cargarMisPedidos();
 });
@@ -688,117 +679,6 @@ metodoPago.addEventListener("change", () => {
 });
 
 
-async function cargarMisPedidos() {
-
-    if (!auth.currentUser) return;
-
-    const contenedor =
-        document.getElementById("contenedorMisPedidos");
-
-    contenedor.innerHTML = "";
-
-    const q = query(
-        collection(db, "pedidos"),
-        where("usuarioId", "==", auth.currentUser.uid)
-    );
-
-    const consulta = await getDocs(q);
-
-    consulta.forEach((registro) => {
-
-        const pedido = registro.data();
-
-        let comprobanteHTML = "";
-
-        if (
-            pedido.metodoPago === "QR" &&
-            pedido.comprobantePago
-        ) {
-            comprobanteHTML = `
-                <div class="comprobante-box">
-                    <p><strong>Comprobante QR</strong></p>
-                    <img src="${pedido.comprobantePago}" class="img-comprobante">
-                </div>
-            `;
-        }
-
-        const card = document.createElement("div");
-        card.classList.add("pedido-card");
-
-        let productosHTML = "";
-
-pedido.productos.forEach(producto => {
-
-    const subtotal = producto.precio * producto.cantidad;
-
-    productosHTML += `
-        <div class="producto-item">
-
-            <img src="${producto.imagen || 'https://via.placeholder.com/60'}" class="producto-img">
-
-            <div class="producto-info">
-
-                <div class="producto-nombre">
-                    ${producto.nombre}
-                </div>
-
-                <div class="producto-detalle">
-                    ${producto.cantidad} x S/ ${producto.precio}
-                </div>
-
-            </div>
-
-            <div class="producto-subtotal">
-                S/ ${subtotal.toFixed(2)}
-            </div>
-
-        </div>
-    `;
-});
-
-        const fechaPedido =
-            pedido.fecha?.toDate
-                ? pedido.fecha.toDate()
-                : new Date(pedido.fecha);
-
-        card.innerHTML = `
-    <div class="boleta">
-
-        <div class="boleta-header">
-            <h3>🧾 Boleta de Pedido</h3>
-            <span class="estado ${pedido.estado.toLowerCase()}">
-                ${pedido.estado}
-            </span>
-        </div>
-
-        <div class="boleta-body">
-
-            <p><strong>📅 Fecha:</strong> ${fechaPedido.toLocaleDateString("es-PE")}</p>
-
-            <p><strong>💳 Método:</strong> ${pedido.metodoPago}</p>
-
-            <hr>
-
-            <h4>🛒 Productos</h4>
-
-            <div class="productos-lista">
-                ${productosHTML}
-            </div>
-
-        </div>
-
-        <div class="boleta-footer">
-            <h3>Total: S/ ${pedido.total}</h3>
-        </div>
-
-        ${comprobanteHTML}
-
-    </div>
-`;
-
-        contenedor.appendChild(card);
-    });
-}
 
 
 const sidebar = document.querySelector(".sidebar");
