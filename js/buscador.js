@@ -13,7 +13,7 @@ function aplicarFiltrosProductos() {
     // ======================
     // BUSCADOR
     // ======================
-if (texto) {
+if (textoProductos) {
 
     filtrados = filtrados.filter(p => {
 
@@ -38,7 +38,7 @@ if (texto) {
                 ? p.fecha.toDate()
                 : new Date(p.fecha);
 
-            return f.toISOString().split("T")[0] === fechaFiltro;
+            return f.toISOString().split("T")[0] === fechaFiltroProductos;
         });
     }
 
