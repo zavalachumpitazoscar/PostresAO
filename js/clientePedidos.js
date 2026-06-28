@@ -239,5 +239,20 @@ async function cancelarPedido(id) {
 // INICIALIZAR
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
-    cargarMisPedidos();
+
+    const sidebar = document.querySelector(".sidebar");
+    const btnMenu = document.getElementById("btnMenu");
+    const overlay = document.getElementById("overlay");
+
+    if (!btnMenu || !sidebar || !overlay) return;
+
+    btnMenu.onclick = () => {
+        sidebar.classList.toggle("activo");
+        overlay.classList.toggle("activo");
+    };
+
+    overlay.onclick = () => {
+        sidebar.classList.remove("activo");
+        overlay.classList.remove("activo");
+    };
 });
