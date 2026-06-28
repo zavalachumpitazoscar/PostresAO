@@ -440,3 +440,8 @@ body {
   color: #111 !important;
 }
 
+.boleta-contenido {
+  background: #ffffff !important;
+  color: #111 !important;
+  width: 100%;
+}
