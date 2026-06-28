@@ -262,3 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.classList.remove("activo");
     };
 });
+
+
+window.verPedido = verPedido;
+window.cancelarPedido = cancelarPedido;
