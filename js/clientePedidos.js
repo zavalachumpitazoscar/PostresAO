@@ -10,6 +10,12 @@ import {
     where
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 import { db, auth } from "./firebase-config.js";
+import { verPedido } from "./pedidoFiltro.js";
+
+window.verPedidoById = (id) => {
+    const pedido = pedidosGlobal.find(p => p.id === id);
+    verPedido(pedido);
+};
 
 // Referencias DOM
 const contenedorPedidos = document.getElementById("contenedorMisPedidos");
@@ -119,7 +125,7 @@ function crearCardPedido(pedido) {
         </div>
 
         <div class="pedido-acciones">
-            <button class="btn btn-ver" onclick="verPedido('${pedido.id}')">
+            <button class="btn btn-ver" onclick="verPedidoById('${pedido.id}')">
                 Ver
             </button>
         </div>
@@ -167,56 +173,6 @@ function formatearFecha(fecha) {
 // PARTE 3: ACCIONES + BÚSQUEDA + EVENTOS
 // ===============================
 
-// ===============================
-// VER PEDIDO (DETALLE)
-// ===============================
-function verPedido(id) {
-    const pedido = pedidosGlobal.find(p => p.id == id);
-
-    if (!pedido) {
-        alert("Pedido no encontrado");
-        return;
-    }
-
-    console.log("DETALLE PEDIDO:", pedido);
-
-    // Aquí puedes abrir modal si quieres
-    alert(
-        `Pedido #${pedido.id}\n` +
-        `Estado: ${pedido.estado}\n` +
-        `Total: S/ ${(pedido.total || 0).toFixed(2)}`
-    );
-}
-
-// ===============================
-// CANCELAR PEDIDO
-// ===============================
-async function cancelarPedido(id) {
-    const confirmar = confirm("¿Seguro que deseas cancelar este pedido?");
-
-    if (!confirmar) return;
-
-    try {
-        // 🔴 AQUÍ CONECTA TU BACKEND O FIREBASE
-        // ejemplo:
-        // await fetch(`/api/pedidos/${id}`, { method: "DELETE" });
-
-        pedidosGlobal = pedidosGlobal.map(p => {
-            if (p.id == id) {
-                return { ...p, estado: "CANCELADO" };
-            }
-            return p;
-        });
-
-        aplicarFiltros();
-
-        alert("Pedido cancelado correctamente");
-
-    } catch (error) {
-        console.error("Error cancelando pedido:", error);
-        alert("Error al cancelar pedido");
-    }
-}
 
 // ===============================
 // INICIALIZAR
@@ -240,9 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 });
 
-
-window.verPedido = verPedido;
-window.cancelarPedido = cancelarPedido;
 
 
 // ===============================
