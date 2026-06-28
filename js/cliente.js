@@ -261,6 +261,8 @@ boton.addEventListener("click", () => {
         contenedorProductos.appendChild(card);
         actualizarEstadoBoton(registro.id);
     });
+
+    iniciarBuscador();
 }
 
 function actualizarCarrito() {
