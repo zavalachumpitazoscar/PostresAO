@@ -220,16 +220,19 @@ body {
 ================================= */
 
 .pedido-card {
-    background: var(--color-blanco);
-    border-radius: 14px;
-    padding: 15px;
-    box-shadow: var(--sombra-suave);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .pedido-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--sombra-media);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
 .pedido-header {
@@ -419,14 +422,6 @@ body {
     }
 }
 
-
-.grid-pedidos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  padding: 10px;
-  align-items: start;
-}
 
 @media (max-width: 600px) {
   .grid-pedidos {
