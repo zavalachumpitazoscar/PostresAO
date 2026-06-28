@@ -419,7 +419,9 @@ document.getElementById("btnMisPedidos").addEventListener("click", () => {
     vistaCatalogo.style.display = "none";
     vistaPedidos.style.display = "block";
 
-    window.cargarMisPedidos(); // 👈 IMPORTANTE
+    if (window.cargarMisPedidos) {
+    window.cargarMisPedidos();
+}
 });
 
 
