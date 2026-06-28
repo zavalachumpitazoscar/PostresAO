@@ -190,6 +190,18 @@ if (producto.fecha) {
         card.classList.add("producto-card");
         card.dataset.id = registro.id;
 
+        let fechaISO = "";
+
+        if (producto.fecha) {
+
+        const fecha = new Date(producto.fecha);
+
+        fechaISO = fecha.toISOString().split("T")[0];
+
+        }
+
+        card.dataset.fecha = fechaISO;
+
         card.innerHTML = `
             <img src="${
                 producto.imagen
