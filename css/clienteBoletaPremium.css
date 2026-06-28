@@ -66,6 +66,32 @@
 
 @keyframes abrirBoleta{
 
+    0%{
+
+        transform:
+            translateY(40px)
+            scale(.90);
+
+        opacity:0;
+
+    }
+
+    70%{
+
+        transform:
+            scale(1.02);
+
+    }
+
+    100%{
+
+        transform:
+            scale(1);
+
+        opacity:1;
+
+    }
+
     from{
 
         transform:
@@ -85,6 +111,7 @@
         opacity:1;
 
     }
+
 
 }
 
