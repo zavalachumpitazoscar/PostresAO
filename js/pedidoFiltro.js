@@ -61,37 +61,159 @@ btnCompartir?.addEventListener("click", async () => {
 });
 
 // ===============================
-// ABRIR BOLETA
+// ABRIR BOLETA PREMIUM
 // ===============================
-export function verPedido(pedido) {
+export function verPedido(pedido){
 
-    const modal = document.getElementById("modalBoleta");
-    const info = document.getElementById("boletaInfo");
+    const modal=document.getElementById("modalBoleta");
+    const info=document.getElementById("boletaInfo");
 
-    if (!modal || !info) return;
+    if(!modal||!info)return;
 
-    pedidoActual = pedido;
+    pedidoActual=pedido;
 
-    let html = "";
+    const fecha=new Date(
+        pedido.fecha ||
+        pedido.fechaPedido ||
+        Date.now()
+    );
 
-    (pedido.productos || []).forEach(p => {
-        html += `
-        <div class="boleta-item">
-            <span>${p.nombre} x${p.cantidad}</span>
-            <span>S/ ${(p.precio * p.cantidad).toFixed(2)}</span>
-        </div>`;
+    const fechaTexto=fecha.toLocaleDateString("es-PE",{
+        day:"2-digit",
+        month:"long",
+        year:"numeric"
     });
 
-    html += `
-        <div class="boleta-total">
-            TOTAL: S/ ${(pedido.total || 0).toFixed(2)}
+    const horaTexto=fecha.toLocaleTimeString("es-PE",{
+        hour:"2-digit",
+        minute:"2-digit"
+    });
+
+    let html=`
+
+    <div class="estado-pedido">
+
+        <div class="estado-icono">
+            ✓
         </div>
+
+        <div class="estado-texto">
+
+            <h3>Pedido confirmado</h3>
+
+            <span>
+                Gracias por comprar en AIERTO
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="datos-grid">
+
+        <div class="dato-card">
+
+            <span>Fecha</span>
+
+            <strong>${fechaTexto}</strong>
+
+        </div>
+
+        <div class="dato-card">
+
+            <span>Hora</span>
+
+            <strong>${horaTexto}</strong>
+
+        </div>
+
+    </div>
+
+    <div class="lista-productos">
     `;
 
-    info.innerHTML = html;
+
+    (pedido.productos||[]).forEach(producto=>{
+
+        const imagen=
+            producto.imagen ||
+            producto.img ||
+            producto.foto ||
+            "img/producto.png";
+
+        html+=`
+
+        <div class="producto-card">
+
+            <img
+                src="${imagen}"
+                class="producto-img">
+
+            <div class="producto-info">
+
+                <h4>${producto.nombre}</h4>
+
+                <p>
+
+                    Cantidad:
+                    ${producto.cantidad}
+
+                </p>
+
+                <p>
+
+                    Precio:
+                    S/
+                    ${Number(producto.precio).toFixed(2)}
+
+                </p>
+
+            </div>
+
+            <div class="producto-precio">
+
+                <strong>
+
+                    S/
+                    ${(producto.precio*producto.cantidad).toFixed(2)}
+
+                </strong>
+
+                <span>Total</span>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    html+=`
+
+    </div>
+
+    <div class="boleta-total">
+
+        <small>TOTAL PAGADO</small>
+
+        <strong>
+
+            S/
+            ${(pedido.total||0).toFixed(2)}
+
+        </strong>
+
+    </div>
+
+    `;
+
+    info.innerHTML=html;
 
     modal.classList.add("activo");
+
     document.body.classList.add("modal-open");
+
 }
 
 // ===============================
