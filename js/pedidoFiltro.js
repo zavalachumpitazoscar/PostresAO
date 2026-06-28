@@ -1,12 +1,18 @@
 const modalBoleta = document.getElementById("modalBoleta");
 const boletaInfo = document.getElementById("boletaInfo");
-const cerrarBoleta = document.getElementById("cerrarBoleta");
 const btnCompartir = document.getElementById("btnCompartirPedido");
+
+let cerrarBoleta;
+let modalBoleta;
+let boletaInfo;
+let btnCompartir;
 
 let pedidoActual = null;
 
 // ABRIR BOLETA
 export function verPedido(pedido){
+
+    modalBoleta.classList.remove("activo"); // 👈 fuerza reset
 
     pedidoActual = pedido;
 
@@ -63,3 +69,24 @@ btnCompartir.onclick = async () => {
         alert("Pedido copiado al portapapeles");
     }
 };
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    modalBoleta = document.getElementById("modalBoleta");
+    boletaInfo = document.getElementById("boletaInfo");
+    cerrarBoleta = document.getElementById("cerrarBoleta");
+    btnCompartir = document.getElementById("btnCompartirPedido");
+
+    cerrarBoleta?.addEventListener("click", () => {
+        modalBoleta.classList.remove("activo");
+    });
+
+});
+
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        modalBoleta?.classList.remove("activo");
+    }
+});
