@@ -1,6 +1,8 @@
 // ===============================
 // FILTRO
 // ===============================
+const inputBuscarProductos =
+document.getElementById("buscarProducto");
 
 function aplicarFiltrosProductos() {
 
@@ -17,7 +19,7 @@ if (textoProductos) {
 
     filtrados = filtrados.filter(p => {
 
-        const productos = (p.productos || [])
+        const productos = (p.nombre || [])
             .map(prod => prod.nombre.toLowerCase())
             .join(" ");
 
