@@ -604,7 +604,7 @@ const nuevoStock =
     }
 }
 
-alert("Pedido enviado correctamente 🎉");
+mostrarToast();
 
 carrito = {};
 stockTemporal = {};
