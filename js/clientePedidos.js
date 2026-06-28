@@ -3,7 +3,12 @@
 // PARTE 1: INICIALIZACIÓN Y CARGA
 // ===============================
 
-import { collection, getDocs, query, where } from "firebase-firestore";
+import {
+    collection,
+    getDocs,
+    query,
+    where
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 import { db, auth } from "./firebase-config.js";
 
 // Referencias DOM
