@@ -113,11 +113,38 @@
 
     </div>
 
-    <input
-        type="text"
-        id="buscarProducto"
-        placeholder="🔍 Buscar producto..."
-        class="buscador">
+<div class="barra-productos">
+
+        <div class="busqueda-productos">
+
+            <input
+                type="text"
+                id="buscarProductos"
+                placeholder="🔍 Buscar por producto, método o estado...">
+
+        </div>
+
+        <div class="filtros-productos">
+
+            <input
+                type="date"
+                id="filtroFechaProductos">
+
+            <select id="ordenPedidosProductos">
+
+                <option value="recientes">
+                    Más recientes
+                </option>
+
+                <option value="antiguos">
+                    Más antiguos
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
 
     <!--TIPO DE VISTA -->
     <div class="barra-vista">
