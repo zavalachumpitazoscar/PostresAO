@@ -15,6 +15,8 @@ import {
 import { db, auth } from "./firebase-config.js";
 import { iniciarBuscador } from "./buscador.js";
 
+import { mostrarToast } from "./toast.js";
+
 const splash = document.getElementById("splashScreen");
 
 const contenedorProductos = document.getElementById("contenedorProductos");
