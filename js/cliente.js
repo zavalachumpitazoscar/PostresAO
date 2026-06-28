@@ -11,6 +11,7 @@ import {
     where
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
+
 import { db, auth } from "./firebase-config.js";
 import { aplicarFiltrosProductos } from "./buscador.js";
 
@@ -24,7 +25,7 @@ let productosGlobal = [];
 
 let carrito = {};
 let stockTemporal = {};
-
+export let productosGlobal = [];
 
 onAuthStateChanged(auth, (user) => {
 
