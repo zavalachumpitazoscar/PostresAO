@@ -393,20 +393,24 @@ body{
 .spark{
 
     position:absolute;
+
+    left:50%;
+    top:50%;
+
     width:8px;
     height:8px;
 
-    background:radial-gradient(circle, #fff, #ffd700, transparent);
+    transform:translate(-50%, -50%);
+
+    background:radial-gradient(circle,#fff,#ffd700,transparent);
+
     border-radius:50%;
 
     pointer-events:none;
 
-    z-index:9999;
+    z-index:20;
 
-    opacity:1;
-
-    animation:spark 600ms ease-out forwards;
-
+    animation:spark .6s ease-out forwards;
 }
 
 @keyframes spark{
