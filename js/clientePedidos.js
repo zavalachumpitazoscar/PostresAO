@@ -12,7 +12,7 @@ import {
 import { db, auth } from "./firebase-config.js";
 
 // Referencias DOM
-const contenedorPedidos = document.getElementById("contenedorPedidos");
+const contenedorPedidos = document.getElementById("contenedorMisPedidos");
 const inputBuscar = document.getElementById("buscarPedido");
 
 
