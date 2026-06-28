@@ -428,3 +428,8 @@ body {
   align-items: start;
 }
 
+@media (max-width: 600px) {
+  .grid-pedidos {
+    grid-template-columns: 1fr;
+  }
+}
