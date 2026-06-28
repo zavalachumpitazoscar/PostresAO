@@ -428,9 +428,7 @@ body {
 }
 
 
-// ===============================
-// BOLETA FLOTANTE EN MIS PEDIDOS
-// ===============================
+/* =============BOLETA FLOTANTE EN MIS PEDIDOS================= */
 
 .modal-boleta{
     position:fixed;
@@ -520,6 +518,3 @@ body {
     cursor:pointer;
 }
 
-// ===============================
-// FIN
-// ===============================
