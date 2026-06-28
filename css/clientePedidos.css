@@ -53,6 +53,71 @@ body {
     max-width: 600px;
 }
 
+/* ===============================
+   BARRA SUPERIOR DE PEDIDOS
+================================= */
+
+.barra-pedidos {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    margin-bottom: 15px;
+}
+
+/* ===============================
+   BUSCADOR
+================================= */
+
+.busqueda-pedido {
+    flex: 1;
+    min-width: 220px;
+}
+
+.busqueda-pedido input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    outline: none;
+}
+
+.busqueda-pedido input:focus {
+    border-color: var(--color-principal);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ===============================
+   FILTROS
+================================= */
+
+.filtros-pedido {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filtros-pedido input,
+.filtros-pedido select {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    outline: none;
+    background: white;
+    font-size: 13px;
+}
+
+.filtros-pedido input:focus,
+.filtros-pedido select:focus {
+    border-color: var(--color-principal);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
 /*------------------------------*/
 
 /* ===============================
