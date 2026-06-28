@@ -333,6 +333,7 @@ body{
 
 #contenedorProductos.grande img{
     height:220px;
+    border-radius: inherit;
 }
 
 #contenedorProductos.media img{
