@@ -3,6 +3,9 @@
 // PARTE 1: INICIALIZACIÓN Y CARGA
 // ===============================
 
+import { collection, getDocs, query, where } from "firebase-firestore";
+import { db, auth } from "./firebase-config.js";
+
 // Referencias DOM
 const contenedorPedidos = document.getElementById("contenedorPedidos");
 const inputBuscar = document.getElementById("buscarPedido");
@@ -11,17 +14,29 @@ const inputBuscar = document.getElementById("buscarPedido");
 let pedidosGlobal = [];
 
 // ===============================
-// CARGAR PEDIDOS (INICIAL)
+// CARGAR PEDIDOS (FIREBASE REAL)
 // ===============================
 async function cargarMisPedidos() {
     try {
         contenedorPedidos.innerHTML = "<p>Cargando pedidos...</p>";
 
-        // EJEMPLO: aquí debes reemplazar con tu Firebase o API
-        const respuesta = await fetch("/api/pedidos");
-        const data = await respuesta.json();
+        if (!auth.currentUser) return;
 
-        pedidosGlobal = data;
+        const q = query(
+            collection(db, "pedidos"),
+            where("usuarioId", "==", auth.currentUser.uid)
+        );
+
+        const consulta = await getDocs(q);
+
+        pedidosGlobal = [];
+
+        consulta.forEach((docSnap) => {
+            pedidosGlobal.push({
+                id: docSnap.id,
+                ...docSnap.data()
+            });
+        });
 
         renderizarPedidos(pedidosGlobal);
 
