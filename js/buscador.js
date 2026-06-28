@@ -10,7 +10,11 @@ function aplicarFiltrosProductos() {
     const fechaFiltroProductos = document.getElementById("filtroFechaProductos").value;
     const ordenProductos = document.getElementById("ordenProductos").value;
 
+    export function aplicarFiltrosProductos(productosGlobal) {
+
     let filtrados = [...productosGlobal];
+
+}
 
     // ======================
     // BUSCADOR
