@@ -38,7 +38,7 @@ body {
     min-height: 100vh;
 }
 
-.sidebar{
+.sidebar {
 
     position:sticky;
     top:0;
@@ -290,13 +290,7 @@ body {
 }
 
 
-.sidebar {
-    width: 260px;
-    background: var(--color-principal);
-    color: white;
-    padding: 20px;
-    transition: transform 0.3s ease;
-}
+
 
 /* 🔥 MOBILE OFF-CANVAS */
 @media (max-width: 768px) {
@@ -332,4 +326,12 @@ body {
         opacity: 1;
         pointer-events: all;
     }
+}
+
+
+.grid-pedidos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
 }
