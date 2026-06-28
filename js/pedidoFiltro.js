@@ -47,113 +47,75 @@ async function compartirBoleta(){
 
     if(!pedidoActual)return;
 
-    const tarjeta =
-        document.querySelector(".boleta-contenido");
+    const elemento=document.querySelector(".boleta-contenido");
 
-    if(!tarjeta)return;
+    if(!elemento)return;
 
     try{
 
         btnCompartir.disabled=true;
 
-        btnCompartir.innerHTML="Generando imagen...";
+        btnCompartir.innerHTML="Generando...";
 
-        const canvas =
-            await html2canvas(
-                tarjeta,
-                {
+        // 🔥 CLAVE: clonar sin restricciones de scroll
+        const clon=elemento.cloneNode(true);
 
-                    scale:3,
+        clon.style.maxHeight="none";
+        clon.style.overflow="visible";
+        clon.style.height="auto";
 
-                    useCORS:true,
+        document.body.appendChild(clon);
+        clon.style.position="absolute";
+        clon.style.left="-9999px";
+        clon.style.top="0";
 
-                    backgroundColor:"#ffffff"
+        const canvas=await html2canvas(clon,{
 
-                }
-            );
+            scale:2,
+            useCORS:true,
+            backgroundColor:"#ffffff",
+            scrollY:-window.scrollY,
+            windowWidth:clon.scrollWidth,
+            windowHeight:clon.scrollHeight
 
-        const blob =
-            await new Promise(resolve=>{
+        });
 
-                canvas.toBlob(
-                    resolve,
-                    "image/png",
-                    1
-                );
+        document.body.removeChild(clon);
 
-            });
+        const blob=await new Promise(r=>canvas.toBlob(r,"image/png"));
 
-        const file =
-            new File(
+        const file=new File(
+            [blob],
+            `Pedido-${pedidoActual.id}.png`,
+            {type:"image/png"}
+        );
 
-                [blob],
-
-                `Pedido-${pedidoActual.id || "AIERTO"}.png`,
-
-                {
-                    type:"image/png"
-                }
-
-            );
-
-        if(
-
-            navigator.canShare &&
-
-            navigator.canShare({
-
-                files:[file]
-
-            })
-
-        ){
+        if(navigator.canShare && navigator.canShare({files:[file]})){
 
             await navigator.share({
-
                 title:"Comprobante AIERTO",
-
-                text:"Mi pedido",
-
                 files:[file]
-
             });
 
         }else{
 
-            const enlace =
-                document.createElement("a");
-
-            enlace.href =
-                URL.createObjectURL(blob);
-
-            enlace.download =
-                `Pedido-${pedidoActual.id || "AIERTO"}.png`;
-
-            enlace.click();
-
-            URL.revokeObjectURL(enlace.href);
+            const a=document.createElement("a");
+            a.href=URL.createObjectURL(blob);
+            a.download=`Pedido-${pedidoActual.id}.png`;
+            a.click();
 
         }
 
-    }catch(error){
+    }catch(err){
 
-        console.error(error);
-
-        alert("No fue posible compartir el comprobante.");
+        console.error(err);
+        alert("Error al generar imagen completa");
 
     }finally{
 
         btnCompartir.disabled=false;
-
-        btnCompartir.innerHTML=`
-            <span class="icono-compartir">
-                📤
-            </span>
-            Compartir comprobante
-        `;
-
+        btnCompartir.innerHTML="Compartir comprobante";
     }
-
 }
 
 
