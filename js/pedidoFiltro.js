@@ -41,83 +41,93 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // =========================================
-// COMPARTIR COMO IMAGEN
+// COMPARTIR COMO IMAGEN (VERSIÓN CORREGIDA)
 // =========================================
-async function compartirBoleta(){
+async function compartirBoleta() {
 
-    if(!pedidoActual)return;
+    if (!pedidoActual) return;
 
-    const elemento=document.querySelector(".boleta-contenido");
+    const elemento = document.querySelector(".boleta-contenido");
+    if (!elemento) return;
 
-    if(!elemento)return;
+    try {
 
-    try{
+        btnCompartir.disabled = true;
+        btnCompartir.innerHTML = "Generando...";
 
-        btnCompartir.disabled=true;
+        // 🔥 CLON DEL ELEMENTO
+        const clon = elemento.cloneNode(true);
 
-        btnCompartir.innerHTML="Generando...";
+        // 🔥 ACTIVAR MODO CAPTURA (evita colores lavados)
+        clon.classList.add("modo-captura");
 
-        // 🔥 CLAVE: clonar sin restricciones de scroll
-        const clon=elemento.cloneNode(true);
+        // 🔥 ASEGURAR ESTILOS BASE LIMPIOS
+        clon.style.maxHeight = "none";
+        clon.style.overflow = "visible";
+        clon.style.height = "auto";
+        clon.style.position = "absolute";
+        clon.style.left = "-9999px";
+        clon.style.top = "0";
 
-        clon.style.maxHeight="none";
-        clon.style.overflow="visible";
-        clon.style.height="auto";
+        clon.style.background = "#ffffff";
+        clon.style.color = "#111";
 
         document.body.appendChild(clon);
-        clon.style.position="absolute";
-        clon.style.left="-9999px";
-        clon.style.top="0";
 
-        const canvas=await html2canvas(clon,{
+        const canvas = await html2canvas(clon, {
 
-            scale:2,
-            useCORS:true,
-            backgroundColor:"#ffffff",
-            scrollY:-window.scrollY,
-            windowWidth:clon.scrollWidth,
-            windowHeight:clon.scrollHeight
+            scale: 2,                 // mejor calidad
+            useCORS: true,           // imágenes externas
+            allowTaint: false,
+            backgroundColor: "#ffffff",
+
+            scrollY: -window.scrollY,
+            windowWidth: clon.scrollWidth,
+            windowHeight: clon.scrollHeight
 
         });
 
         document.body.removeChild(clon);
 
-        const blob=await new Promise(r=>canvas.toBlob(r,"image/png"));
-
-        const file=new File(
-            [blob],
-            `Pedido-${pedidoActual.id}.png`,
-            {type:"image/png"}
+        const blob = await new Promise(resolve =>
+            canvas.toBlob(resolve, "image/png")
         );
 
-        if(navigator.canShare && navigator.canShare({files:[file]})){
+        const file = new File(
+            [blob],
+            `Pedido-${pedidoActual.id}.png`,
+            { type: "image/png" }
+        );
+
+        // 📤 COMPARTIR NATIVO (WhatsApp / etc.)
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
 
             await navigator.share({
-                title:"Comprobante AIERTO",
-                files:[file]
+                title: "Comprobante AIERTO",
+                files: [file]
             });
 
-        }else{
+        } else {
 
-            const a=document.createElement("a");
-            a.href=URL.createObjectURL(blob);
-            a.download=`Pedido-${pedidoActual.id}.png`;
+            // 📥 DESCARGA FALLBACK
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = `Pedido-${pedidoActual.id}.png`;
             a.click();
 
         }
 
-    }catch(err){
+    } catch (err) {
 
         console.error(err);
         alert("Error al generar imagen completa");
 
-    }finally{
+    } finally {
 
-        btnCompartir.disabled=false;
-        btnCompartir.innerHTML="Compartir comprobante";
+        btnCompartir.disabled = false;
+        btnCompartir.innerHTML = "Compartir comprobante";
     }
 }
-
 
 // =========================================
 // ABRIR BOLETA PREMIUM
