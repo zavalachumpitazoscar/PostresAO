@@ -430,9 +430,10 @@ document
     cargarMisPedidos();
 });
 
-/*ANTERIOR BUSCADOR*/
------------------------
-/*ANTERIOR BUSCADOR - FIN*/
+
+
+
+
 
 
 function mostrarMensaje(texto){
