@@ -53,53 +53,43 @@ async function compartirBoleta() {
     try {
 
         btnCompartir.disabled = true;
-        btnCompartir.innerHTML = "Generando...";
+        btnCompartir.innerHTML = "Generando PDF...";
 
-        // 🔥 CLON DEL ELEMENTO
-        const clon = elemento.cloneNode(true);
+        const opt = {
 
-        // 🔥 ACTIVAR MODO CAPTURA (evita colores lavados)
-        clon.classList.add("modo-captura");
+            margin: 0.5,
+            filename: `Pedido-${pedidoActual.id}.pdf`,
 
-        // 🔥 ASEGURAR ESTILOS BASE LIMPIOS
-        clon.style.maxHeight = "none";
-        clon.style.overflow = "visible";
-        clon.style.height = "auto";
-        clon.style.position = "absolute";
-        clon.style.left = "-9999px";
-        clon.style.top = "0";
+            image: {
+                type: "jpeg",
+                quality: 1
+            },
 
-        clon.style.background = "#ffffff";
-        clon.style.color = "#111";
+            html2canvas: {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: "#ffffff"
+            },
 
-        document.body.appendChild(clon);
+            jsPDF: {
+                unit: "in",
+                format: "a4",
+                orientation: "portrait"
+            }
+        };
 
-        const canvas = await html2canvas(clon, {
+        // 🔥 GENERAR PDF
+        const worker = html2pdf().set(opt).from(elemento).toPdf();
 
-            scale: 2,                 // mejor calidad
-            useCORS: true,           // imágenes externas
-            allowTaint: false,
-            backgroundColor: "#ffffff",
-
-            scrollY: -window.scrollY,
-            windowWidth: clon.scrollWidth,
-            windowHeight: clon.scrollHeight
-
-        });
-
-        document.body.removeChild(clon);
-
-        const blob = await new Promise(resolve =>
-            canvas.toBlob(resolve, "image/png")
-        );
+        const pdfBlob = await worker.outputPdf("blob");
 
         const file = new File(
-            [blob],
-            `Pedido-${pedidoActual.id}.png`,
-            { type: "image/png" }
+            [pdfBlob],
+            `Pedido-${pedidoActual.id}.pdf`,
+            { type: "application/pdf" }
         );
 
-        // 📤 COMPARTIR NATIVO (WhatsApp / etc.)
+        // 📤 COMPARTIR (WhatsApp / apps compatibles)
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
 
             await navigator.share({
@@ -111,16 +101,15 @@ async function compartirBoleta() {
 
             // 📥 DESCARGA FALLBACK
             const a = document.createElement("a");
-            a.href = URL.createObjectURL(blob);
-            a.download = `Pedido-${pedidoActual.id}.png`;
+            a.href = URL.createObjectURL(pdfBlob);
+            a.download = `Pedido-${pedidoActual.id}.pdf`;
             a.click();
-
         }
 
     } catch (err) {
 
         console.error(err);
-        alert("Error al generar imagen completa");
+        alert("Error al generar PDF");
 
     } finally {
 
