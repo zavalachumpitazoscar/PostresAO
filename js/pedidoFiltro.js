@@ -7,9 +7,9 @@ let btnCompartir = null;
 
 let pedidoActual = null;
 
-// ===============================
-// INIT DOM
-// ===============================
+// =========================================
+// INICIALIZAR DOM
+// =========================================
 document.addEventListener("DOMContentLoaded", () => {
 
     modalBoleta = document.getElementById("modalBoleta");
@@ -17,84 +17,189 @@ document.addEventListener("DOMContentLoaded", () => {
     cerrarBoleta = document.getElementById("cerrarBoleta");
     btnCompartir = document.getElementById("btnCompartirPedido");
 
-    cerrarBoleta?.addEventListener("click", cerrarModal);
+    cerrarBoleta?.addEventListener(
+        "click",
+        cerrarModal
+    );
 
-btnCompartir?.addEventListener("click", async () => {
+    // Cerrar tocando el fondo
+    modalBoleta?.addEventListener("click", e => {
 
-    if (!pedidoActual) return;
+        if(e.target===modalBoleta){
 
-    const elemento = document.querySelector(".boleta-contenido");
+            cerrarModal();
 
-    if (!elemento) return;
-
-    try {
-
-        const canvas = await html2canvas(elemento, {
-            scale: 2,
-            backgroundColor: "#ffffff"
-        });
-
-        const blob = await new Promise(resolve => {
-            canvas.toBlob(resolve, "image/png");
-        });
-
-        const file = new File([blob], "boleta.png", {
-            type: "image/png"
-        });
-
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-
-            await navigator.share({
-                title: "Mi pedido",
-                files: [file]
-            });
-
-        } else {
-            alert("Tu dispositivo no soporta compartir imágenes");
         }
 
-    } catch (e) {
-        console.error(e);
-        alert("Error al generar imagen");
-    }
-});
+    });
+
+    // Compartir comprobante
+    btnCompartir?.addEventListener("click", compartirBoleta);
+
 });
 
-// ===============================
+
+
+// =========================================
+// COMPARTIR COMO IMAGEN
+// =========================================
+async function compartirBoleta(){
+
+    if(!pedidoActual)return;
+
+    const tarjeta =
+        document.querySelector(".boleta-contenido");
+
+    if(!tarjeta)return;
+
+    try{
+
+        btnCompartir.disabled=true;
+
+        btnCompartir.innerHTML="Generando imagen...";
+
+        const canvas =
+            await html2canvas(
+                tarjeta,
+                {
+
+                    scale:3,
+
+                    useCORS:true,
+
+                    backgroundColor:"#ffffff"
+
+                }
+            );
+
+        const blob =
+            await new Promise(resolve=>{
+
+                canvas.toBlob(
+                    resolve,
+                    "image/png",
+                    1
+                );
+
+            });
+
+        const file =
+            new File(
+
+                [blob],
+
+                `Pedido-${pedidoActual.id || "AIERTO"}.png`,
+
+                {
+                    type:"image/png"
+                }
+
+            );
+
+        if(
+
+            navigator.canShare &&
+
+            navigator.canShare({
+
+                files:[file]
+
+            })
+
+        ){
+
+            await navigator.share({
+
+                title:"Comprobante AIERTO",
+
+                text:"Mi pedido",
+
+                files:[file]
+
+            });
+
+        }else{
+
+            const enlace =
+                document.createElement("a");
+
+            enlace.href =
+                URL.createObjectURL(blob);
+
+            enlace.download =
+                `Pedido-${pedidoActual.id || "AIERTO"}.png`;
+
+            enlace.click();
+
+            URL.revokeObjectURL(enlace.href);
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        alert("No fue posible compartir el comprobante.");
+
+    }finally{
+
+        btnCompartir.disabled=false;
+
+        btnCompartir.innerHTML=`
+            <span class="icono-compartir">
+                📤
+            </span>
+            Compartir comprobante
+        `;
+
+    }
+
+}
+
+
+// =========================================
 // ABRIR BOLETA PREMIUM
-// ===============================
+// =========================================
 export function verPedido(pedido){
 
     const modal=document.getElementById("modalBoleta");
     const info=document.getElementById("boletaInfo");
 
-    if(!modal||!info)return;
+    if(!modal || !info)return;
 
     pedidoActual=pedido;
 
     const fecha=new Date(
-        pedido.fecha ||
-        pedido.fechaPedido ||
-        Date.now()
+        pedido.fecha || Date.now()
     );
 
-    const fechaTexto=fecha.toLocaleDateString("es-PE",{
-        day:"2-digit",
-        month:"long",
-        year:"numeric"
-    });
+    const fechaTexto=fecha.toLocaleDateString(
+        "es-PE",
+        {
+            day:"2-digit",
+            month:"long",
+            year:"numeric"
+        }
+    );
 
-    const horaTexto=fecha.toLocaleTimeString("es-PE",{
-        hour:"2-digit",
-        minute:"2-digit"
-    });
+    const horaTexto=fecha.toLocaleTimeString(
+        "es-PE",
+        {
+            hour:"2-digit",
+            minute:"2-digit"
+        }
+    );
+
+    const numeroPedido=(pedido.id || "000000")
+        .substring(0,8)
+        .toUpperCase();
 
     let html=`
 
     <div class="estado-pedido">
 
         <div class="estado-icono">
-            ✓
+            ✔
         </div>
 
         <div class="estado-texto">
@@ -113,6 +218,22 @@ export function verPedido(pedido){
 
         <div class="dato-card">
 
+            <span>Pedido</span>
+
+            <strong>#${numeroPedido}</strong>
+
+        </div>
+
+        <div class="dato-card">
+
+            <span>Estado</span>
+
+            <strong>${pedido.estado}</strong>
+
+        </div>
+
+        <div class="dato-card">
+
             <span>Fecha</span>
 
             <strong>${fechaTexto}</strong>
@@ -127,19 +248,32 @@ export function verPedido(pedido){
 
         </div>
 
+        <div class="dato-card">
+
+            <span>Cliente</span>
+
+            <strong>${pedido.nombreCliente}</strong>
+
+        </div>
+
+        <div class="dato-card">
+
+            <span>Pago</span>
+
+            <strong>${pedido.metodoPago}</strong>
+
+        </div>
+
     </div>
 
     <div class="lista-productos">
     `;
 
-
-    (pedido.productos||[]).forEach(producto=>{
+    (pedido.productos || []).forEach(producto=>{
 
         const imagen=
             producto.imagen ||
-            producto.img ||
-            producto.foto ||
-            "img/producto.png";
+            "https://via.placeholder.com/90x90?text=🍰";
 
         html+=`
 
@@ -151,18 +285,21 @@ export function verPedido(pedido){
 
             <div class="producto-info">
 
-                <h4>${producto.nombre}</h4>
+                <h4>
+                    ${producto.nombre}
+                </h4>
 
                 <p>
 
                     Cantidad:
-                    ${producto.cantidad}
+                    <strong>${producto.cantidad}</strong>
 
                 </p>
 
                 <p>
 
-                    Precio:
+                    Precio Unit.
+
                     S/
                     ${Number(producto.precio).toFixed(2)}
 
@@ -179,7 +316,11 @@ export function verPedido(pedido){
 
                 </strong>
 
-                <span>Total</span>
+                <span>
+
+                    Subtotal
+
+                </span>
 
             </div>
 
@@ -195,7 +336,11 @@ export function verPedido(pedido){
 
     <div class="boleta-total">
 
-        <small>TOTAL PAGADO</small>
+        <small>
+
+            TOTAL PAGADO
+
+        </small>
 
         <strong>
 
@@ -216,29 +361,155 @@ export function verPedido(pedido){
 
 }
 
-// ===============================
-// CERRAR
-// ===============================
-function cerrarModal() {
 
-    const modal = document.getElementById("modalBoleta");
+// =========================================
+// CERRAR MODAL
+// =========================================
+function cerrarModal(){
 
-    if (!modal) return;
+    const modal=document.getElementById("modalBoleta");
+
+    if(!modal)return;
 
     modal.classList.remove("activo");
+
     document.body.classList.remove("modal-open");
+
 }
 
-// ===============================
-// ESC PARA CERRAR
-// ===============================
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
+
+
+// =========================================
+// CERRAR CON ESC
+// =========================================
+document.addEventListener("keydown",e=>{
+
+    if(e.key==="Escape"){
+
         cerrarModal();
+
     }
+
 });
 
-// ===============================
+
+
+// =========================================
+// CERRAR TOCANDO AFUERA
+// =========================================
+document.addEventListener("click",e=>{
+
+    const modal=document.getElementById("modalBoleta");
+
+    if(!modal)return;
+
+    if(
+        e.target===modal &&
+        modal.classList.contains("activo")
+    ){
+
+        cerrarModal();
+
+    }
+
+});
+
+
+
+// =========================================
+// COLORES SEGÚN ESTADO
+// =========================================
+export function obtenerClaseEstado(estado){
+
+    estado=(estado || "").toUpperCase();
+
+    switch(estado){
+
+        case "ACEPTADO":
+            return "estado-aceptado";
+
+        case "ENTREGADO":
+            return "estado-entregado";
+
+        case "CANCELADO":
+            return "estado-cancelado";
+
+        default:
+            return "estado-pendiente";
+
+    }
+
+}
+
+
+
+// =========================================
+// ICONO MÉTODO DE PAGO
+// =========================================
+export function obtenerIconoPago(tipo){
+
+    if(!tipo)return "💳";
+
+    tipo=tipo.toUpperCase();
+
+    if(tipo==="QR")
+        return "📱";
+
+    if(tipo==="YAPE")
+        return "🟣";
+
+    if(tipo==="PLIN")
+        return "🟢";
+
+    if(tipo==="EFECTIVO")
+        return "💵";
+
+    if(tipo==="TRANSFERENCIA")
+        return "🏦";
+
+    return "💳";
+
+}
+
+
+
+// =========================================
+// FORMATO MONEDA
+// =========================================
+export function moneda(valor){
+
+    return "S/ " + Number(valor).toFixed(2);
+
+}
+
+
+
+// =========================================
+// FORMATO FECHA
+// =========================================
+export function fechaBonita(fecha){
+
+    return new Date(fecha).toLocaleDateString(
+
+        "es-PE",
+
+        {
+
+            day:"2-digit",
+
+            month:"long",
+
+            year:"numeric"
+
+        }
+
+    );
+
+}
+
+
+
+// =========================================
 // EXPORT GLOBAL
-// ===============================
-window.verPedido = verPedido;
+// =========================================
+window.verPedido=verPedido;
