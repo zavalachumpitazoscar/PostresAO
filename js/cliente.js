@@ -414,11 +414,12 @@ document.getElementById("btnCatalogo").addEventListener("click", () => {
     carritoPanel.classList.remove("activo");
 });
 
-document.getElementById("btnMisPedidos").addEventListener("click",()=>{
-    vistaCatalogo.style.display ="none";
-    vistaPedidos.style.display ="block";
+document.getElementById("btnMisPedidos").addEventListener("click", () => {
 
-    cargarMisPedidos();
+    vistaCatalogo.style.display = "none";
+    vistaPedidos.style.display = "block";
+
+    window.cargarMisPedidos(); // 👈 IMPORTANTE
 });
 
 
