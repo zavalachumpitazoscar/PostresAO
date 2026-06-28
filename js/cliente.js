@@ -13,7 +13,7 @@ import {
 
 
 import { db, auth } from "./firebase-config.js";
-
+import { iniciarBuscador } from "./buscador.js";
 
 const splash = document.getElementById("splashScreen");
 
