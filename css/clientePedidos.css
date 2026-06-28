@@ -267,7 +267,7 @@ body {
     color: var(--color-alerta);
 }
 
-.estado-completado {
+.estado-aprobado {
     background: rgba(22, 163, 74, 0.15);
     color: var(--color-exito);
 }
