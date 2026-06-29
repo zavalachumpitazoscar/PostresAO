@@ -338,10 +338,12 @@ body{
 
 #contenedorProductos.media img{
     height:170px;
+    border-radius: inherit;
 }
 
 #contenedorProductos.compacta img{
     height:120px;
+    border-radius: inherit;
 }
 
 /* =========================
