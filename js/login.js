@@ -114,18 +114,19 @@ btnLogin.addEventListener("click", async () => {
         const usuario =
             usuarioSnap.data();
 
-        if (usuario.estado !== "ACTIVO") {
-            
-            ocultarCarga();
+if (usuario.estado !== "ACTIVO") {
 
-            alert(
-                "Su cuenta aún no ha sido activada"
-            );
+    ocultarCarga();
 
-            await signOut(auth);
+    mostrarToast(
+        "info",
+        "Tu cuenta está registrada, pero aún no ha sido activada por el administrador."
+    );
 
-            return;
-        }
+    await signOut(auth);
+
+    return;
+}
 
         if (usuario.rol === "ADMIN") {
         window.location.href = "admin.html";
