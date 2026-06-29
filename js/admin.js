@@ -852,3 +852,25 @@ function cambiarVista(vista){
     }
 
 }
+
+const tabs = document.querySelectorAll(".tab");
+
+const vistas = {
+    usuarios: document.getElementById("vistaUsuarios"),
+    productos: document.getElementById("vistaProductos"),
+    pedidos: document.getElementById("vistaPedidos"),
+};
+
+tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+
+        tabs.forEach(t => t.classList.remove("activo"));
+        tab.classList.add("activo");
+
+        const vista = tab.dataset.vista;
+
+        Object.values(vistas).forEach(v => v.style.display = "none");
+
+        vistas[vista].style.display = "block";
+    });
+});
