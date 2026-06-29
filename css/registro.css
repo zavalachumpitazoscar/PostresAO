@@ -231,3 +231,63 @@ a:hover{
     }
 
 }
+
+/* TOAST */
+
+.toast{
+
+    position:fixed;
+
+    top:25px;
+    right:25px;
+
+    min-width:280px;
+    max-width:350px;
+
+    padding:16px 20px;
+
+    border-radius:14px;
+
+    color:white;
+
+    font-weight:600;
+
+    background:#323232;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+    transform:translateX(420px);
+
+    opacity:0;
+
+    transition:.35s;
+
+    z-index:9999;
+
+}
+
+.toast.mostrar{
+
+    transform:translateX(0);
+
+    opacity:1;
+
+}
+
+.toast.exito{
+
+    background:#22c55e;
+
+}
+
+.toast.error{
+
+    background:#ef4444;
+
+}
+
+.toast.info{
+
+    background:#3b82f6;
+
+}
