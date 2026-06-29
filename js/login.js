@@ -18,6 +18,25 @@ from "./firebase-config.js";
 
 const btnLogin = document.getElementById("btnLogin");
 
+const toast =
+    document.getElementById("toast");
+
+function mostrarToast(tipo,mensaje){
+
+    toast.className="toast "+tipo;
+
+    toast.textContent=mensaje;
+
+    toast.classList.add("mostrar");
+
+    setTimeout(()=>{
+
+        toast.classList.remove("mostrar");
+
+    },3000);
+
+}
+
 function mostrarCarga(texto = "Ingresando...") {
 
     btnLogin.classList.add("cargando");
