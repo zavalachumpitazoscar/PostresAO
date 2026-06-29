@@ -18,6 +18,25 @@ from "./firebase-config.js";
 const btnRegistrar =
     document.getElementById("btnRegistrar");
 
+const toast =
+    document.getElementById("toast");
+
+function mostrarToast(tipo,mensaje){
+
+    toast.className="toast "+tipo;
+
+    toast.textContent=mensaje;
+
+    toast.classList.add("mostrar");
+
+    setTimeout(()=>{
+
+        toast.classList.remove("mostrar");
+
+    },3000);
+
+}
+
 btnRegistrar.addEventListener(
     "click",
     async () => {
