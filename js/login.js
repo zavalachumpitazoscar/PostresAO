@@ -136,13 +136,37 @@ btnLogin.addEventListener("click", async () => {
         // luego aquí irá cliente.html o admin.html
 
     }
-    catch (error) {
+catch(error){
 
-        ocultarCarga();
+    ocultarCarga();
 
+    if(
+        error.code==="auth/invalid-credential" ||
+        error.code==="auth/wrong-password" ||
+        error.code==="auth/user-not-found"
+    ){
 
-        alert(error.message);
+        mostrarToast(
+            "error",
+            "Correo o contraseña incorrectos."
+        );
+
+    }else if(error.code==="auth/invalid-email"){
+
+        mostrarToast(
+            "error",
+            "Correo electrónico inválido."
+        );
+
+    }else{
+
+        mostrarToast(
+            "error",
+            "Ocurrió un error. Inténtalo nuevamente."
+        );
 
     }
+
+}
 
 });
