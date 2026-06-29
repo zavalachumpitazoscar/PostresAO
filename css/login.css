@@ -211,3 +211,37 @@ a:hover{
     text-decoration:underline;
 
 }
+
+@media(max-width:480px){
+
+    .contenedor{
+
+        padding:30px 22px;
+        border-radius:20px;
+
+    }
+
+    h1{
+
+        font-size:28px;
+        margin-bottom:28px;
+
+    }
+
+    input{
+
+        padding:15px;
+
+        font-size:15px;
+
+    }
+
+    button{
+
+        padding:15px;
+
+        font-size:15px;
+
+    }
+
+}
