@@ -2,7 +2,8 @@ import {
     collection,
     getDocs,
     doc,
-    updateDoc
+    updateDoc,
+    getDoc
 }
 from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
@@ -31,6 +32,65 @@ import {
     deleteDoc
 }
 from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+// ===============================
+// PROTEGER PANEL ADMIN
+// ===============================
+
+onAuthStateChanged(auth, async(user)=>{
+
+    if(!user){
+
+        window.location.href = "index.html";
+        return;
+
+    }
+
+    try{
+
+        const usuarioSnap = await getDoc(
+            doc(db,"usuarios",user.uid)
+        );
+
+        if(!usuarioSnap.exists()){
+
+            await signOut(auth);
+
+            window.location.href = "index.html";
+
+            return;
+
+        }
+
+        const usuario = usuarioSnap.data();
+
+        if(
+            usuario.rol !== "ADMIN" ||
+            usuario.estado !== "ACTIVO"
+        ){
+
+            await signOut(auth);
+
+            window.location.href = "index.html";
+
+            return;
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        await signOut(auth);
+
+        window.location.href = "index.html";
+
+    }
+
+});
+
+
+
 
 let productoEditando = null;
 
