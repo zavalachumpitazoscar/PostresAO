@@ -104,10 +104,6 @@ setTimeout(()=>{
     window.location="index.html";
 
 },2000);
-
-            window.location =
-                "index.html";
-
         }
 catch(error){
 
