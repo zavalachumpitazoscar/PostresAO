@@ -50,6 +50,25 @@ btnRegistrar.addEventListener(
         const password =
             document.getElementById("password").value;
 
+        if(
+    nombre.trim()==="" ||
+    correo.trim()==="" ||
+    password.trim()===""
+){
+
+    mostrarToast(
+        "error",
+        "Completa todos los campos."
+    );
+
+    return;
+
+}
+
+btnRegistrar.classList.add("cargando");
+btnRegistrar.innerHTML="Registrando...";
+btnRegistrar.disabled=true;
+
         try {
 
             const credencial =
@@ -75,19 +94,58 @@ btnRegistrar.addEventListener(
                 }
             );
 
-            alert(
-                "Cuenta creada. Espere activación del administrador."
-            );
+mostrarToast(
+    "exito",
+    "Cuenta creada. Espera la activación del administrador."
+);
+
+setTimeout(()=>{
+
+    window.location="index.html";
+
+},2000);
 
             window.location =
                 "index.html";
 
         }
-        catch (error) {
+catch(error){
 
-            alert(error.message);
+    btnRegistrar.classList.remove("cargando");
+    btnRegistrar.innerHTML="Registrarse";
+    btnRegistrar.disabled=false;
 
-        }
+    if(error.code==="auth/email-already-in-use"){
+
+        mostrarToast(
+            "error",
+            "Ese correo ya está registrado."
+        );
+
+    }else if(error.code==="auth/invalid-email"){
+
+        mostrarToast(
+            "error",
+            "Correo electrónico inválido."
+        );
+
+    }else if(error.code==="auth/weak-password"){
+
+        mostrarToast(
+            "error",
+            "La contraseña debe tener al menos 6 caracteres."
+        );
+
+    }else{
+
+        mostrarToast(
+            "error",
+            "Ocurrió un error. Inténtalo nuevamente."
+        );
+
+    }
+
+}
 
     }
 );
