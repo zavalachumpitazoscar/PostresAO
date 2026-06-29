@@ -67,6 +67,22 @@ btnLogin.addEventListener("click", async () => {
     const password =
         document.getElementById("password").value;
 
+    if(
+    correo.trim()==="" ||
+    password.trim()===""
+){
+
+    ocultarCarga();
+
+    mostrarToast(
+        "error",
+        "Ingresa tu correo y contraseña."
+    );
+
+    return;
+
+}
+
     try {
 
         const credencial =
