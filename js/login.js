@@ -18,7 +18,29 @@ from "./firebase-config.js";
 
 const btnLogin = document.getElementById("btnLogin");
 
+function mostrarCarga(texto = "Ingresando...") {
+
+    btnLogin.classList.add("cargando");
+
+    btnLogin.innerHTML = texto;
+
+    btnLogin.disabled = true;
+
+}
+
+function ocultarCarga() {
+
+    btnLogin.classList.remove("cargando");
+
+    btnLogin.innerHTML = "Ingresar";
+
+    btnLogin.disabled = false;
+
+}
+
 btnLogin.addEventListener("click", async () => {
+
+    mostrarCarga();
 
     const correo =
         document.getElementById("correo").value;
@@ -44,6 +66,8 @@ btnLogin.addEventListener("click", async () => {
             await getDoc(usuarioRef);
 
         if (!usuarioSnap.exists()) {
+            
+            ocultarCarga();
 
             alert("Usuario no encontrado");
 
@@ -56,6 +80,8 @@ btnLogin.addEventListener("click", async () => {
             usuarioSnap.data();
 
         if (usuario.estado !== "ACTIVO") {
+            
+            ocultarCarga();
 
             alert(
                 "Su cuenta aún no ha sido activada"
@@ -77,19 +103,11 @@ btnLogin.addEventListener("click", async () => {
     }
     catch (error) {
 
+        ocultarCarga();
+
+
         alert(error.message);
 
     }
-
-});
-
-
-
-btnLogin.addEventListener("click", async()=>{
-
-    const correo=correoInput.value;
-    const password=passwordInput.value;
-
-    await signInWithEmailAndPassword(auth,correo,password);
 
 });
