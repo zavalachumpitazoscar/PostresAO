@@ -11,33 +11,37 @@
 
 <body>
 
-    <div class="dashboard">
+<header class="topbar">
 
-        <!-- Menú lateral -->
-        <aside class="sidebar">
+    <div class="logo">
+        🍰 Dulce Admin
+    </div>
 
-            <h2>🍰 Dulce Admin</h2>
+    <nav class="menu">
 
-            <button id="btnUsuarios">
-                👥 Usuarios
-            </button>
+        <button class="tab activo" data-vista="usuarios">
+            👥 Usuarios
+        </button>
 
-            <button id="btnProductos">
-                🍰 Productos
-            </button>
+        <button class="tab" data-vista="productos">
+            🍰 Productos
+        </button>
 
-            <button id="btnPedidos">
-                📦 Pedidos
-            </button>
+        <button class="tab" data-vista="pedidos">
+            📦 Pedidos
+        </button>
 
-            <button id="btnCerrarSesion">
-                🚪 Cerrar Sesión
-            </button>
+    </nav>
 
-        </aside>
+    <button id="btnCerrarSesion" class="logout">
+        🚪 Salir
+    </button>
 
+</header>
+
+    
         <!-- Contenido -->
-        <main class="contenido">
+<main class="contenido">
 
 <!--TARJETAS-->
 
@@ -104,7 +108,7 @@
 
             
 
-            <section id="vistaUsuarios">
+<section id="vistaUsuarios">
 
                 <h2>Usuarios Registrados</h2>
 
@@ -112,7 +116,7 @@
 
             </section>
 
-            <section id="vistaProductos" style="display:none;">
+<section id="vistaProductos" style="display:none;">
 
     <h2>Productos</h2>
 
@@ -153,12 +157,13 @@
     <div id="contenedorPedidos"></div>
 
 </section>
+</main>
+</div>
 
-        </main>
 
-    </div>
-
-    <script type="module" src="js/admin.js"></script>
+    
+    
+<script type="module" src="js/admin.js"></script>
 
 <div id="modalEditar" class="modal">
 
