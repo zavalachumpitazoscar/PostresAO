@@ -82,3 +82,14 @@ btnLogin.addEventListener("click", async () => {
     }
 
 });
+
+
+
+btnLogin.addEventListener("click", async()=>{
+
+    const correo=correoInput.value;
+    const password=passwordInput.value;
+
+    await signInWithEmailAndPassword(auth,correo,password);
+
+});
